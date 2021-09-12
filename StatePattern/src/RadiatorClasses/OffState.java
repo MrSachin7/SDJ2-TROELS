@@ -12,6 +12,7 @@ public class OffState implements RadiatorState
   @Override public void turnUp(Radiator radiator)
   {
 radiator.setPowerState(new Power1State());
+    System.out.println("The new power :"+ radiator.getPower());
   }
 
   @Override public  int getPower()

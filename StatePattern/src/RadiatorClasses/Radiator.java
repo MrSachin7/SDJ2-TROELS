@@ -2,7 +2,7 @@ package RadiatorClasses;
 
 public class Radiator
 {
-  private RadiatorState currentState;
+  private RadiatorState currentState = new OffState();
 
   public void turnUp()
   {
@@ -13,9 +13,9 @@ public class Radiator
   {
     currentState.turnDown(this);
   }
-  public void getPower()
+  public int getPower()
   {
-    currentState.getPower();
+  return   currentState.getPower();
   }
   void setPowerState(RadiatorState state)
   {

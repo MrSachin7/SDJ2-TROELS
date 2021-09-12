@@ -1,16 +1,29 @@
-package StatePattern;
+package PhoneClasses;
 
-public class SoundState implements PhoneState
+public class VibrateState implements PhoneState
 {
   @Override public void onReceiveTextMessage(String txt, Phone phone)
   {
-    phone.beepBeep();
+    phone.vibrate();
     System.out.println(txt);
   }
 
   @Override public void onReceiveCall(Phone phone)
   {
-    phone.playRingTone();
+    phone.vibrate();
+  }
+
+  @Override public void onVolumeButtonDown(Phone phone)
+  {
+    int vol= phone.getVolume();
+    if (vol>1)
+    {
+      phone.turnVolumeDown();
+    }
+    else
+    {
+      phone.setState(new SilentState());
+    }
   }
 
   @Override public void onVolumeButtonUp(Phone phone)
@@ -19,19 +32,6 @@ public class SoundState implements PhoneState
     if (vol<100)
     {
       phone.turnVolumeUp();
-    }
-  }
-
-  @Override public void onVolumeButtonDown(Phone phone)
-  {
-    int vol = phone.getVolume();
-    if (vol>1)
-    {
-      phone.turnVolumeDown();
-    }
-    else
-    {
-      phone.setState(new SilentState());
     }
   }
 }

@@ -7,17 +7,17 @@ public class Test
     Radiator radiator = new Radiator();
     radiator.turnUp();
     radiator.turnUp();
-
     radiator.turnUp();
     try
     {
-      Thread.sleep(10001);
+      Thread.sleep(5000);
+      radiator.turnDown();
     }
     catch (InterruptedException e)
     {
       e.printStackTrace();
     }
-    radiator.turnDown();
+
 
   }
 

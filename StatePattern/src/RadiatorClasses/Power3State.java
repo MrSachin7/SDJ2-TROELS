@@ -15,10 +15,11 @@ public class Power3State implements RadiatorState
       }
       catch (InterruptedException e)
       {
-        e.printStackTrace();
+         // System.out.println("Sleep interrrupted sucessfully");
+          e.printStackTrace();
       }
     });
-//temp.setDaemon(true);
+temp.setDaemon(true);
     temp.start();
   }
 

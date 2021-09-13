@@ -2,8 +2,15 @@ package RadiatorClasses;
 
 public class Radiator
 {
-  private RadiatorState currentState = new OffState();
+  private RadiatorState currentState;
 
+  public Radiator()
+  {
+    if (currentState==null)
+    {
+      currentState= new OffState();
+    }
+  }
   public void turnUp()
   {
     currentState.turnUp(this);

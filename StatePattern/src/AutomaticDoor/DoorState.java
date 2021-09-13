@@ -1,4 +1,7 @@
 package AutomaticDoor;
 
-public interface DoorState {
+public interface DoorState
+{
+    void buttonClicked(Door door);
+    String getState();
 }

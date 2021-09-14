@@ -7,12 +7,9 @@ public class ModelFactory
 {
   private TextConverter textConverter;
 
-  public TextConverter getTextConverter()
-  {
-    if (textConverter==null)
-    {
-      textConverter=new TextConverterModel();
-    }
+  public TextConverter getTextConverter() {
+    if(textConverter == null)
+      textConverter = new TextConverterModel();
     return textConverter;
   }
 }

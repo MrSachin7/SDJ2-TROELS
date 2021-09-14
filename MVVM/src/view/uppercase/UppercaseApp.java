@@ -9,8 +9,8 @@ public class UppercaseApp extends Application
 {
   @Override public void start(Stage stage) throws Exception
   {
-  //  ViewModelFactory vf = new ViewModelFactory();
-    ViewHandler vh= new ViewHandler();
+    ViewModelFactory vmf = new ViewModelFactory();
+    ViewHandler vh= new ViewHandler(vmf);
     vh.start();
   }
 }

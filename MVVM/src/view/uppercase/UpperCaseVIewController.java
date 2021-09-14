@@ -11,12 +11,16 @@ public class UpperCaseVIewController {
  @FXML private TextField requestField;
   @FXML private TextField replyField;
   @FXML private  Label errorLabel;
+  private UppercaseViewModel viewModel;
 
   @FXML
   private void onSubmitButton(ActionEvent actionEvent)
   {
-    System.out.println("Submit pressed");
+   viewModel.convert();
   }
 
+ public void init(UppercaseViewModel uppercaseViewModel)
+ {
 
+ }
 }

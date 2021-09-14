@@ -1,5 +1,6 @@
 package view.uppercase;
 
+import core.ModelFactory;
 import core.ViewHandler;
 import core.ViewModelFactory;
 import javafx.application.Application;
@@ -9,7 +10,8 @@ public class UppercaseApp extends Application
 {
   @Override public void start(Stage stage) throws Exception
   {
-    ViewModelFactory vmf = new ViewModelFactory();
+    ModelFactory mf = new ModelFactory();
+    ViewModelFactory vmf = new ViewModelFactory(mf);
     ViewHandler vh= new ViewHandler(vmf);
     vh.start();
   }

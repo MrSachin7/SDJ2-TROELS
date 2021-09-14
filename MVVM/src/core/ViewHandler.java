@@ -20,10 +20,7 @@ public class ViewHandler
     this.vmf = vmf;
   }
 
- /* public ViewHandler(core.ViewModelFactory vmf)
-  {
 
-  } **/
 
   public void start()
   {

@@ -11,7 +11,7 @@ public class Power3State implements RadiatorState
       try
       {
         Thread.sleep(10000);
-        radiator.turnDown();
+        radiator.turnDown();   // The radiator is turned down after 10 seconds since the thread is called in the constructor.
       }
       catch (InterruptedException e)
       {
@@ -25,7 +25,7 @@ temp.setDaemon(true);
 
   @Override public void turnUp(Radiator radiator)
   {
-
+                                   // The turn up doesnt make sense here because the state is already at max
   }
 
   @Override public void turnDown(Radiator radiator)

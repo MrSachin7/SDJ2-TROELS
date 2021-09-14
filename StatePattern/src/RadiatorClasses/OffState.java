@@ -6,7 +6,7 @@ public class OffState implements RadiatorState
 
   @Override public void turnDown(Radiator radiator)
   {
-
+                                    // The state is already at 0 , so the turn down doesnt make sense
   }
 
   @Override public void turnUp(Radiator radiator)

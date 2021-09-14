@@ -9,7 +9,7 @@ public class SilentState implements PhoneState
 
   @Override public void onVolumeButtonDown(Phone phone)
   {
-
+                        // already on silent mode
   }
 
   @Override public void onVolumeButtonUp(Phone phone)

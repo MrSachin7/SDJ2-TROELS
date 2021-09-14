@@ -10,7 +10,8 @@ public class Test
     radiator.turnUp();
     try
     {
-      Thread.sleep(5000);
+      Thread.sleep(5000
+      );
       radiator.turnDown();
     }
     catch (InterruptedException e)

@@ -21,6 +21,6 @@ public class UpperCaseVIewController {
 
  public void init(UppercaseViewModel uppercaseViewModel)
  {
-
+this.viewModel = uppercaseViewModel;
  }
 }

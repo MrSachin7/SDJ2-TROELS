@@ -20,7 +20,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="onErrorLabel" layoutX="80.0" layoutY="278.0" prefHeight="18.0" prefWidth="180.0" text="source text is empty" textFill="RED" />
+            <Label fx:id="errorLabel" layoutX="80.0" layoutY="278.0" prefHeight="18.0" prefWidth="180.0" text="source text is empty" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

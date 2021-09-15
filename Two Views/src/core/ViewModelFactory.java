@@ -15,6 +15,9 @@ public class ViewModelFactory
     if (logVM == null) {
       logVM = new LogViewModel(mf.getTextConverter());
     }
+    if (uppercaseVM == null) {
+      uppercaseVM = new UppercaseViewModel(mf.getTextConverter());
+    }
   }
 
   public UppercaseViewModel getUppercaseViewModel()

@@ -14,16 +14,19 @@ public class LogViewModel {
         logs = FXCollections.observableArrayList();
 
 
-    }
 
-    public ObservableList<String> getLogs() {
-        return logs;
     }
-
     public void loadLogs() {
-        for (int i = 0; i <textConverter.getLog().size() ; i++) {
+        for (int i = 0; i < textConverter.getLogSize(); i++) {
 
             logs.add(textConverter.getLog().get(i));
         }
     }
-}
+
+    public ObservableList<String> getLogs() {
+        loadLogs();
+        return logs;
+    }
+
+
+    }

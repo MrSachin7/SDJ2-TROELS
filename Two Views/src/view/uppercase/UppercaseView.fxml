@@ -21,7 +21,7 @@
                </font>
             </Label>
             <Label fx:id="errorLabel" layoutX="80.0" layoutY="278.0" prefHeight="18.0" prefWidth="180.0" text="source text is empty" textFill="RED" />
-            <Button layoutX="472.0" layoutY="140.0" mnemonicParsing="false" onAction="#onShow" text="Show log" />
+            <Button layoutX="472.0" layoutY="140.0" mnemonicParsing="false" onAction="#onShowButton" text="Show log" />
          </children>
       </AnchorPane>
    </children>

@@ -12,9 +12,10 @@ import java.io.IOException;
 
 public class ViewHandler {
 
-    private Scene uppercaseScene;
-    private Scene logViewScene;
-    private Stage stage;
+    private Scene scene;
+
+    private Stage stage1 = new Stage();
+    private Stage stage2 = new Stage();
     private ViewModelFactory vmf;
 
     public ViewHandler(ViewModelFactory vmf) {
@@ -22,39 +23,54 @@ public class ViewHandler {
     }
 
     public void start() throws IOException {
-        stage = new Stage();
-        openToUpperCase();
+        stage1 = new Stage();
+        stage2 = new Stage();
+        openView("convert");
 
     }
 
-
-
-    public void openToUpperCase() throws IOException {
+    public void openView(String viewToOpen) throws IOException {
         FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
 
-        Stage localStage = new Stage();
 
-        loader.setLocation(getClass().getResource("../view/uppercase/UppercaseView.fxml"));
-        Parent root = loader.load();
-        UppercaseViewController ctrl = loader.getController();
-        ctrl.init(vmf.getUppercaseViewModel());
-        localStage.setTitle("Text converter");
-        logViewScene = new Scene(root);
-        localStage.setScene(logViewScene);
-localStage.show();
+        if ("convert".equals(viewToOpen)) {
+            loader.setLocation(getClass().getResource("../view/uppercase/UppercaseView.fxml"));
+            root = loader.load();
+            UppercaseViewController ctrl = loader.getController();
+            ctrl.init(vmf.getUppercaseViewModel());
+            stage1.setTitle("Text converter");
+            scene = new Scene(root);
+            stage1.setScene(scene);
+            stage1.show();
+
+        } else if ("Log".equals(viewToOpen)) {
+
+            loader.setLocation(getClass().getResource("../view/uppercase/LogView.fxml"));
+            root = loader.load();
+            LogViewController ctrl = loader.getController();
+            ctrl.init(vmf.getLogVM());
+            stage2.setTitle("Log Views");
+            scene = new Scene(root);
+            stage2.setScene(scene);
+            stage2.show();
+
+
+        }
     }
 
-    public void openLogView() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
+    public void closeStage(String text) {
+        if ("Log".equals(text)) {
 
-        Stage localStage = new Stage();
-        loader.setLocation(getClass().getResource("../view/uppercase/LogView.fxml"));
-        Parent root = loader.load();
-        LogViewController ctrl = loader.getController();
-        ctrl.init(vmf.getLogVM());
-        localStage.setTitle("Log Views");
-        uppercaseScene = new Scene(root);
-        localStage.setScene(uppercaseScene);
-        localStage.show();
+            stage2.close();
+        } else if ("convert".equals(text)) {
+            stage1.close();
+        }
     }
+
 }
+
+
+
+
+

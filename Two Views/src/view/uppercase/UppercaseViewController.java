@@ -1,6 +1,8 @@
 package view.uppercase;
 
+import core.ModelFactory;
 import core.ViewHandler;
+import core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,11 +20,14 @@ public class UppercaseViewController
   private TextField requestField;
   @FXML
   private TextField replyField;
+  private ViewHandler viewHandler;
 
 
   private UppercaseViewModel viewModel;
 
   public void init(UppercaseViewModel uppercaseViewModel) {
+
+    viewHandler=new ViewHandler(new ViewModelFactory(new ModelFactory()));
     replyField.setDisable(true);
     this.viewModel = uppercaseViewModel;
     errorLabel.textProperty().bind(viewModel.errorProperty());
@@ -35,10 +40,15 @@ public class UppercaseViewController
     viewModel.convert();
   }
 
-  @FXML
-  private void onShow(ViewHandler viewHandler) throws IOException {
-    viewHandler.openLogView();
+
+  private void onShow() throws IOException {
+    viewHandler.openView("Log");
     viewModel.clear();
   }
+  @FXML
+  private void onShowButton(ActionEvent actionEvent) throws IOException {
+    onShow();
+  }
+
 }
 

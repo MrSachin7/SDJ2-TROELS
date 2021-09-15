@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.uppercase.UpperCaseVIewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.uppercase.UppercaseViewController">
    <children>
       <AnchorPane layoutX="-8.0" prefHeight="400.0" prefWidth="593.0">
          <children>
@@ -20,7 +20,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label fx:id="onErrorLabel" layoutX="80.0" layoutY="278.0" prefHeight="18.0" prefWidth="180.0" text="source text is empty" textFill="RED" />
+            <Label fx:id="errorLabel" layoutX="80.0" layoutY="278.0" prefHeight="18.0" prefWidth="180.0" text="source text is empty" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

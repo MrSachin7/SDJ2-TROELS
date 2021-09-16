@@ -9,26 +9,33 @@ import view.uppercase.UppercaseViewController;
 
 import java.io.IOException;
 
-public class ViewHandler {
+public class ViewHandler
+{
 
   private Scene uppercaseScene;
   private Stage stage;
   private ViewModelFactory vmf;
 
-  public ViewHandler(ViewModelFactory vmf) {
+  public ViewHandler(ViewModelFactory vmf)
+  {
     this.vmf = vmf;
   }
 
-  public void start() {
+  public void start()
+  {
     stage = new Stage();
     openToUppercase();
   }
 
-  public void openToUppercase() {
-    if(uppercaseScene == null) {
-      try {
+  public void openToUppercase()
+  {
+    if (uppercaseScene == null)
+    {
+      try
+      {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/uppercase/UppercaseView.fxml"));
+        loader.setLocation(
+            getClass().getResource("../view/uppercase/UppercaseView.fxml"));
         Parent root = loader.load();
 
         UppercaseViewController ctrl = loader.getController();
@@ -37,7 +44,9 @@ public class ViewHandler {
         stage.setTitle("Upper case");
         uppercaseScene = new Scene(root);
 
-      } catch (IOException e) {
+      }
+      catch (IOException e)
+      {
         e.printStackTrace();
       }
     }

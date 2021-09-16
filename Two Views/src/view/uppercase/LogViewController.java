@@ -5,7 +5,7 @@ import core.ViewHandler;
 import core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.ListView;
 import view.uppercase.log.LogViewModel;
 
@@ -19,7 +19,8 @@ public class LogViewController {
     private LogViewModel viewModel;
     private ViewHandler viewHandler;
 
-    public void init(LogViewModel viewModel) {
+    public void init(LogViewModel viewModel)
+    {
         viewHandler = new ViewHandler(new ViewModelFactory(new ModelFactory()));
         this.viewModel = viewModel;
         viewModel.loadLogs();

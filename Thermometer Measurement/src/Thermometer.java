@@ -25,7 +25,7 @@ public class Thermometer implements Runnable {
         while (true) {
 
             try {
-                temperature(t, 0, 1, 0, 6);
+              t=  temperature(t, 0, 1, 0, 6);
                 System.out.println("Temperature :" + t + " ID : " + id);
                 Thread.sleep(6000);
             } catch (InterruptedException e) {

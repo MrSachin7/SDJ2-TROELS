@@ -35,12 +35,12 @@ public class TemperatureModelManager implements TemperatureModel {
 
     @Override
     public void addListener(Listener lstnr) {
-        listeners.add(lstnr);
+      //  listeners.add(lstnr);
     }
 
     @Override
     public void removeListener(Listener lstnr) {
-        listeners.remove(lstnr);
+        //listeners.remove(lstnr);
     }
 
     public List<Listener> getListeners() {

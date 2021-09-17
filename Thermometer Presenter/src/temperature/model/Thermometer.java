@@ -7,13 +7,13 @@ import temperature.view.TemperatureViewController;
 public class Thermometer implements Runnable {
     private String id;
     private double t;
-    private TemperatureModelManager temperatureModel;
+ //   private TemperatureModelManager temperatureModel;
 
 
-    public Thermometer(String id, double t, TemperatureModelManager temperatureModel) {
+    public Thermometer(String id, double t) {
         this.id = id;
         this.t = t;
-        this.temperatureModel = temperatureModel;
+      //  this.temperatureModel = temperatureModel;
     }
 
     private double temperature(double t, int p, int d, double t0, int s) {
@@ -36,15 +36,16 @@ public class Thermometer implements Runnable {
             try {
 
                 t = temperature(t, 0, 1, 0, 6);
-                temperatureModel.addTemperature(this.id, t);
+               // temperatureModel.addTemperature(this.id, t);
                 String a = ("Temperature :" + t + " ID : " + id);
                 System.out.println(a);
-                if (temperatureModel.getListeners().size()>0 && (temperatureModel !=null)) {
+
+               /* if (temperatureModel.getListeners().size()>0 && (temperatureModel !=null)) {
                     for (int i = 0; i < temperatureModel.getListeners().size(); i++) {
                         temperatureModel.getListeners().get(i).update(a);
 
                     }
-                }
+                }**/
 
                 Thread.sleep(6000);
             } catch (InterruptedException e) {

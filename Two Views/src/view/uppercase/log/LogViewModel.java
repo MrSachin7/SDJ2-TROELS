@@ -5,28 +5,30 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.TextConverter;
 
-public class LogViewModel {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class LogViewModel implements PropertyChangeListener {
     private TextConverter textConverter;
     private ObservableList<String> logs;
 
     public LogViewModel(TextConverter textConverter) {
         this.textConverter = textConverter;
         logs = FXCollections.observableArrayList();
+        textConverter.addListener(this);
 
 
 
     }
-    public void loadLogs() {
-        for (int i = 0; i < textConverter.getLogSize(); i++) {
 
-            logs.add(textConverter.getLog().get(i));
-        }
-    }
 
     public ObservableList<String> getLogs() {
-        loadLogs();
+
         return logs;
     }
 
-
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        logs.add(0,""+evt.getNewValue());
     }
+}

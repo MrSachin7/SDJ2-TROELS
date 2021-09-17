@@ -29,5 +29,11 @@ public class UppercaseViewController
   private void onSubmitButton(ActionEvent actionEvent) {
     viewModel.convert();
   }
+
+  public void onShowButton(ActionEvent actionEvent) {
+
+  }
+
+
 }
 

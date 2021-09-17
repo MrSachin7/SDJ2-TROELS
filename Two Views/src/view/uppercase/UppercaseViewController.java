@@ -25,9 +25,9 @@ public class UppercaseViewController
 
   private UppercaseViewModel viewModel;
 
-  public void init(UppercaseViewModel uppercaseViewModel) {
+  public void init(UppercaseViewModel uppercaseViewModel,ViewHandler viewHandler) {
 
-    viewHandler=new ViewHandler(new ViewModelFactory(new ModelFactory()));
+   this.viewHandler=viewHandler;
     replyField.setDisable(true);
     this.viewModel = uppercaseViewModel;
     errorLabel.textProperty().bind(viewModel.errorProperty());
@@ -36,19 +36,16 @@ public class UppercaseViewController
   }
 
   @FXML
-  private void onSubmitButton(ActionEvent actionEvent) {
+  private void onSubmitButton(ActionEvent vcvccvactionEvent) {
     viewModel.convert();
   }
 
-
-  private void onShow() throws IOException {
-    viewHandler.openView("Log");
-    viewModel.clear();
-  }
   @FXML
-  private void onShowButton(ActionEvent actionEvent) throws IOException {
-    onShow();
-  }
+    private void onShowButton() throws IOException {
+        viewHandler.openView("Log");
+        viewModel.clear();
+    }
+
 
 }
 

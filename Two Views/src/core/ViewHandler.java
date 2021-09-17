@@ -38,7 +38,7 @@ public class ViewHandler {
             loader.setLocation(getClass().getResource("../view/uppercase/UppercaseView.fxml"));
             root = loader.load();
             UppercaseViewController ctrl = loader.getController();
-            ctrl.init(vmf.getUppercaseViewModel());
+            ctrl.init(vmf.getUppercaseViewModel(),this);
             stage1.setTitle("Text converter");
             scene = new Scene(root);
             stage1.setScene(scene);
@@ -49,7 +49,7 @@ public class ViewHandler {
             loader.setLocation(getClass().getResource("../view/uppercase/LogView.fxml"));
             root = loader.load();
             LogViewController ctrl = loader.getController();
-            ctrl.init(vmf.getLogVM());
+            ctrl.init(vmf.getLogVM(),this);
             stage2.setTitle("Log Views");
             scene = new Scene(root);
             stage2.setScene(scene);

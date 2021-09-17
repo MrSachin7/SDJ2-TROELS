@@ -7,7 +7,7 @@ import view.uppercase.log.LogViewModel;
 public class test {
     public static void main(String[] args) {
         TextConverter textConverterModel= new TextConverterModel();
-        LogViewModel logViewModel = new LogViewModel(textConverterModel);
+        LogViewModel logViewModel = new LogViewModel(new TextConverterModel());
         String abc = "abc";
         textConverterModel.toUpperCase(abc);
         textConverterModel.toUpperCase("ekko");

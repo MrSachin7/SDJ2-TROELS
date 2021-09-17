@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import view.uppercase.log.LogViewModel;
 
+import javax.swing.text.View;
 import java.io.IOException;
 
 
@@ -19,11 +20,10 @@ public class LogViewController {
     private LogViewModel viewModel;
     private ViewHandler viewHandler;
 
-    public void init(LogViewModel viewModel)
-    {
-        viewHandler = new ViewHandler(new ViewModelFactory(new ModelFactory()));
+    public void init(LogViewModel viewModel, ViewHandler viewHandler) {
+        this.viewHandler = viewHandler;
         this.viewModel = viewModel;
-        viewModel.loadLogs();
+
         logList.setItems(viewModel.getLogs());
         System.out.println(viewModel.getLogs());
 

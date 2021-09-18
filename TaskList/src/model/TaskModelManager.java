@@ -19,23 +19,23 @@ public class TaskModelManager implements TaskModel {
 
 
     @Override
-    public void addPropertyListener(PropertyChangeListener listener) {
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
     @Override
-    public void addPropertyListener(String eventName, PropertyChangeListener listener) {
+    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
     }
 
 
     @Override
-    public void removePropertyListener(PropertyChangeListener listener) {
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
 
     @Override
-    public void removePropertyListener(String eventName, PropertyChangeListener listener) {
+    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(eventName, listener);
     }
 

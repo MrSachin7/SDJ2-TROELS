@@ -3,10 +3,10 @@ package model;
 import java.beans.PropertyChangeListener;
 
     public interface PropertyChangeSubject {
-        void addPropertyListener(PropertyChangeListener listener);
-        void addPropertyListener(String eventName,PropertyChangeListener listener);
-        void removePropertyListener(PropertyChangeListener listener);
-        void removePropertyListener(String eventName,PropertyChangeListener listener);
+        void addPropertyChangeListener(PropertyChangeListener listener);
+        void addPropertyChangeListener(String eventName,PropertyChangeListener listener);
+        void removePropertyChangeListener(PropertyChangeListener listener);
+        void removePropertyChangeListener(String eventName,PropertyChangeListener listener);
 
     }
 

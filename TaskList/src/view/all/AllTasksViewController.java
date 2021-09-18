@@ -6,8 +6,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Task;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
+
 
 public class AllTasksViewController {
     @FXML
@@ -24,18 +25,19 @@ public class AllTasksViewController {
 
     public void init(AllTasksVM allTasksVM, ViewHandler viewHandler) {
         creatorColumn.setCellValueFactory(new PropertyValueFactory<>("owner"));
-        descriptionColumn.setCellValueFactory( new PropertyValueFactory<>("description"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("timeCreated"));
         tableView.setItems(allTasksVM.getTaskList());
-        this.viewHandler=viewHandler;
+        this.viewHandler = viewHandler;
     }
 
-    public void onAddButton(ActionEvent evt)
-    {
-
+    public void onAddButton(ActionEvent evt) {
+        viewHandler.openAddTaskView();
     }
-    public void onNextTaskButton(ActionEvent evt)
-    {
 
+    public void onNewTaskButton(ActionEvent evt) {
+        viewHandler.openAllTasksView();
     }
+
+
 }

@@ -13,7 +13,7 @@ public class TaskListApp extends Application {
         ViewHandler viewHandler= new ViewHandler(viewModelFactory);
         viewHandler.start();
 
-        Thread thread = new Thread(()->{
+        /**Thread thread = new Thread(()->{
             TaskModelManager taskModelManager = (TaskModelManager) modelFactory.getTaskModel();
             for (int i =0; i<10; i++)
             {
@@ -26,6 +26,6 @@ public class TaskListApp extends Application {
             }
         });
         thread.setDaemon(true);
-        thread.start();
+        thread.start();**/
     }
 }

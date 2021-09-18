@@ -18,7 +18,6 @@ public class LogViewModel implements PropertyChangeListener {
         textConverter.addListener(this);
 
 
-
     }
 
 
@@ -29,6 +28,6 @@ public class LogViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        logs.add(0,""+evt.getNewValue());
+        logs.add(0, "" + evt.getNewValue());
     }
 }

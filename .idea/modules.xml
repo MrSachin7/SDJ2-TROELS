@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DoctorsWaitingRoom/DoctorsWaitingRoom.iml" filepath="$PROJECT_DIR$/DoctorsWaitingRoom/DoctorsWaitingRoom.iml" />
       <module fileurl="file://$PROJECT_DIR$/Excercise/Excercise.iml" filepath="$PROJECT_DIR$/Excercise/Excercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ideproects.iml" filepath="$PROJECT_DIR$/.idea/Ideproects.iml" />
       <module fileurl="file://$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" filepath="$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" />
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" filepath="$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Thermometer Measurement/Thermometer Measurement.iml" filepath="$PROJECT_DIR$/Thermometer Measurement/Thermometer Measurement.iml" />
       <module fileurl="file://$PROJECT_DIR$/Two Views/Two Views.iml" filepath="$PROJECT_DIR$/Two Views/Two Views.iml" />
       <module fileurl="file://$PROJECT_DIR$/MVVM/UpperCaseMVVM.iml" filepath="$PROJECT_DIR$/MVVM/UpperCaseMVVM.iml" />
     </modules>

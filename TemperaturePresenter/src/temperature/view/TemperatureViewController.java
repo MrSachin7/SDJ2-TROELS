@@ -79,6 +79,8 @@ public class TemperatureViewController implements Listener
 
    }
 
+
+
    @Override
    public void update(Object arg) {
 

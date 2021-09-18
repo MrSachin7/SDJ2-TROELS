@@ -29,7 +29,7 @@ public class DataModel implements Model {
 
     @Override
     public void addListener(String name, PropertyChangeListener listener) {
-        if(name == null)
+        if (name == null)
             changeSupport.addPropertyChangeListener(listener);
         else
             changeSupport.addPropertyChangeListener(name, listener);
@@ -45,8 +45,8 @@ public class DataModel implements Model {
     }
 
     public void recalculateData() {
-        int first = random.nextInt(100)+1;
-        int second = random.nextInt(100)+1;
+        int first = random.nextInt(100) + 1;
+        int second = random.nextInt(100) + 1;
         int bottom = Math.min(first, second);
         int top = Math.max(first, second);
 

@@ -31,6 +31,7 @@ public class NextTaskViewController {
     @FXML
     private void onGetTaskButton(ActionEvent actionEvent) {
         nextTaskViewModel.removeFirstTask();
+        nextTaskViewModel.clear();
     }
 
     @FXML

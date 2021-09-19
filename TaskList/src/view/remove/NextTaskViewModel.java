@@ -22,7 +22,7 @@ public class NextTaskViewModel {
     }
     public void removeFirstTask()
     {
-        taskModel.removeFirstTask();
+        taskModel.getTask();
     }
     public StringProperty nextTaskProperty()
     {
@@ -42,6 +42,13 @@ public class NextTaskViewModel {
         createdAt.set(taskModel.getAllTasks().get(0).getTimeCreated());
         createdBy.set(taskModel.getAllTasks().get(0).getOwner());
 
+    }
+    public void clear()
+    {
+
+        nextTask.set(null);
+        createdAt.set(null);
+        createdBy.set(null);
     }
 
 

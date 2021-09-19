@@ -47,11 +47,6 @@ public class TaskModelManager implements TaskModel {
     }
 
     @Override
-    public void removeFirstTask() {
-        tasks.remove(0);
-    }
-
-    @Override
     public Task getTask() {
        Task removedTask = tasks.remove(0);
        support.firePropertyChange("TaskRemoved",null,removedTask);

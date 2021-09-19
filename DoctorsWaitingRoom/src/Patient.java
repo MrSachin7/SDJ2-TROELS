@@ -24,7 +24,7 @@ public class Patient implements PropertyChangeListener {
         int counter = (int) evt.getNewValue();
         System.out.println(this + " looks up");
         if (counter == ticketNumber) {
-           waitingRoom.removePropertyChangeListener(this);
+           waitingRoom.removePropertyChangeListener("Counter increased",this);
             System.out.println(this + " enters the doctor's office");
 
         } else {

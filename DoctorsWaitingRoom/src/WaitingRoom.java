@@ -37,7 +37,7 @@ public class WaitingRoom implements WaitingRoomInterface, Runnable {
         {
             try {
                 counter++;
-                System.out.println("Dinggggg");
+                System.out.println("Dinggggggg, The number is    "+counter);
                 support.firePropertyChange("Counter increased", null, counter);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

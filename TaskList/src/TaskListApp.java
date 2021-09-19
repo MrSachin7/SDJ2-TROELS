@@ -10,7 +10,7 @@ public class TaskListApp extends Application {
     public void start(Stage stage) throws Exception {
         ModelFactory modelFactory = new ModelFactory();
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
-        ViewHandler viewHandler= new ViewHandler(viewModelFactory);
+        ViewHandler viewHandler= new ViewHandler(stage, viewModelFactory);
         viewHandler.start();
 
         /**Thread thread = new Thread(()->{

@@ -16,14 +16,14 @@ public class ViewHandler {
     private Scene allTasksViewScene;
     private ViewModelFactory viewModelFactory;
 
-    public ViewHandler(ViewModelFactory viewModelFactory) {
+    public ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
         this.viewModelFactory = viewModelFactory;
-        stage = new Stage();
+        this.stage = stage;
     }
 
     public void start() {
         openAllTasksView();
-        stage.show();
+
 
     }
 
@@ -38,22 +38,22 @@ public class ViewHandler {
         this.stage.setTitle("View Tasks");
         this.stage.setScene(allTasksViewScene);
 
-
+        stage.show();
     }
 
     public void openAddTaskView() {
         FXMLLoader loader = new FXMLLoader();
         if (addTaskViewScene == null) {
-            Parent root = getRootByPath("../view/add/AddTaskView.fxml",loader);
+            Parent root = getRootByPath("../view/add/AddTaskView.fxml", loader);
             AddTaskViewController controller = loader.getController();
-            controller.init(viewModelFactory.getAddTaskViewModel(),this);
+            controller.init(viewModelFactory.getAddTaskViewModel(), this);
             addTaskViewScene = new Scene(root);
-
-            stage.setTitle("Add tasks");
-            stage.setScene(addTaskViewScene);
-
-
         }
+        stage.setTitle("Add tasks");
+        stage.setScene(addTaskViewScene);
+        stage.show();
+
+
     }
 
     public void openGetNextTaskView() {

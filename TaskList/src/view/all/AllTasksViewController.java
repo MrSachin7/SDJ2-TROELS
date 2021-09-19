@@ -36,7 +36,7 @@ public class AllTasksViewController {
     }
 
     public void onNewTaskButton(ActionEvent evt) {
-        viewHandler.openAllTasksView();
+
     }
 
 

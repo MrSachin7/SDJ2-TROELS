@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.swing.text.View;
+
 import java.io.IOException;
 
 public class UppercaseViewController
@@ -36,7 +36,7 @@ public class UppercaseViewController
   }
 
   @FXML
-  private void onSubmitButton(ActionEvent vcvccvactionEvent) {
+  private void onSubmitButton(ActionEvent actionEvent) {
     viewModel.convert();
   }
 

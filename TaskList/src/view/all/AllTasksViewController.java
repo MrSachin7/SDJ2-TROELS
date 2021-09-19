@@ -35,8 +35,8 @@ public class AllTasksViewController {
         viewHandler.openAddTaskView();
     }
 
-    public void onNewTaskButton(ActionEvent evt) {
-
+    public void onNextTaskButton(ActionEvent evt) {
+viewHandler.openGetNextTaskView();
     }
 
 

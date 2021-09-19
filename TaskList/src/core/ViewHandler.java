@@ -6,13 +6,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.add.AddTaskViewController;
 import view.all.AllTasksViewController;
+import view.remove.NextTaskViewController;
 
 import java.io.IOException;
 
 public class ViewHandler {
     private Stage stage;
     private Scene addTaskViewScene;
-    private Scene removeTaskViewScene;
+    private Scene nextTaskViewScene;
     private Scene allTasksViewScene;
     private ViewModelFactory viewModelFactory;
 
@@ -57,6 +58,17 @@ public class ViewHandler {
     }
 
     public void openGetNextTaskView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (nextTaskViewScene==null)
+        {
+            Parent root = getRootByPath("../view/remove/NextTaskView.fxml",loader);
+            NextTaskViewController controller = loader.getController();
+            controller.init(viewModelFactory.getNextTaskViewModel(),this);
+            nextTaskViewScene = new Scene(root);
+        }
+        stage.setTitle("Next Task");
+        stage.setScene(nextTaskViewScene);
+        stage.show();
 
     }
 

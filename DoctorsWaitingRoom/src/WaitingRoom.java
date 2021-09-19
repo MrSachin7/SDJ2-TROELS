@@ -1,48 +1,49 @@
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class WaitingRoom implements Subject, Runnable {
-    private List<Listener> list;
+public class WaitingRoom implements WaitingRoomInterface, Runnable {
+    private PropertyChangeSupport support;
+    private int counter=-1;
 
     public WaitingRoom()
     {
-        this.list= new ArrayList<>();
-    }
-    @Override
-    public void addListener(Listener lstnr) {
-        list.add(lstnr);
+        support = new PropertyChangeSupport(this);
     }
 
     @Override
-    public void removeListener(Listener lstnr) {
-        list.remove(lstnr);
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+
     }
 
-    private  void updateListeners(int turnNo) {
-        for (Listener listeners : list
-        ) {
-            listeners.update(turnNo);
-        }
+    @Override
+    public void addPropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(eventName, listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String eventName, PropertyChangeListener listener) {
+        support.removePropertyChangeListener(eventName, listener);
     }
 
     @Override
     public void run() {
-        int turnNO = -1;
-        while (true) {
-
+        while (true)
+        {
             try {
-                turnNO++;
-                System.out.println("Dingggg");
-                updateListeners(turnNO);
-                Thread.sleep(10000);
-
-
+                counter++;
+                System.out.println("Dinggggg");
+                support.firePropertyChange("Counter increased", null, counter);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-
         }
+
     }
 }

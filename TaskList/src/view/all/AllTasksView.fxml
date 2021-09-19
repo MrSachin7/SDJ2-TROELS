@@ -25,6 +25,6 @@
          </children>
       </VBox>
       <Button layoutX="20.0" layoutY="354.0" mnemonicParsing="false" onAction="#onAddButton" text="Add" />
-      <Button layoutX="81.0" layoutY="354.0" mnemonicParsing="false" onAction="#onNewTaskButton" text="New Task" />
+      <Button layoutX="81.0" layoutY="354.0" mnemonicParsing="false" onAction="#onNextTaskButton" text="Next Task" />
    </children>
 </AnchorPane>

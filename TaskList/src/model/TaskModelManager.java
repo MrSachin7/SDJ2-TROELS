@@ -47,6 +47,11 @@ public class TaskModelManager implements TaskModel {
     }
 
     @Override
+    public void removeFirstTask() {
+        tasks.remove(0);
+    }
+
+    @Override
     public Task getTask() {
        Task removedTask = tasks.remove(0);
        support.firePropertyChange("TaskRemoved",null,removedTask);
@@ -56,6 +61,10 @@ public class TaskModelManager implements TaskModel {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date now = new Date();
         return sdfDate.format(now);
+    }
+
+    public List<Task> getAllTasks() {
+        return tasks;
     }
 }
 

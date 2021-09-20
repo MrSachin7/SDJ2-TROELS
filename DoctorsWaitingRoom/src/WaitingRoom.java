@@ -1,9 +1,9 @@
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class WaitingRoom implements WaitingRoomInterface, Runnable {
+public class WaitingRoom implements Runnable, PropertyChangeSubject {
     private PropertyChangeSupport support;
-    private int counter=-1;
+
 
     public WaitingRoom()
     {
@@ -33,6 +33,7 @@ public class WaitingRoom implements WaitingRoomInterface, Runnable {
 
     @Override
     public void run() {
+        int counter=-1;
         while (true)
         {
             try {

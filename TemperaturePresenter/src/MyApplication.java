@@ -15,7 +15,9 @@ public class MyApplication extends Application
     Thermometer thermometer2 = new Thermometer("t2",15,model,6);
     Thread thread1 = new Thread(thermometer1);
     Thread thread2 = new Thread(thermometer2);
+    thread2.setDaemon(true);
     thread2.start();
+    thread1.setDaemon(true);
     thread1.start();
     // View
 

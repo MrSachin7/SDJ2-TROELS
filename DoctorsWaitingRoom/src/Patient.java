@@ -3,21 +3,15 @@ import java.beans.PropertyChangeListener;
 
 public class Patient implements PropertyChangeListener {
     private int ticketNumber;
-    private WaitingRoomInterface waitingRoom;
+    private WaitingRoom waitingRoom;
 
-    public Patient(int ticketNumber, WaitingRoomInterface waitingRoom) {
+    public Patient(int ticketNumber, WaitingRoom waitingRoom) {
         this.waitingRoom = waitingRoom;
         this.ticketNumber = ticketNumber;
         System.out.println(this+ "enters the room");
         waitingRoom.addPropertyChangeListener("Counter increased", this);
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Patient " + ticketNumber;
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -31,5 +25,10 @@ public class Patient implements PropertyChangeListener {
             System.out.println(this + " goes back to looking at phone");
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Patient " + ticketNumber;
     }
 }

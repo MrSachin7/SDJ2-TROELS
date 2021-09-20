@@ -1,17 +1,20 @@
 package external;
 
+import model.TemperatureModel;
 import model.radidator.Radiator;
 
-public class Thermometer {
+public class Thermometer implements Runnable {
     private String id;
     private double lastMeasuredTemperature;
     private int distance;
     private Radiator radiator;
+    private TemperatureModel temperatureModel;
 
     public Thermometer(String id, double t, int d) {
         this.id = id;
         this.lastMeasuredTemperature = t;
         this.distance =d;
+        Radiator radiator = new Radiator();
 
     }
 
@@ -38,5 +41,19 @@ public class Thermometer {
         lastMeasuredExternalTemp += sign * Math.random();
         return lastMeasuredExternalTemp;
     }
+    @Override
+    public void run() {
+        while (true) {
 
+            try {
+                lastMeasuredTemperature=  temperature(lastMeasuredTemperature, radiator.getPower(), 1, 0, 6);
+               temperatureModel.addTemperature(id,lastMeasuredTemperature);
+                System.out.println("Temperature :" + lastMeasuredTemperature + " ID : " + id);
+
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

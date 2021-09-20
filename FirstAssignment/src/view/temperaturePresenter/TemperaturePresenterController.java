@@ -1,13 +1,16 @@
 package view.temperaturePresenter;
 
 import core.ViewHandler;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class TemperaturePresenterController {
+public class TemperaturePresenterController /*implements PropertyChangeListener*/ {
     private TemperaturePresenterViewModel viewModel;
     private ViewHandler viewHandler;
     @FXML
@@ -29,9 +32,21 @@ public class TemperaturePresenterController {
         t2Label.textProperty().bind(viewModel.t2ValueProperty());
         warningLabel.textProperty().bind(viewModel.warningLabelProperty());
         radiatorLabel.textProperty().bind(viewModel.warningLabelProperty());
+        viewModel.update();
     }
-    @FXML private void onControlHeater(ActionEvent actionEvent)
-    {
+
+    @FXML
+    private void onControlHeater(ActionEvent actionEvent) {
         //viewHandler.openRadiatorView()
     }
+
+    @FXML
+    private void onUpdateButtonPressed(ActionEvent actionEvent) {
+        viewModel.update();
+    }
+
+  /*  @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        Platform.runLater(() > t1Label.setText(evt.toString()));
+    }*/
 }

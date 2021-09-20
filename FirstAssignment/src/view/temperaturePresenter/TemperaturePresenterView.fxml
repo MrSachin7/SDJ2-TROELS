@@ -18,5 +18,6 @@
       <Label fx:id="t0Label" layoutX="487.0" layoutY="108.0" text="t0 value" />
       <Label fx:id="radiatorLabel" layoutX="261.0" layoutY="269.0" text="Radiator's value" />
       <Button layoutX="482.0" layoutY="217.0" mnemonicParsing="false" onAction="#onControlHeater" text="Control Heater" />
+      <Button layoutX="503.0" layoutY="257.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" text="Update" />
    </children>
 </AnchorPane>

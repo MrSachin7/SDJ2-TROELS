@@ -3,10 +3,14 @@ package view.temperaturePresenter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.TemperatureModel;
+import model.temp.Temperature;
+
+import java.beans.PropertyChangeEvent;
 
 public class TemperaturePresenterViewModel {
     private StringProperty t0value,t1value,t2value,radiatorValue,warningLabel;
     private TemperatureModel temperatureModel;
+
 
     public TemperaturePresenterViewModel(TemperatureModel temperatureModel)
     {
@@ -16,6 +20,8 @@ public class TemperaturePresenterViewModel {
         t2value = new SimpleStringProperty();
         radiatorValue = new SimpleStringProperty();
         warningLabel = new SimpleStringProperty();
+        temperatureModel.addPropertyChangeListener("Temperature added",this::TemperatureUpdated);
+
     }
 
     public StringProperty t0ValueProperty()
@@ -37,5 +43,33 @@ public class TemperaturePresenterViewModel {
     public StringProperty warningLabelProperty()
     {
         return warningLabel;
+    }
+
+    public void TemperatureUpdated(PropertyChangeEvent event)
+    {
+        String t0Value =((Temperature) event.getNewValue()).getValue()+"";
+    }
+
+    public void update()
+    {
+        Temperature t1 = temperatureModel.getLastInsertedTemperature("t1");
+        if (t1!= null)
+        {
+            t1value.set(t1.toString());
+        }
+        else
+        {
+            t1value.set("No data");
+        }
+        Temperature t2 = temperatureModel.getLastInsertedTemperature("t2");
+        if (t2!= null)
+        {
+            t2value.set(t2.toString());
+        }
+        else
+        {
+            t2value.set("No data");
+        }
+
     }
 }

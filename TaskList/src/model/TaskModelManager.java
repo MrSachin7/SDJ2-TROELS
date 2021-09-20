@@ -18,6 +18,7 @@ public class TaskModelManager implements TaskModel {
 
 
 
+
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
@@ -41,17 +42,22 @@ public class TaskModelManager implements TaskModel {
 
     @Override
     public void addTask(String owner, String description) {
-        Task newTask =(new Task(owner, description, calcTimeStamp()));
+        Task newTask = (new Task(owner, description, calcTimeStamp()));
         tasks.add(newTask);
-        support.firePropertyChange("TaskAdded",null,newTask);
+        support.firePropertyChange("TaskAdded", null, newTask);
     }
 
     @Override
     public Task getTask() {
-       Task removedTask = tasks.remove(0);
-       support.firePropertyChange("TaskRemoved",null,removedTask);
-       return removedTask;
+        if (tasks.size() > 0) {
+            Task removedTask = tasks.remove(0);
+            support.firePropertyChange("TaskRemoved", null, removedTask);
+            return removedTask;
+        } else
+            return null;
+
     }
+
     private String calcTimeStamp() {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date now = new Date();

@@ -7,12 +7,12 @@ import model.temp.TemperatureList;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements TemperatureModel {
+public class TemperatureModelManager implements TemperatureModel {
 
     private TemperatureList temperatureList;
     private PropertyChangeSupport support;
 
-    public ModelManager()
+    public TemperatureModelManager()
     {
         temperatureList= new TemperatureList();
         support = new PropertyChangeSupport(this);

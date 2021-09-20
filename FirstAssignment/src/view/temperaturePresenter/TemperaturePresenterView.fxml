@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="474.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TemperaturePresenterView">
+   <children>
+      <Label layoutX="35.0" layoutY="58.0" text="Indoor Temperature" />
+      <Label layoutX="443.0" layoutY="58.0" text="Outdoor Temperature" />
+      <Label layoutX="35.0" layoutY="108.0" text="t1" />
+      <Label layoutX="35.0" layoutY="153.0" text="t2" />
+      <Label layoutX="263.0" layoutY="229.0" text="Heater's Power" />
+      <Label layoutX="413.0" layoutY="108.0" text="t0" />
+      <Label layoutX="27.0" layoutY="408.0" prefHeight="18.0" prefWidth="333.0" text="Warning Label" textFill="RED" />
+      <Label layoutX="99.0" layoutY="108.0" text="t1 value" />
+      <Label layoutX="99.0" layoutY="153.0" text="t2 value" />
+      <Label layoutX="487.0" layoutY="108.0" text="t0 value" />
+      <Label layoutX="261.0" layoutY="269.0" text="Radiator's value" />
+      <Button layoutX="482.0" layoutY="217.0" mnemonicParsing="false" text="Control Heater" />
+   </children>
+</AnchorPane>

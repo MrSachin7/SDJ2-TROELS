@@ -1,9 +1,12 @@
 package external;
 
+import model.radidator.Radiator;
+
 public class Thermometer {
     private String id;
     private double lastMeasuredTemperature;
     private int distance;
+    private Radiator radiator;
 
     public Thermometer(String id, double t, int d) {
         this.id = id;

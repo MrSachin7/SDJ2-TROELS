@@ -6,7 +6,7 @@ import model.TemperatureModel;
 public class ModelFactory {
     private TemperatureModel temperatureModel;
 
-    public ModelFactory(TemperatureModel temperatureModel)
+  //  public ModelFactory(TemperatureModel temperatureModel)
     {
         this.temperatureModel=temperatureModel;
     }

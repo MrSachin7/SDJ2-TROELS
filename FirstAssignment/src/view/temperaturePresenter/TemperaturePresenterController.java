@@ -32,14 +32,13 @@ public class TemperaturePresenterController implements PropertyChangeListener {
         t1Label.textProperty().bind(viewModel.t1ValueProperty());
         t2Label.textProperty().bind(viewModel.t2ValueProperty());
         warningLabel.textProperty().bind(viewModel.warningLabelProperty());
-        radiatorLabel.textProperty().bind(viewModel.warningLabelProperty());
+        radiatorLabel.textProperty().bind(viewModel.radiatorValueProperty());
 
     }
 
     @FXML
-    private void onUpdateButtonPressed(ActionEvent actionEvent)
-    {
-
+    private void onUpdateButtonPressed(ActionEvent actionEvent) {
+        viewModel.updateData();
     }
 
     @FXML
@@ -47,10 +46,10 @@ public class TemperaturePresenterController implements PropertyChangeListener {
         viewHandler.openControlHeaterView();
     }
 
-   // @FXML
-  //  private void onUpdateButtonPressed(ActionEvent actionEvent) {
-        //viewModel.
-   // }
+    // @FXML
+    //  private void onUpdateButtonPressed(ActionEvent actionEvent) {
+    //viewModel.
+    // }
 
 
     @Override

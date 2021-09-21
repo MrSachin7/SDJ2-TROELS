@@ -30,6 +30,7 @@ public class TemperatureModelManager implements TemperatureModel {
         Temperature temperature1 = new Temperature(id,value);
         Temperature old = getLastInsertedTemperature();
         temperatureList.addTemperature(temperature1);
+        System.out.println("Indoor temperature added");
         support.firePropertyChange("Temperature added",old,temperature1);
     }
 
@@ -51,6 +52,7 @@ public class TemperatureModelManager implements TemperatureModel {
     public void addOutdoorTemperature(String id, double value) {
         Temperature temperature = new Temperature(id,value);
         outdoorTemperatureList.addTemperature(temperature);
+        System.out.println("Outdoor temperature added");
         support.firePropertyChange("Outdoor Temperature added",null,temperature);
 
     }

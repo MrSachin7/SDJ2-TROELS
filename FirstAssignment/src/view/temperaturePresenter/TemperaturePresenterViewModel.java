@@ -70,10 +70,13 @@ public class TemperaturePresenterViewModel {
         else{
             Platform.runLater(()->t0value.set("No data"));
         }
+
+      Platform.runLater(()->radiatorValue.set(modelFactory.getRadiator().getPower()+""));
     }
 
 
-   /* public void propertyChangeIndoor(PropertyChangeEvent evt) {
+   /*  Can do this way as well but this will not really be an observer pattern
+   public void propertyChangeIndoor(PropertyChangeEvent evt) {
         Temperature temperature = (Temperature) evt.getNewValue();
         if (temperature.getId().equals("t1"))
         {

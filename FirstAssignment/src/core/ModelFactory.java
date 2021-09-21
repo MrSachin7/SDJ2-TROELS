@@ -8,9 +8,10 @@ public class ModelFactory {
     private TemperatureModel temperatureModel;
     private Radiator radiator;
 
-  /*  public ModelFactory(TemperatureModel temperatureModel)
+  /*  public ModelFactory(TemperatureModel temperatureModel, Radiator radiator)
     {
         this.temperatureModel=temperatureModel;
+        this.radiator=radiator;
     }**/
 
     public TemperatureModel getTemperatureModel() {

@@ -9,64 +9,63 @@ import model.temp.Temperature;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class TemperaturePresenterViewModel  {
-    private StringProperty t0value,t1value,t2value,radiatorValue,warningLabel;
+public class TemperaturePresenterViewModel {
+    private StringProperty t0value, t1value, t2value, radiatorValue, warningLabel;
     private TemperatureModel temperatureModel;
 
 
-    public TemperaturePresenterViewModel(TemperatureModel temperatureModel)
-    {
-        this.temperatureModel=temperatureModel;
+    public TemperaturePresenterViewModel(TemperatureModel temperatureModel) {
+        this.temperatureModel = temperatureModel;
         t0value = new SimpleStringProperty();
         t1value = new SimpleStringProperty();
         t2value = new SimpleStringProperty();
         radiatorValue = new SimpleStringProperty();
         warningLabel = new SimpleStringProperty();
-       // temperatureModel.addPropertyChangeListener("Temperature added",this);
+        temperatureModel.addPropertyChangeListener("Temperature added",this);
 
     }
 
-    public StringProperty t0ValueProperty()
-    {
+    public StringProperty t0ValueProperty() {
         return t0value;
     }
-    public StringProperty t1ValueProperty()
-    {
+
+    public StringProperty t1ValueProperty() {
         return t1value;
     }
-    public StringProperty t2ValueProperty()
-    {
+
+    public StringProperty t2ValueProperty() {
         return t2value;
     }
-    public StringProperty radiatorValueProperty()
-    {
+
+    public StringProperty radiatorValueProperty() {
         return radiatorValue;
     }
-    public StringProperty warningLabelProperty()
-    {
+
+    public StringProperty warningLabelProperty() {
         return warningLabel;
     }
 
 
-
     public void updateData() {
         Temperature t1 = temperatureModel.getLastInsertedTemperature("t1");
-        if (t1!= null)
-        {
-            Platform.runLater(()->t1value.set(t1.toString()));
-        }
-        else
-        {
-           Platform.runLater(()->t1value.set("No data")) ;
+        if (t1 != null) {
+            Platform.runLater(() -> t1value.set(t1.getValue()+""));
+        } else {
+            Platform.runLater(() -> t1value.set("No data"));
         }
         Temperature t2 = temperatureModel.getLastInsertedTemperature("t2");
-        if (t2!= null)
-        {
-          Platform.runLater(()->t2value.set(t2.toString()) );
+        if (t2 != null) {
+            Platform.runLater(() -> t2value.set(t2.getValue()+""));
+        } else {
+            Platform.runLater(() -> t2value.set("No data"));
         }
-        else
-        {
-           Platform.runLater(()->t2value.set("No data"));
+        Temperature t0 = temperatureModel.getLastAddedOutdoorTemperature();
+
+        if (t0 !=null){
+            Platform.runLater(()->t0value.set(t0.getValue()+""));
+        }
+        else{
+            Platform.runLater(()->t0value.set("No data"));
         }
     }
 }

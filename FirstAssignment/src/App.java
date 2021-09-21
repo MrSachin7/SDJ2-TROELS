@@ -13,18 +13,21 @@ public class App extends Application {
 
         ModelFactory modelFactory = new ModelFactory();
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
-        Thermometer thermometer1 = new Thermometer("t1",10,5, modelFactory.getTemperatureModel(),viewModelFactory);
-        Thermometer thermometer2 = new Thermometer("t2",15,6,modelFactory.getTemperatureModel(),viewModelFactory);
+        Thermometer thermometer1 = new Thermometer("t1", 10, 1, modelFactory.getTemperatureModel(), viewModelFactory);
+        Thermometer thermometer2 = new Thermometer("t2", 15, 7, modelFactory.getTemperatureModel(), viewModelFactory);
+        Thermometer thermometer3 = new Thermometer("t0", 10, modelFactory.getTemperatureModel(), viewModelFactory);
         Thread thread1 = new Thread(thermometer1);
         Thread thread2 = new Thread(thermometer2);
-        thread2.setDaemon(true);
-        thread2.start();
+        Thread thread3 = new Thread(thermometer3);
         thread1.setDaemon(true);
         thread1.start();
+        thread2.setDaemon(true);
+        thread2.start();
+        thread3.setDaemon(true);
+        thread3.start();
 
 
-
-        ViewHandler viewHandler = new ViewHandler(stage,viewModelFactory);
+        ViewHandler viewHandler = new ViewHandler(stage, viewModelFactory);
         viewHandler.start();
     }
 }

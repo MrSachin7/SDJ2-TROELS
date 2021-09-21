@@ -6,36 +6,45 @@ import model.radidator.Radiator;
 
 public class Thermometer implements Runnable {
     private String id;
-    private double lastMeasuredTemperature;
+    private double lastMeasuredIndoorTemperature;
+    private double lastMeasuredOutdoorTemperature;
     private int distance;
     private Radiator radiator;
     private TemperatureModel temperatureModel;
     private ViewModelFactory viewModelFactory;
 
-    public Thermometer(String id, double t, int d, TemperatureModel temperatureModel, ViewModelFactory viewModelFactory) {
+    public Thermometer(String id, double lastMeasuredIndoorTemperature, int distance, TemperatureModel temperatureModel, ViewModelFactory viewModelFactory) {
         this.id = id;
-        this.lastMeasuredTemperature = t;
-        this.distance = d;
+        this.lastMeasuredIndoorTemperature = lastMeasuredIndoorTemperature;
+        this.distance = distance;
         radiator = new Radiator();
         this.temperatureModel = temperatureModel;
         this.viewModelFactory = viewModelFactory;
 
-
+    }
+    public Thermometer(String id, double lastMeasuredIndoorTemperature, TemperatureModel temperatureModel, ViewModelFactory viewModelFactory) {
+        this.id = id;
+        this.lastMeasuredIndoorTemperature = lastMeasuredIndoorTemperature;
+        radiator = new Radiator();
+        this.temperatureModel = temperatureModel;
+        this.viewModelFactory = viewModelFactory;
+        this.lastMeasuredOutdoorTemperature=19;
     }
 
 
-    private double temperature(double lastMeasuredTemperature, int heatersPower, int distance, double outdoorTemperature, int seconds) {
+
+    private double temperature(double lastMeasuredIndoorTemperature, int heatersPower, int distance, double outdoorTemperature, int seconds) {
 
         double tMax = Math.min(11 * heatersPower + 10, 11 * heatersPower + 10 + outdoorTemperature);
         double heaterTerm = 0;
         if (heatersPower > 0) {
             double den = Math.max((tMax * (20 - 5 * heatersPower) * (distance + 5)), 0.1);
-            heaterTerm = 30 * seconds * Math.abs(tMax - lastMeasuredTemperature) / den;
+            heaterTerm = 30 * seconds * Math.abs(tMax - lastMeasuredIndoorTemperature) / den;
         }
-        double outDoorTerm = (lastMeasuredTemperature - outdoorTemperature) * seconds / 250.0;
-        lastMeasuredTemperature = Math.min(Math.max(lastMeasuredTemperature - outDoorTerm + heaterTerm, outdoorTemperature), tMax);
+        double outDoorTerm = (lastMeasuredIndoorTemperature - outdoorTemperature) * seconds / 250.0;
+        lastMeasuredIndoorTemperature = Math.min(Math.max(lastMeasuredIndoorTemperature - outDoorTerm + heaterTerm, outdoorTemperature), tMax);
 
-        return lastMeasuredTemperature;
+        return lastMeasuredIndoorTemperature;
     }
 
     public double externalTemperature(double lastMeasuredExternalTemp, double min, double max) {
@@ -51,11 +60,25 @@ public class Thermometer implements Runnable {
         while (true) {
 
             try {
-                lastMeasuredTemperature = temperature(lastMeasuredTemperature, radiator.getPower(), 1, 0, 6);
-                temperatureModel.addTemperature(id, lastMeasuredTemperature);
-                System.out.println("Temperature :" + lastMeasuredTemperature + " ID : " + id);
-                viewModelFactory.getTemperaturePresenterViewModel().updateData();
-                Thread.sleep(6000);
+                if (id !="t0")
+                {
+                    lastMeasuredIndoorTemperature = temperature(lastMeasuredIndoorTemperature, radiator.getPower(), 1, 0, 6);
+
+                    temperatureModel.addTemperature(id, lastMeasuredIndoorTemperature);
+                    viewModelFactory.getTemperaturePresenterViewModel().updateData();
+                    System.out.println("Temperature :" + lastMeasuredIndoorTemperature + " ID : " + id);
+                }
+
+                if (id =="t0")
+                {
+                    lastMeasuredOutdoorTemperature = externalTemperature(lastMeasuredOutdoorTemperature,-20,20);
+                    temperatureModel.addOutdoorTemperature(id,lastMeasuredOutdoorTemperature);
+                    System.out.println("OutDoor temperature :"+ lastMeasuredOutdoorTemperature+ " ID : "+id);
+                    viewModelFactory.getTemperaturePresenterViewModel().updateData();
+                }
+
+
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

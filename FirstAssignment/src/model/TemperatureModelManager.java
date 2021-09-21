@@ -13,6 +13,7 @@ public class TemperatureModelManager implements TemperatureModel {
     private PropertyChangeSupport support;
     private TemperatureList outdoorTemperatureList;
 
+
     public TemperatureModelManager()
     {
         temperatureList= new TemperatureList();
@@ -25,12 +26,16 @@ public class TemperatureModelManager implements TemperatureModel {
         Temperature temperature1 = new Temperature(id,value);
         Temperature old = getLastInsertedTemperature();
         temperatureList.addTemperature(temperature1);
-        support.firePropertyChange("Temperature added",getLastInsertedTemperature(),temperature1);
+        support.firePropertyChange("Temperature added",old,temperature1);
     }
 
     @Override
     public Temperature getLastInsertedTemperature() {
         return temperatureList.getLastTemperature(null);
+    }
+    public Temperature getLastAddedOutdoorTemperature()
+    {
+        return outdoorTemperatureList.getLastTemperature(null);
     }
 
     @Override
@@ -42,7 +47,9 @@ public class TemperatureModelManager implements TemperatureModel {
     public void addOutdoorTemperature(String id, double value) {
         Temperature temperature = new Temperature(id,value);
         outdoorTemperatureList.addTemperature(temperature);
-        support.firePropertyChange("Outdoor temperature added",null,temperature);
+        System.out.println("Outdoor temperature added");
+        System.out.println("Small check "+outdoorTemperatureList.getSize());
+
     }
 
     @Override

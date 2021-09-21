@@ -10,5 +10,7 @@ public interface TemperatureModel extends PropertyChangeSubject {
         Temperature getLastInsertedTemperature();
 
         Temperature getLastInsertedTemperature(String id);
+
+        void addOutdoorTemperature(String id,double value);
     }
 

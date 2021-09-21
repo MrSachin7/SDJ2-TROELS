@@ -41,6 +41,7 @@ public class Thermometer implements Runnable {
               temperatureModel.addTemperature(id,t);
                 System.out.println("Temperature :" + t + " ID : " + id);
 
+
                 Thread.sleep(6000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

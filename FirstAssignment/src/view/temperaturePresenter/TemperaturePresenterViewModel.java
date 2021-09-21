@@ -1,13 +1,15 @@
 package view.temperaturePresenter;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.TemperatureModel;
 import model.temp.Temperature;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class TemperaturePresenterViewModel {
+public class TemperaturePresenterViewModel  {
     private StringProperty t0value,t1value,t2value,radiatorValue,warningLabel;
     private TemperatureModel temperatureModel;
 
@@ -20,7 +22,7 @@ public class TemperaturePresenterViewModel {
         t2value = new SimpleStringProperty();
         radiatorValue = new SimpleStringProperty();
         warningLabel = new SimpleStringProperty();
-        temperatureModel.addPropertyChangeListener("Temperature added",this::TemperatureUpdated);
+       // temperatureModel.addPropertyChangeListener("Temperature added",this);
 
     }
 
@@ -45,31 +47,26 @@ public class TemperaturePresenterViewModel {
         return warningLabel;
     }
 
-    public void TemperatureUpdated(PropertyChangeEvent event)
-    {
-        String t0Value =((Temperature) event.getNewValue()).getValue()+"";
-    }
 
-    public void update()
-    {
+
+    public void updateData() {
         Temperature t1 = temperatureModel.getLastInsertedTemperature("t1");
         if (t1!= null)
         {
-            t1value.set(t1.toString());
+            Platform.runLater(()->t1value.set(t1.toString()));
         }
         else
         {
-            t1value.set("No data");
+           Platform.runLater(()->t1value.set("No data")) ;
         }
         Temperature t2 = temperatureModel.getLastInsertedTemperature("t2");
         if (t2!= null)
         {
-            t2value.set(t2.toString());
+          Platform.runLater(()->t2value.set(t2.toString()) );
         }
         else
         {
-            t2value.set("No data");
+           Platform.runLater(()->t2value.set("No data"));
         }
-
     }
 }

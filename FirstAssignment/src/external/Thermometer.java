@@ -1,5 +1,6 @@
 package external;
 
+import core.ViewModelFactory;
 import model.TemperatureModel;
 import model.radidator.Radiator;
 
@@ -9,12 +10,16 @@ public class Thermometer implements Runnable {
     private int distance;
     private Radiator radiator;
     private TemperatureModel temperatureModel;
+    private ViewModelFactory viewModelFactory;
 
-    public Thermometer(String id, double t, int d) {
+    public Thermometer(String id, double t, int d, TemperatureModel temperatureModel, ViewModelFactory viewModelFactory) {
         this.id = id;
         this.lastMeasuredTemperature = t;
-        this.distance =d;
-        Radiator radiator = new Radiator();
+        this.distance = d;
+        radiator = new Radiator();
+        this.temperatureModel = temperatureModel;
+        this.viewModelFactory = viewModelFactory;
+
 
     }
 
@@ -33,23 +38,23 @@ public class Thermometer implements Runnable {
         return lastMeasuredTemperature;
     }
 
-    public double externalTemperature(double lastMeasuredExternalTemp, double min, double max)
-    {
+    public double externalTemperature(double lastMeasuredExternalTemp, double min, double max) {
         double left = lastMeasuredExternalTemp - min;
         double right = max - lastMeasuredExternalTemp;
         int sign = Math.random() * (left + right) > left ? 1 : -1;
         lastMeasuredExternalTemp += sign * Math.random();
         return lastMeasuredExternalTemp;
     }
+
     @Override
     public void run() {
         while (true) {
 
             try {
-                lastMeasuredTemperature=  temperature(lastMeasuredTemperature, radiator.getPower(), 1, 0, 6);
-               temperatureModel.addTemperature(id,lastMeasuredTemperature);
+                lastMeasuredTemperature = temperature(lastMeasuredTemperature, radiator.getPower(), 1, 0, 6);
+                temperatureModel.addTemperature(id, lastMeasuredTemperature);
                 System.out.println("Temperature :" + lastMeasuredTemperature + " ID : " + id);
-
+                viewModelFactory.getTemperaturePresenterViewModel().updateData();
                 Thread.sleep(6000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

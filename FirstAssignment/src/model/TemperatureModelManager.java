@@ -1,8 +1,10 @@
 package model;
 
 import model.PropertyChangeSubject;
+import model.radidator.Radiator;
 import model.temp.Temperature;
 import model.temp.TemperatureList;
+import view.radiatorController.RadiatorViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -14,8 +16,10 @@ public class TemperatureModelManager implements TemperatureModel {
     private TemperatureList outdoorTemperatureList;
 
 
+
     public TemperatureModelManager()
     {
+
         temperatureList= new TemperatureList();
         outdoorTemperatureList = new TemperatureList();
         support = new PropertyChangeSupport(this);
@@ -47,8 +51,7 @@ public class TemperatureModelManager implements TemperatureModel {
     public void addOutdoorTemperature(String id, double value) {
         Temperature temperature = new Temperature(id,value);
         outdoorTemperatureList.addTemperature(temperature);
-        System.out.println("Outdoor temperature added");
-        System.out.println("Small check "+outdoorTemperatureList.getSize());
+        support.firePropertyChange("Outdoor Temperature added",null,temperature);
 
     }
 

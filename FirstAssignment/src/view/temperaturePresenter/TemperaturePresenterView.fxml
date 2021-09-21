@@ -3,21 +3,60 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="474.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.temperaturePresenter.TemperaturePresenterController">
    <children>
-      <Label layoutX="35.0" layoutY="58.0" text="Indoor Temperature" />
-      <Label layoutX="443.0" layoutY="58.0" text="Outdoor Temperature" />
-      <Label layoutX="35.0" layoutY="108.0" text="t1" />
-      <Label layoutX="35.0" layoutY="153.0" text="t2" />
-      <Label layoutX="263.0" layoutY="229.0" text="Heater's Power" />
-      <Label layoutX="413.0" layoutY="108.0" text="t0" />
-      <Label fx:id="warningLabel" layoutX="27.0" layoutY="408.0" prefHeight="18.0" prefWidth="333.0" text="Warning Label" textFill="RED" />
-      <Label fx:id="t1Label" layoutX="99.0" layoutY="108.0" text="t1 value" />
-      <Label fx:id="t2Label" layoutX="99.0" layoutY="153.0" text="t2 value" />
-      <Label fx:id="t0Label" layoutX="487.0" layoutY="108.0" text="t0 value" />
-      <Label fx:id="radiatorLabel" layoutX="261.0" layoutY="269.0" text="Radiator's value" />
-      <Button layoutX="482.0" layoutY="217.0" mnemonicParsing="false" onAction="#onControlHeater" text="Control Heater" />
-      <Button layoutX="503.0" layoutY="257.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" text="Update" />
+      <Label layoutX="35.0" layoutY="146.0" text="Indoor Temperature">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font></Label>
+      <Label layoutX="427.0" layoutY="146.0" text="Outdoor Temperature">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font></Label>
+      <Label layoutX="29.0" layoutY="199.0" text="t1">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="29.0" layoutY="238.0" text="t2">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font></Label>
+      <Label layoutX="261.0" layoutY="297.0" text="Heater's Power">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="437.0" layoutY="199.0" text="t0">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font></Label>
+      <Label fx:id="warningLabel" layoutX="27.0" layoutY="408.0" prefHeight="18.0" prefWidth="333.0" text="Warning Label" textFill="RED">
+         <font>
+            <Font name="Elephant" size="15.0" />
+         </font></Label>
+      <Label fx:id="t1Label" layoutX="88.0" layoutY="199.0" text="t1 value" />
+      <Label fx:id="t2Label" layoutX="88.0" layoutY="238.0" text="t2 value" />
+      <Label fx:id="t0Label" layoutX="519.0" layoutY="199.0" text="t0 value">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font></Label>
+      <Label fx:id="radiatorLabel" layoutX="277.0" layoutY="350.0" text="Radiator's value">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button layoutX="519.0" layoutY="357.0" mnemonicParsing="false" onAction="#onControlHeater" text="Control Heater">
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="544.0" layoutY="403.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" text="Update">
+         <font>
+            <Font name="Century Gothic" size="15.0" />
+         </font></Button>
+      <Label layoutX="123.0" layoutY="28.0" prefHeight="42.0" prefWidth="475.0" text="Temperature View" textAlignment="CENTER">
+         <font>
+            <Font name="Algerian" size="46.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

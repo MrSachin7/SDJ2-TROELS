@@ -22,7 +22,7 @@ public class RadiatorViewController {
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         powerValue.textProperty().bind(viewModel.powerValueProperty());
-        warningValue.textProperty().bind(viewModel.powerValueProperty());
+        warningValue.textProperty().bind(viewModel.warningValueProperty());
     }
 
     @FXML

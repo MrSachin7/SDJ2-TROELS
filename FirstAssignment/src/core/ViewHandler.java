@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.radiatorController.RadiatorViewController;
 import view.temperaturePresenter.TemperaturePresenterController;
 
 import javax.swing.text.View;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 public class ViewHandler {
     private Scene temperaturePresenterScene;
+    private Scene controlHeaterScene;
     private Stage stage = new Stage();
     private ViewModelFactory viewModelFactory;
 
@@ -39,6 +41,22 @@ openTemperaturePresenterView();
       stage.setScene(temperaturePresenterScene);
       stage.show();
 
+  }
+
+  public void openControlHeaterView()
+  {
+      FXMLLoader loader = new FXMLLoader();
+
+      if (controlHeaterScene==null)
+      {
+          Parent root = getRootByPath("../view/radiatorController/radiatorView.fxml",loader);
+          RadiatorViewController controller = loader.getController();
+          controller.init(this, viewModelFactory.getRadiatorViewModel());
+          controlHeaterScene = new Scene(root);
+      }
+      stage.setTitle("Heater Controller");
+      stage.setScene(controlHeaterScene);
+      stage.show();
   }
 
     private Parent getRootByPath(String path, FXMLLoader loader) {

@@ -44,7 +44,7 @@ public class TemperaturePresenterController implements PropertyChangeListener {
 
     @FXML
     private void onControlHeater(ActionEvent actionEvent) {
-        //viewHandler.openRadiatorView()
+        viewHandler.openControlHeaterView();
     }
 
    // @FXML

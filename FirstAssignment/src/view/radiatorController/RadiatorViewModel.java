@@ -7,6 +7,9 @@ import javafx.beans.property.StringProperty;
 import model.TemperatureModel;
 import model.temp.Temperature;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 public class RadiatorViewModel {
     private ModelFactory modelFactory;
     private StringProperty powerValue;
@@ -17,6 +20,7 @@ public class RadiatorViewModel {
         powerValue = new SimpleStringProperty();
         warningValue = new SimpleStringProperty();
         powerValue.set(modelFactory.getRadiator().getPower() + "");
+        modelFactory.getRadiator().addPropertyChangeListener("Power changed",this::update);
     }
 
     public StringProperty powerValueProperty() {
@@ -29,12 +33,19 @@ public class RadiatorViewModel {
 
     public void turnUp() {
         modelFactory.getRadiator().turnUp();
-        Platform.runLater(() -> powerValue.set(modelFactory.getRadiator().getPower() + ""));
+
+
     }
 
     public void turnDown() {
         modelFactory.getRadiator().turnDown();
-        Platform.runLater(() -> powerValue.set(modelFactory.getRadiator().getPower() + ""));
+
+
+    }
+    public void update(PropertyChangeEvent event)
+    {
+        String temp = event.getNewValue()+"";
+        Platform.runLater(() -> powerValue.set(temp));
     }
 
 

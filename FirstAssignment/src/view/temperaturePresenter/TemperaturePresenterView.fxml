@@ -33,9 +33,9 @@
          <font>
             <Font name="Bodoni MT" size="15.0" />
          </font></Label>
-      <Label fx:id="warningLabel" layoutX="27.0" layoutY="408.0" prefHeight="18.0" prefWidth="333.0" text="Warning Label" textFill="RED">
+      <Label fx:id="warningLabel" layoutX="27.0" layoutY="408.0" prefHeight="30.0" prefWidth="486.0" text="Warning Label" textFill="RED">
          <font>
-            <Font name="Elephant" size="15.0" />
+            <Font name="Elephant" size="13.0" />
          </font></Label>
       <Label fx:id="t1Label" layoutX="88.0" layoutY="199.0" text="t1 value" />
       <Label fx:id="t2Label" layoutX="88.0" layoutY="238.0" text="t2 value" />
@@ -62,7 +62,7 @@
       </Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/242549773_411507726982937_1570509058029476546_n.png" />
+            <Image url="@../../image/Picture1.png" />
          </image>
       </ImageView>
    </children>

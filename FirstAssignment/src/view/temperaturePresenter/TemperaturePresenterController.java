@@ -11,7 +11,7 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class TemperaturePresenterController implements PropertyChangeListener {
+public class TemperaturePresenterController {
     private TemperaturePresenterViewModel viewModel;
     private ViewHandler viewHandler;
     @FXML
@@ -38,7 +38,7 @@ public class TemperaturePresenterController implements PropertyChangeListener {
 
     @FXML
     private void onUpdateButtonPressed(ActionEvent actionEvent) {
-        viewModel.updateData();
+
     }
 
     @FXML
@@ -52,10 +52,10 @@ public class TemperaturePresenterController implements PropertyChangeListener {
     // }
 
 
-    @Override
+   /* @Override
     public void propertyChange(PropertyChangeEvent evt) {
         Temperature t1 = (Temperature) evt.getNewValue();
         String t11 = t1.getValue() + "";
         Platform.runLater(() -> t1Label.setText(t11));
-    }
+    } **/
 }

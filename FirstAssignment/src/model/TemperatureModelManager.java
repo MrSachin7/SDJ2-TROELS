@@ -31,6 +31,7 @@ public class TemperatureModelManager implements TemperatureModel {
         Temperature old = getLastInsertedTemperature();
         temperatureList.addTemperature(temperature1);
         System.out.println("Indoor temperature added");
+        // Fire the change of property named Temperature added
         support.firePropertyChange("Temperature added",old,temperature1);
     }
 
@@ -54,7 +55,6 @@ public class TemperatureModelManager implements TemperatureModel {
         outdoorTemperatureList.addTemperature(temperature);
         System.out.println("Outdoor temperature added");
         support.firePropertyChange("Outdoor Temperature added",null,temperature);
-
     }
 
     @Override

@@ -22,9 +22,9 @@ public class TemperaturePresenterViewModel {
         t2value = new SimpleStringProperty();
         radiatorValue = new SimpleStringProperty();
         warningLabel = new SimpleStringProperty();
-        updateData();
-       // temperatureModel.addPropertyChangeListener("Temperature added",this::propertyChangeIndoor);
-     //   temperatureModel.addPropertyChangeListener("Outdoor Temperature added",this::propertyChangeOutdoor);
+        modelFactory.getTemperatureModel().addPropertyChangeListener("Temperature added",this::propertyChangeIndoor);
+        modelFactory.getTemperatureModel().addPropertyChangeListener("Outdoor Temperature added",this::propertyChangeOutdoor);
+        modelFactory.getRadiator().addPropertyChangeListener("Power changed",this::propertyChangeRadiator);
 
     }
 
@@ -49,6 +49,8 @@ public class TemperaturePresenterViewModel {
     }
 
 
+  /*
+    We can do this way as well but this will not implement the observer pattern
     public void updateData() {
         Temperature t1 = modelFactory.getTemperatureModel().getLastInsertedTemperature("t1");
         if (t1 != null) {
@@ -72,10 +74,18 @@ public class TemperaturePresenterViewModel {
         }
 
       Platform.runLater(()->radiatorValue.set(modelFactory.getRadiator().getPower()+""));
-    }
+        if (modelFactory.getRadiator().getPower()==3)
+        {
+          Platform.runLater(()->warningLabel.set("Warning  !!!! Heater at max....Turning down automatically"));
+        }
+        else
+        {
+            Platform.runLater(()->warningLabel.set(""));
+        }
+    }**/
 
 
-   /*  Can do this way as well but this will not really be an observer pattern
+
    public void propertyChangeIndoor(PropertyChangeEvent evt) {
         Temperature temperature = (Temperature) evt.getNewValue();
         if (temperature.getId().equals("t1"))
@@ -90,6 +100,7 @@ public class TemperaturePresenterViewModel {
             Platform.runLater(() -> t1value.set("No data"));
             Platform.runLater(() -> t2value.set("No data"));
         }
+
     }
     public void propertyChangeOutdoor(PropertyChangeEvent evt){
         Temperature temperature =(Temperature) evt.getNewValue();
@@ -100,5 +111,19 @@ public class TemperaturePresenterViewModel {
         else {
             Platform.runLater(() -> t0value.set("No data"));
         }
-    }*/
+    }
+
+    public void propertyChangeRadiator(PropertyChangeEvent evt)
+    {
+        String temp = evt.getNewValue()+"";
+        if ((int)evt.getNewValue()==3)
+        {
+            Platform.runLater(()->warningLabel.set("Max power reached,, decreasing power............"));
+        }
+        else
+        {
+            Platform.runLater(()->warningLabel.set(""));
+        }
+       Platform.runLater(()->radiatorValue.set(temp));
+    }
 }

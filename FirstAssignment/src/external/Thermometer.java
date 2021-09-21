@@ -21,7 +21,7 @@ public class Thermometer implements Runnable {
         this.viewModelFactory = viewModelFactory;
         lastMeasuredIndoorTemperature2 = 8;
         lastMeasuredIndoorTemperature1 = 8;
-        lastMeasuredOutdoorTemperature = 10;
+        lastMeasuredOutdoorTemperature = 5;
 
     }
 
@@ -31,7 +31,7 @@ public class Thermometer implements Runnable {
         this.viewModelFactory = viewModelFactory;
         lastMeasuredIndoorTemperature2 = 8;
         lastMeasuredIndoorTemperature1 = 8;
-        lastMeasuredOutdoorTemperature = 10;
+        lastMeasuredOutdoorTemperature = 5;
     }
 
 
@@ -66,18 +66,18 @@ public class Thermometer implements Runnable {
                     lastMeasuredIndoorTemperature1 = temperature(lastMeasuredIndoorTemperature1, modelFactory.getRadiator().getPower(), this.distance, lastMeasuredOutdoorTemperature, 6);
                     modelFactory.getTemperatureModel().addTemperature(id, lastMeasuredIndoorTemperature1);
                     System.out.println("Temperature :" + lastMeasuredIndoorTemperature1 + " ID : " + id);
-                    viewModelFactory.getTemperaturePresenterViewModel().updateData();
+
                 }
                 if (this.id.equals("t2")) {
                     lastMeasuredIndoorTemperature2 = temperature(lastMeasuredIndoorTemperature2, modelFactory.getRadiator().getPower(), this.distance, lastMeasuredOutdoorTemperature, 6);
                     modelFactory.getTemperatureModel().addTemperature(id, lastMeasuredIndoorTemperature2);
                     System.out.println("Temperature :" + lastMeasuredIndoorTemperature2 + " ID : " + id);
-                    viewModelFactory.getTemperaturePresenterViewModel().updateData();
+
                 } else if (id.equals("t0")) {
                     lastMeasuredOutdoorTemperature = externalTemperature(lastMeasuredOutdoorTemperature, -20, 20);
                     modelFactory.getTemperatureModel().addOutdoorTemperature(id, lastMeasuredOutdoorTemperature);
                     System.out.println("OutDoor temperature :" + lastMeasuredOutdoorTemperature + " ID : " + id);
-                    viewModelFactory.getTemperaturePresenterViewModel().updateData();
+
 
                 }
 

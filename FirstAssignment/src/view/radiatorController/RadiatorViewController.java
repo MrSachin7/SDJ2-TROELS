@@ -1,12 +1,11 @@
 package view.radiatorController;
 
 import core.ViewHandler;
-import core.ViewModelFactory;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-import javax.swing.text.View;
 
 
 public class RadiatorViewController {

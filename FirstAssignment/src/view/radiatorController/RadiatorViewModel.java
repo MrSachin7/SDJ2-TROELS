@@ -33,8 +33,6 @@ public class RadiatorViewModel {
 
     public void turnUp() {
         modelFactory.getRadiator().turnUp();
-
-
     }
 
     public void turnDown() {
@@ -44,8 +42,10 @@ public class RadiatorViewModel {
     }
     public void update(PropertyChangeEvent event)
     {
+
         String temp = event.getNewValue()+"";
-        Platform.runLater(() -> powerValue.set(temp));
+        Platform.runLater(()->powerValue.set(temp));
+
     }
 
 

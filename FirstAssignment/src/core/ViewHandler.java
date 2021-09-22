@@ -9,7 +9,6 @@ import view.lineChart.LineChartController;
 import view.radiatorController.RadiatorViewController;
 import view.temperaturePresenter.TemperaturePresenterController;
 
-import javax.swing.text.View;
 import java.io.IOException;
 
 public class ViewHandler {

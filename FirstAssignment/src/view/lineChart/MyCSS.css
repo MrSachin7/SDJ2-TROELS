@@ -1,0 +1,27 @@
+.chart {
+    -fx-padding: 10px;
+}
+
+.chart-content {
+    -fx-padding: 30px;
+}
+.axis-label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.6 em;
+}
+.chart-legend{
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+}
+.chart-plot-background{
+    -fx-background-color: transparent;
+}
+.chart-vertical-grid-lines{
+    -fx-stroke: #ffffff;
+}
+.chart-horizontal-grid-lines{
+    -fx-stroke: #ffffff;
+}
+.pane{
+    -fx-background-color: #0a0a0a;
+}

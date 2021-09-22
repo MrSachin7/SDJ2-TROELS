@@ -51,7 +51,7 @@
          <font>
             <Font name="Century Gothic Bold" size="15.0" />
          </font></Button>
-      <Button layoutX="544.0" layoutY="403.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" text="Update">
+      <Button layoutX="544.0" layoutY="403.0" mnemonicParsing="false" onAction="#onLineChartPressed" text="Line Chart">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font></Button>

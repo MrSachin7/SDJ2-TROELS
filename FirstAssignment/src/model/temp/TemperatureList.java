@@ -12,6 +12,8 @@ public class TemperatureList {
     }
 
     public void addTemperature(Temperature temperature) {
+
+
         list.add(temperature);
     }
 

@@ -20,7 +20,7 @@ public class Thermometer implements Runnable {
         this.modelFactory = modelFactory;
         this.viewModelFactory = viewModelFactory;
         lastMeasuredIndoorTemperature2 = 8;
-        lastMeasuredIndoorTemperature1 = 8;
+        lastMeasuredIndoorTemperature1 = 9;
         lastMeasuredOutdoorTemperature = 5;
 
     }
@@ -30,7 +30,7 @@ public class Thermometer implements Runnable {
         this.modelFactory = modelFactory;
         this.viewModelFactory = viewModelFactory;
         lastMeasuredIndoorTemperature2 = 8;
-        lastMeasuredIndoorTemperature1 = 8;
+        lastMeasuredIndoorTemperature1 = 9;
         lastMeasuredOutdoorTemperature = 5;
     }
 

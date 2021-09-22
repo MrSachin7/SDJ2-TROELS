@@ -1,5 +1,6 @@
 package core;
 
+import view.lineChart.LineChartViewModel;
 import view.radiatorController.RadiatorViewModel;
 import view.temperaturePresenter.TemperaturePresenterViewModel;
 
@@ -7,6 +8,7 @@ public class ViewModelFactory {
     private TemperaturePresenterViewModel temperaturePresenterViewModel;
     private ModelFactory modelFactory;
     private RadiatorViewModel radiatorViewModel;
+    private LineChartViewModel lineChartViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory)
     {
@@ -25,5 +27,12 @@ public class ViewModelFactory {
             radiatorViewModel = new RadiatorViewModel(modelFactory);
         }
         return radiatorViewModel;
+    }
+
+    public LineChartViewModel getLineChartViewModel() {
+        if (lineChartViewModel == null) {
+            lineChartViewModel = new LineChartViewModel(modelFactory);
+        }
+        return lineChartViewModel;
     }
 }

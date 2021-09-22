@@ -37,8 +37,8 @@ public class TemperaturePresenterController {
     }
 
     @FXML
-    private void onUpdateButtonPressed(ActionEvent actionEvent) {
-
+    private void onLineChartPressed(ActionEvent actionEvent) {
+        viewHandler.openLineChartView();
     }
 
     @FXML

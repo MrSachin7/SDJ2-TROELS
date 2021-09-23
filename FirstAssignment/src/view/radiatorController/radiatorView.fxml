@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/11" fx:controller="view.radiatorController.RadiatorViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.radiatorController.RadiatorViewController">
    <children>
       <Button layoutX="87.0" layoutY="110.0" mnemonicParsing="false" onAction="#onTurnUp" prefHeight="58.0" prefWidth="128.0" text="Turn Up">
          <font>

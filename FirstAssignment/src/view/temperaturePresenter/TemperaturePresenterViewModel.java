@@ -4,11 +4,9 @@ import core.ModelFactory;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.TemperatureModel;
 import model.temp.Temperature;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class TemperaturePresenterViewModel {
     private StringProperty t0value, t1value, t2value, radiatorValue, warningLabel, indoorTempLabel, outDoorTemp;

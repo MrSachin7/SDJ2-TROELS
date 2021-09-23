@@ -1,12 +1,11 @@
+package core;
+
 import core.ModelFactory;
 import core.ViewHandler;
 import core.ViewModelFactory;
 import external.Thermometer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.TemperatureModel;
-import model.TemperatureModelManager;
-import model.radidator.Radiator;
 
 public class App extends Application {
     @Override
@@ -16,7 +15,7 @@ public class App extends Application {
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
         Thermometer thermometer1 = new Thermometer("t1",1,modelFactory,viewModelFactory);
         Thermometer thermometer2 = new Thermometer("t2", 7, modelFactory, viewModelFactory);
-        Thermometer thermometer3 = new Thermometer("t0", 10, modelFactory, viewModelFactory);
+        Thermometer thermometer3 = new Thermometer("t0",  modelFactory, viewModelFactory);
         Thread thread1 = new Thread(thermometer1);
         Thread thread2 = new Thread(thermometer2);
         Thread thread3 = new Thread(thermometer3);

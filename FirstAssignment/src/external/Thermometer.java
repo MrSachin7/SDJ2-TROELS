@@ -2,8 +2,6 @@ package external;
 
 import core.ModelFactory;
 import core.ViewModelFactory;
-import model.TemperatureModel;
-import model.radidator.Radiator;
 
 public class Thermometer implements Runnable {
     private String id;
@@ -83,7 +81,7 @@ public class Thermometer implements Runnable {
                 }
 
 
-                Thread.sleep(1000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

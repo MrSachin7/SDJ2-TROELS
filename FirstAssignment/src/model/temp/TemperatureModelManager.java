@@ -1,6 +1,4 @@
-package model;
-
-import model.temp.Temperature;
+package model.temp;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -9,14 +7,8 @@ public class TemperatureModelManager implements TemperatureModel {
 
 
     private PropertyChangeSupport support;
-
-
-
-
     public TemperatureModelManager()
     {
-
-
         support = new PropertyChangeSupport(this);
     }
     @Override

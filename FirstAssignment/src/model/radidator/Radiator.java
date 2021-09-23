@@ -1,6 +1,6 @@
 package model.radidator;
 
-import model.PropertyChangeSubject;
+import model.utils.PropertyChangeSubject;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

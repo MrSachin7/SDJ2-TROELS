@@ -1,3 +1,6 @@
+package core;
+
+import core.App;
 import javafx.application.Application;
 
 public class RunApp {

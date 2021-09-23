@@ -1,6 +1,7 @@
-package model;
+package model.temp;
 
 
+import model.utils.PropertyChangeSubject;
 
 public interface TemperatureModel extends PropertyChangeSubject {
 

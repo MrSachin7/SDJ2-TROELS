@@ -4,11 +4,8 @@ import core.ModelFactory;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.TemperatureModel;
-import model.temp.Temperature;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class RadiatorViewModel {
     private ModelFactory modelFactory;

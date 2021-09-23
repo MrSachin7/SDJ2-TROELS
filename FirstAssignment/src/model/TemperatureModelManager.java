@@ -21,10 +21,9 @@ public class TemperatureModelManager implements TemperatureModel {
     }
     @Override
     public void addTemperature(String id, double value) {
-        System.out.println("testtttttttttttttttttttt"+value);
         Temperature temperature1 = new Temperature(id,value);
-        System.out.println(temperature1+" Testtttttttttttttttttttttttttttt");
         // Fire the change of property named Temperature added
+
         support.firePropertyChange("Temperature added",null,temperature1);
     }
 

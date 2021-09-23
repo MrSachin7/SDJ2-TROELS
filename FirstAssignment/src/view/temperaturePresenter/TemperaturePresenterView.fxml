@@ -25,7 +25,7 @@
          <font>
             <Font name="Bodoni MT" size="15.0" />
          </font></Label>
-      <Label layoutX="261.0" layoutY="297.0" text="Heater's Power">
+      <Label layoutX="261.0" layoutY="231.0" text="Heater's Power">
          <font>
             <Font size="20.0" />
          </font></Label>
@@ -39,19 +39,19 @@
          </font></Label>
       <Label fx:id="t1Label" layoutX="88.0" layoutY="199.0" text="t1 value" />
       <Label fx:id="t2Label" layoutX="88.0" layoutY="238.0" text="t2 value" />
-      <Label fx:id="t0Label" layoutX="553.0" layoutY="200.0" text="t0 value">
+      <Label fx:id="t0Label" layoutX="527.0" layoutY="199.0" text="t0 value">
          <font>
             <Font name="Bodoni MT" size="15.0" />
          </font></Label>
-      <Label fx:id="radiatorLabel" layoutX="277.0" layoutY="350.0" text="Radiator's value">
+      <Label fx:id="radiatorLabel" layoutX="274.0" layoutY="269.0" text="Radiator's value">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Button layoutX="519.0" layoutY="357.0" mnemonicParsing="false" onAction="#onControlHeater" text="Control Heater">
+      <Button layoutX="553.0" layoutY="232.0" mnemonicParsing="false" onAction="#onControlHeater" text="Control Heater">
          <font>
             <Font name="Century Gothic Bold" size="15.0" />
          </font></Button>
-      <Button layoutX="544.0" layoutY="403.0" mnemonicParsing="false" onAction="#onLineChartPressed" text="Line Chart">
+      <Button layoutX="578.0" layoutY="276.0" mnemonicParsing="false" onAction="#onLineChartPressed" text="Line Chart">
          <font>
             <Font name="Century Gothic" size="15.0" />
          </font></Button>
@@ -60,10 +60,20 @@
             <Font name="Algerian" size="46.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/Picture1.png" />
          </image>
       </ImageView>
+      <Label fx:id="indoorTempLabel" layoutX="22.0" layoutY="340.0" prefHeight="26.0" prefWidth="595.0" text="Indoor Temperature Label" textFill="RED">
+         <font>
+            <Font name="Elephant" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="outsideTemp" layoutX="22.0" layoutY="381.0" prefHeight="26.0" prefWidth="595.0" text="Outside temperatuer Label" textFill="RED">
+         <font>
+            <Font name="Elephant" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

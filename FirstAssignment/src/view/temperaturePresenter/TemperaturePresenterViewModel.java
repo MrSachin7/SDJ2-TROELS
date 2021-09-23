@@ -11,20 +11,23 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class TemperaturePresenterViewModel {
-    private StringProperty t0value, t1value, t2value, radiatorValue, warningLabel;
+    private StringProperty t0value, t1value, t2value, radiatorValue, warningLabel, indoorTempLabel, outDoorTemp;
     private ModelFactory modelFactory;
 
 
     public TemperaturePresenterViewModel(ModelFactory modelFactory) {
-        this.modelFactory=modelFactory;
+        this.modelFactory = modelFactory;
         t0value = new SimpleStringProperty();
         t1value = new SimpleStringProperty();
         t2value = new SimpleStringProperty();
         radiatorValue = new SimpleStringProperty();
+        indoorTempLabel = new SimpleStringProperty();
+        outDoorTemp = new SimpleStringProperty();
+        radiatorValue.set(modelFactory.getRadiator().getPower() + "");
         warningLabel = new SimpleStringProperty();
-        modelFactory.getTemperatureModel().addPropertyChangeListener("Temperature added",this::propertyChangeIndoor);
-        modelFactory.getTemperatureModel().addPropertyChangeListener("Outdoor Temperature added",this::propertyChangeOutdoor);
-        modelFactory.getRadiator().addPropertyChangeListener("Power changed",this::propertyChangeRadiator);
+        modelFactory.getTemperatureModel().addPropertyChangeListener("Temperature added", this::propertyChangeIndoor);
+        modelFactory.getTemperatureModel().addPropertyChangeListener("Outdoor Temperature added", this::propertyChangeOutdoor);
+        modelFactory.getRadiator().addPropertyChangeListener("Power changed", this::propertyChangeRadiator);
 
     }
 
@@ -40,12 +43,20 @@ public class TemperaturePresenterViewModel {
         return t2value;
     }
 
+    public StringProperty getIndoorTempLabel() {
+        return indoorTempLabel;
+    }
+
     public StringProperty radiatorValueProperty() {
         return radiatorValue;
     }
 
     public StringProperty warningLabelProperty() {
         return warningLabel;
+    }
+
+    public StringProperty getOutDoorTemp() {
+        return outDoorTemp;
     }
 
 
@@ -85,45 +96,51 @@ public class TemperaturePresenterViewModel {
     }**/
 
 
-
-   public void propertyChangeIndoor(PropertyChangeEvent evt) {
+    public void propertyChangeIndoor(PropertyChangeEvent evt) {
         Temperature temperature = (Temperature) evt.getNewValue();
-        if (temperature.getId().equals("t1"))
-        {
-            Platform.runLater(() -> t1value.set(temperature.getValue()+""));
-        }
-        else if (temperature.getId().equals("t2"))
-        {
-            Platform.runLater(() -> t2value.set(temperature.getValue()+""));
-        }
-        else {
+        if (temperature.getId().equals("t1")) {
+            if (temperature.getValue() < 5) {
+                Platform.runLater(() -> indoorTempLabel.set("Indoor temp is below 5,,,,turn up the heater or wear jackets"));
+            } else if (temperature.getValue() > 20) {
+                Platform.runLater(() -> indoorTempLabel.set("Indoor temp is above 20....turn down the heater or get naked"));
+            } else {
+                Platform.runLater(() -> indoorTempLabel.set(null));
+            }
+            Platform.runLater(() -> t1value.set(temperature.getValue() + ""));
+        } else if (temperature.getId().equals("t2")) {
+            Platform.runLater(() -> t2value.set(temperature.getValue() + ""));
+        } else {
             Platform.runLater(() -> t1value.set("No data"));
             Platform.runLater(() -> t2value.set("No data"));
         }
 
+
     }
-    public void propertyChangeOutdoor(PropertyChangeEvent evt){
-        Temperature temperature =(Temperature) evt.getNewValue();
-        if (temperature.getId().equals("t0"))
-        {
-            Platform.runLater(() -> t0value.set(temperature.getValue()+""));
-        }
-        else {
+
+    public void propertyChangeOutdoor(PropertyChangeEvent evt) {
+        Temperature temperature = (Temperature) evt.getNewValue();
+        if (temperature.getId().equals("t0")) {
+            Platform.runLater(() -> t0value.set(temperature.getValue() + ""));
+        } else {
             Platform.runLater(() -> t0value.set("No data"));
+        }
+
+        if (temperature.getValue() < 3) {
+            Platform.runLater(() -> outDoorTemp.set("Outdoor temp is below 3, wear jackets dude"));
+        } else if (temperature.getValue() > 8) {
+            Platform.runLater(() -> outDoorTemp.set("Outdoor temp is above 8, you can go out naked"));
+        } else {
+            Platform.runLater(() -> outDoorTemp.set(null));
         }
     }
 
-    public void propertyChangeRadiator(PropertyChangeEvent evt)
-    {
-        String temp = evt.getNewValue()+"";
-        if ((int)evt.getNewValue()==3)
-        {
-            Platform.runLater(()->warningLabel.set("Max power reached,, decreasing power............"));
+    public void propertyChangeRadiator(PropertyChangeEvent evt) {
+        String temp = evt.getNewValue() + "";
+        if ((int) evt.getNewValue() == 3) {
+            Platform.runLater(() -> warningLabel.set("Max power reached,, decreasing power............"));
+        } else {
+            Platform.runLater(() -> warningLabel.set(""));
         }
-        else
-        {
-            Platform.runLater(()->warningLabel.set(""));
-        }
-       Platform.runLater(()->radiatorValue.set(temp));
+        Platform.runLater(() -> radiatorValue.set(temp));
     }
 }

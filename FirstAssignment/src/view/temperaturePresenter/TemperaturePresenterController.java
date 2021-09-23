@@ -24,6 +24,10 @@ public class TemperaturePresenterController {
     private Label warningLabel;
     @FXML
     private Label radiatorLabel;
+    @FXML
+    private Label indoorTempLabel;
+    @FXML
+    private Label outsideTemp;
 
     public void init(TemperaturePresenterViewModel viewModel, ViewHandler viewHandler) {
         this.viewHandler = viewHandler;
@@ -31,8 +35,10 @@ public class TemperaturePresenterController {
         t0Label.textProperty().bind(viewModel.t0ValueProperty());
         t1Label.textProperty().bind(viewModel.t1ValueProperty());
         t2Label.textProperty().bind(viewModel.t2ValueProperty());
+        indoorTempLabel.textProperty().bind(viewModel.getIndoorTempLabel());
         warningLabel.textProperty().bind(viewModel.warningLabelProperty());
         radiatorLabel.textProperty().bind(viewModel.radiatorValueProperty());
+        outsideTemp.textProperty().bind(viewModel.getOutDoorTemp());
 
     }
 

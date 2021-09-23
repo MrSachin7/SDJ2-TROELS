@@ -46,6 +46,15 @@ public class RadiatorViewModel {
         String temp = event.getNewValue()+"";
         Platform.runLater(()->powerValue.set(temp));
 
+        if ((int)event.getNewValue()==3)
+        {
+            Platform.runLater(()->warningValue.set("Max power reached,, decreasing power............"));
+        }
+        else
+        {
+            Platform.runLater(()->warningValue.set(""));
+        }
+
     }
 
 

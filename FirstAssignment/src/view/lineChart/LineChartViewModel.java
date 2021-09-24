@@ -17,7 +17,7 @@ public class LineChartViewModel {
     private ObservableList<XYChart.Data<String, Number>> list1, list2, list3;
     int count1, count2, count3;
 
-    public LineChartViewModel(ModelFactory modelFactory) {
+    public LineChartViewModel(ModelFactory modelFactory){
         this.modelFactory = modelFactory;
         this.list1 = FXCollections.observableArrayList();
         this.list2 = FXCollections.observableArrayList();

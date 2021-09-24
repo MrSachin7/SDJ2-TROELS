@@ -63,7 +63,6 @@ public class Thermometer implements Runnable {
                 if (id.equals("t1")) {
                     lastMeasuredIndoorTemperature1 = temperature(lastMeasuredIndoorTemperature1, modelFactory.getRadiator().getPower(), this.distance, lastMeasuredOutdoorTemperature, 6);
                     modelFactory.getTemperatureModel().addTemperature(id, lastMeasuredIndoorTemperature1);
-                    System.out.println(lastMeasuredIndoorTemperature1+"test                   ");
                     System.out.println("Temperature :" + lastMeasuredIndoorTemperature1 + " ID : " + id);
 
                 }
@@ -76,8 +75,6 @@ public class Thermometer implements Runnable {
                     lastMeasuredOutdoorTemperature = externalTemperature(lastMeasuredOutdoorTemperature, -20, 20);
                     modelFactory.getTemperatureModel().addOutdoorTemperature(id, lastMeasuredOutdoorTemperature);
                     System.out.println("OutDoor temperature :" + lastMeasuredOutdoorTemperature + " ID : " + id);
-
-
                 }
 
 

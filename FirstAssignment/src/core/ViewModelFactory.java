@@ -24,7 +24,7 @@ public class ViewModelFactory {
 
     public RadiatorViewModel getRadiatorViewModel() {
         if (radiatorViewModel == null) {
-            radiatorViewModel = new RadiatorViewModel(modelFactory);
+            radiatorViewModel = new RadiatorViewModel(modelFactory.getRadiator());
         }
         return radiatorViewModel;
     }

@@ -1,23 +1,27 @@
 package view.radiatorController;
 
-import core.ModelFactory;
+
+
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.radidator.Radiator;
 
 import java.beans.PropertyChangeEvent;
 
 public class RadiatorViewModel {
-    private ModelFactory modelFactory;
+    private Radiator radiator;
+    //private ModelFactory modelFactory
     private StringProperty powerValue;
     private StringProperty warningValue;
 
-    public RadiatorViewModel(ModelFactory modelFactory) {
-        this.modelFactory = modelFactory;
+    public RadiatorViewModel(Radiator radiator /*,ModelFactory modelFactory**/) {
+        //  this.modelFactory = modelFactory;
+        this.radiator = radiator;
         powerValue = new SimpleStringProperty();
         warningValue = new SimpleStringProperty();
-        powerValue.set(modelFactory.getRadiator().getPower() + "");
-        modelFactory.getRadiator().addPropertyChangeListener("Power changed",this::update);
+        powerValue.set(radiator.getPower() + "");
+        radiator.addPropertyChangeListener("Power changed", this::update);
     }
 
     public StringProperty powerValueProperty() {
@@ -29,27 +33,25 @@ public class RadiatorViewModel {
     }
 
     public void turnUp() {
-        modelFactory.getRadiator().turnUp();
+        radiator.turnUp();
+        //modelFactory.getRadiator().turnUp();
     }
 
     public void turnDown() {
-        modelFactory.getRadiator().turnDown();
+        radiator.turnDown();
 
 
     }
-    public void update(PropertyChangeEvent event)
-    {
 
-        String temp = event.getNewValue()+"";
-        Platform.runLater(()->powerValue.set(temp));
+    public void update(PropertyChangeEvent event) {
 
-        if ((int)event.getNewValue()==3)
-        {
-            Platform.runLater(()->warningValue.set("Max power reached,, decreasing power............"));
-        }
-        else
-        {
-            Platform.runLater(()->warningValue.set(""));
+        String temp = event.getNewValue() + "";
+        Platform.runLater(() -> powerValue.set(temp));
+
+        if ((int) event.getNewValue() == 3) {
+            Platform.runLater(() -> warningValue.set("Max power reached,, decreasing power............"));
+        } else {
+            Platform.runLater(() -> warningValue.set(""));
         }
 
     }

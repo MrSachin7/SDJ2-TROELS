@@ -8,7 +8,6 @@ public class Temperature {
     public Temperature(String id, double value) {
         this.id = id;
         this.value = value;
-
     }
 
     public double getValue() {

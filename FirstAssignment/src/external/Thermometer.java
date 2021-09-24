@@ -20,7 +20,6 @@ public class Thermometer implements Runnable {
         lastMeasuredIndoorTemperature2 = 8;
         lastMeasuredIndoorTemperature1 = 9;
         lastMeasuredOutdoorTemperature = 5;
-
     }
 
     public Thermometer(String id, ModelFactory modelFactory, ViewModelFactory viewModelFactory) {
@@ -58,7 +57,6 @@ public class Thermometer implements Runnable {
     @Override
     public void run() {
         while (true) {
-
             try {
                 if (id.equals("t1")) {
                     lastMeasuredIndoorTemperature1 = temperature(lastMeasuredIndoorTemperature1, modelFactory.getRadiator().getPower(), this.distance, lastMeasuredOutdoorTemperature, 6);
@@ -77,8 +75,7 @@ public class Thermometer implements Runnable {
                     System.out.println("OutDoor temperature :" + lastMeasuredOutdoorTemperature + " ID : " + id);
                 }
 
-
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

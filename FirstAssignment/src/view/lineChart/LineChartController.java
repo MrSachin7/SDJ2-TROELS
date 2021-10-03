@@ -1,17 +1,11 @@
 package view.lineChart;
 
 import core.ViewHandler;
-import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import model.temp.Temperature;
 
-import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 
 public class LineChartController {
     @FXML
@@ -19,8 +13,6 @@ public class LineChartController {
 
     private XYChart.Series<String, Number> series1, series2, series3;
     private ViewHandler viewHandler;
-    private int count1;
-    private int count2, count3;
 
 
     public void init(LineChartViewModel lineChartViewModel, ViewHandler viewHandler) {
@@ -39,9 +31,6 @@ public class LineChartController {
         lineChart.getData().add(series3);
 
     }
-
-
-
 
 
     @FXML

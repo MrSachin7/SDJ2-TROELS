@@ -41,7 +41,6 @@ public class LineChartViewModel {
             {
                 list1.remove(0);
             }
-
             Platform.runLater(() -> list1.add(new XYChart.Data<>((count1++) + "", temperature.getValue())));
         }
         if (temperature.getId().equals("t2")) {

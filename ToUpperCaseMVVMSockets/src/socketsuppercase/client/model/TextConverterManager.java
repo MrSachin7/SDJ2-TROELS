@@ -35,6 +35,11 @@ public class TextConverterManager implements TextConverter {
     }
 
     @Override
+    public String toLowerCase(String text) {
+        return client.toLowerCase(text);
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
     }

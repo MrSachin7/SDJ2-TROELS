@@ -44,6 +44,10 @@ public class SocketHandler implements Runnable {
                 List<LogEntry> log = textManager.getLog();
                 outToClient.writeObject(new Request("FetchLog", log));
             }
+            else if ("LowerCase".equals(request.getType())){
+                String result =textManager.toLowerCase((String) request.getArg());
+                outToClient.writeObject(new Request("LowerCase",result));
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

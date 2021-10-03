@@ -10,6 +10,7 @@ public interface TextConverter extends Subject {
     String toUppercase(String text);
     List<LogEntry> getLogs();
 
+    String toLowerCase(String text);
 }
 
 

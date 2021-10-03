@@ -15,7 +15,7 @@ public class UppercaseViewModel {
         error = new SimpleStringProperty();
     }
 
-    void convert() {
+    void upperCase() {
         String input = request.get();
         if(input != null && !"".equals(input)) {
             String result = textConverter.toUppercase(input);
@@ -35,5 +35,18 @@ public class UppercaseViewModel {
 
     StringProperty errorProperty() {
         return error;
+    }
+
+    public void lowerCase() {
+        String input = request.get();
+        if (input !=null && !"".equals(input))
+        {
+            String result = textConverter.toLowerCase(input);
+            reply.set(result);
+        }
+        else
+        {
+            error.set("Input cannot be empty");
+        }
     }
 }

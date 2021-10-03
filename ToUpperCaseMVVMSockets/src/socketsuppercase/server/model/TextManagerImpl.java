@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TextManagerImpl implements TextManager{
 
@@ -23,6 +24,13 @@ public class TextManagerImpl implements TextManager{
         LogEntry logEntry = new LogEntry(str, result);
         logEntries.add(logEntry);
         support.firePropertyChange("NewLogEntry", null, logEntry);
+        return result;
+    }
+    public String toLowerCase(String str){
+        String result = str.toLowerCase();
+        LogEntry logEntry = new LogEntry(str,result);
+        logEntries.add(logEntry);
+        support.firePropertyChange("NewLogEntry",null,logEntry);
         return result;
     }
 

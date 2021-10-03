@@ -28,8 +28,13 @@ public class UppercaseViewController implements ViewController {
     }
 
     @FXML
-    private void onSubmitButton() {
-        viewModel.convert();
+    private void onUpperCase() {
+        viewModel.upperCase();
+    }
+    @FXML
+    private void lowerCase()
+    {
+        viewModel.lowerCase();
     }
 
     // I can make this method public, or do like above, make it private and mark it @FXML.

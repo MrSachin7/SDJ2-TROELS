@@ -10,4 +10,6 @@ public interface TextManager extends Subject {
 
     String toUppercase(String str);
     List<LogEntry> getLog();
+
+    String toLowerCase(String arg);
 }

@@ -11,4 +11,6 @@ public interface Client extends Subject {
     List<LogEntry> getLog();
 
     void startClient();
+
+    String toLowerCase(String text);
 }

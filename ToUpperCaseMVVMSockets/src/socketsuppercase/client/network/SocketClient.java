@@ -32,6 +32,19 @@ public class SocketClient implements Client {
         }
     }
 
+    @Override
+    public String toLowerCase(String text) {
+        try {
+            Request response = request(text,"LowerCase");
+            return (String) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return text;
+    }
+
     private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
         try {
             outToServer.writeObject(new Request("Listener", null));

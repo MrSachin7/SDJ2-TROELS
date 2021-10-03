@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="93.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="socketsuppercase.client.views.uppercase.UppercaseViewController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="93.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="socketsuppercase.client.views.uppercase.UppercaseViewController">
    <children>
-      <BorderPane prefHeight="126.0" prefWidth="424.0">
+      <BorderPane prefHeight="126.0" prefWidth="472.0">
          <top>
             <Label prefHeight="35.0" prefWidth="227.0" text="Upper case converter" BorderPane.alignment="CENTER" />
          </top>
@@ -32,8 +41,9 @@
                   </GridPane>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onSubmitButton" text="Submit" />
+                        <Button mnemonicParsing="false" onAction="#onUpperCase" text="Uppercase" />
                         <Button mnemonicParsing="false" onAction="#onLogButton" text="Log" />
+                        <Button mnemonicParsing="false" onAction="#lowerCase" text="LowerCase" />
                      </children>
                   </VBox>
                </children>

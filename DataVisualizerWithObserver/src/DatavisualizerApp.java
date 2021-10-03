@@ -1,10 +1,10 @@
-import core.ModelFactory;
-import core.ViewHandler;
-import core.ViewModelFactory;
+import client.core.ModelFactory;
+import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.DataModel;
+import client.model.DataModel;
 
 import java.util.Random;
 

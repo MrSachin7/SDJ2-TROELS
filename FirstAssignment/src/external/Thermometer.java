@@ -1,7 +1,7 @@
 package external;
 
-import core.ModelFactory;
-import core.ViewModelFactory;
+import client.core.ModelFactory;
+import client.core.ViewModelFactory;
 
 public class Thermometer implements Runnable {
     private String id;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.radiatorController.RadiatorViewController">
+   <children>
+      <Button layoutX="87.0" layoutY="110.0" mnemonicParsing="false" onAction="#onTurnUp" prefHeight="58.0" prefWidth="128.0" text="Turn Up">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="87.0" layoutY="207.0" mnemonicParsing="false" onAction="#onTurnDown" prefHeight="58.0" prefWidth="128.0" text="Turn Down">
+         <font>
+            <Font name="Bell MT Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="371.0" layoutY="122.0" text="Current Power">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="powerValue" layoutX="377.0" layoutY="174.0" text="Power value">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="warningValue" layoutX="73.0" layoutY="332.0" prefHeight="18.0" prefWidth="504.0" text="Max reached bla bla bla" textFill="RED" />
+      <Button layoutX="453.0" layoutY="319.0" mnemonicParsing="false" onAction="#onBack" text="Back">
+         <font>
+            <Font name="Bell MT Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="87.0" layoutY="24.0" prefHeight="46.0" prefWidth="435.0" text="Heater Controller">
+         <font>
+            <Font name="Algerian" size="41.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

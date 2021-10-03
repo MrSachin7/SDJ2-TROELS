@@ -1,6 +1,6 @@
-import model.TextConverter;
-import model.TextConverterModel;
-import view.uppercase.log.LogViewModel;
+import client.model.TextConverter;
+import client.model.TextConverterModel;
+import client.view.uppercase.log.LogViewModel;
 
 
 

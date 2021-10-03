@@ -26,6 +26,7 @@ public class TextManagerImpl implements TextManager{
         support.firePropertyChange("NewLogEntry", null, logEntry);
         return result;
     }
+    @Override
     public String toLowerCase(String str){
         String result = str.toLowerCase();
         LogEntry logEntry = new LogEntry(str,result);

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DataVisualizer.iml" filepath="$PROJECT_DIR$/DataVisualizer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DataVisualizerSockets.iml" filepath="$PROJECT_DIR$/DataVisualizerSockets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DATA/DATA.iml" filepath="$PROJECT_DIR$/DATA/DATA.iml" />
       <module fileurl="file://$PROJECT_DIR$/DoctorsWaitingRoom/DoctorsWaitingRoom.iml" filepath="$PROJECT_DIR$/DoctorsWaitingRoom/DoctorsWaitingRoom.iml" />
       <module fileurl="file://$PROJECT_DIR$/Excercise/Excercise.iml" filepath="$PROJECT_DIR$/Excercise/Excercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" filepath="$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" />

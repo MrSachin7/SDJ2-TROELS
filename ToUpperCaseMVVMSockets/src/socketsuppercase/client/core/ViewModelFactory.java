@@ -3,6 +3,7 @@ package socketsuppercase.client.core;
 import socketsuppercase.client.views.log.LogViewModel;
 import socketsuppercase.client.views.uppercase.UppercaseViewModel;
 
+
 public class ViewModelFactory {
 
     private final ModelFactory mf;

@@ -21,10 +21,12 @@ public class SocketServer {
     public void startServer() {
         try {
             ServerSocket welcomeSocket = new ServerSocket(8848);
+            ConnectionPool cp = new ConnectionPool();
             while (true) {
                 Socket socket = welcomeSocket.accept();
                 System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
-                SocketHandler socketHandler = new SocketHandler(socket, model, allSocketHandlers);
+                SocketHandler socketHandler = new SocketHandler(socket, model, allSocketHandlers,cp);
+                System.out.println(socketHandler.getUserName()+" is here...");
                 allSocketHandlers.add(socketHandler);
             }
 

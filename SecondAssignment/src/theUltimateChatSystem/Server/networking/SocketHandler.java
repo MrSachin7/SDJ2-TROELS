@@ -1,6 +1,7 @@
 package theUltimateChatSystem.Server.networking;
 
 import theUltimateChatSystem.Server.model.Model;
+import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.Request;
 
 import java.io.IOException;
@@ -17,9 +18,11 @@ public class SocketHandler implements Runnable {
     private ObjectInputStream inFromClient;
     private List<SocketHandler> allSocketHandlers;
     private String userName;
+    private ConnectionPool pool;
 
-    public SocketHandler(Socket socket, Model model, List<SocketHandler> allSocketHandlers) {
+    public SocketHandler(Socket socket, Model model, List<SocketHandler> allSocketHandlers,ConnectionPool pool) {
         this.socket = socket;
+        this.pool=pool;
         this.model = model;
         this.allSocketHandlers = allSocketHandlers;
 
@@ -53,5 +56,16 @@ public class SocketHandler implements Runnable {
             e.printStackTrace();
         }
 
+    }
+    public void sendMessageToClient(Message message){
+        try {
+            outToClient.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

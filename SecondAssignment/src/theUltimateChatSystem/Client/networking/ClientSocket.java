@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientSocket implements Client {
     private PropertyChangeSupport support;
@@ -35,13 +36,27 @@ public class ClientSocket implements Client {
         }
     }
 
+    @Override
+    public List<Message> getMessages() {
+        try {
+            Request response = request(null,"getMessage");
+            return (List<Message>) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private void listenToServer(ObjectInputStream inFromServer,ObjectOutputStream outToServer) {
         try {
             outToServer.writeObject(new Request("Listener",null));
             while(true){
                 Request response =(Request) inFromServer.readObject();
+                Message message = (Message) response.getArg();
                 if (response.getType().equals("MessageAdded")){
-                    support.firePropertyChange("MessageAdded",null,response.getArg());
+                    support.firePropertyChange("MessageAdded",null,message);
                 }
             }
 

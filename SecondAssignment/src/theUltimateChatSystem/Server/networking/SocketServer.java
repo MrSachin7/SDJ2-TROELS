@@ -12,7 +12,7 @@ public class SocketServer {
 
 
     public SocketServer(Model model) {
-        this.model = new ModelImpl();
+        this.model = model;
 
     }
 

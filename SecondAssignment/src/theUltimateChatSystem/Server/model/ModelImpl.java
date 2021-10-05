@@ -33,7 +33,6 @@ public class ModelImpl implements Model {
 
     @Override
     public void addMessage(Message message) {
-
         messageList.add(message);
         support.firePropertyChange("MessageAdded",null,message);   // message OR messageList to send ??
     }

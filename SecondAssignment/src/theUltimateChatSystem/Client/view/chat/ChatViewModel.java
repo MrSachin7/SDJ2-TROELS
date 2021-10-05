@@ -1,40 +1,42 @@
 package theUltimateChatSystem.Client.view.chat;
 
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import theUltimateChatSystem.Client.core.ModelFactory;
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
-
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChatViewModel {
     private ModelFactory modelFactory;
-    private ObservableList<String> messages;
+    private ObservableList<Message> messages;
 
 
     public ChatViewModel(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
-        messages = FXCollections.observableArrayList();
-        modelFactory.getChatModel().addListener("MessageAdded",this::messageAdded);
+        modelFactory.getChatModel().addListener("MessageAdded", this::messageAdded);
     }
 
     private void messageAdded(PropertyChangeEvent event) {
         Platform.runLater(()->{
-            Message newMessage = (Message) event.getNewValue();
-            messages.add(newMessage+"");
+           messages.add((Message) event.getNewValue());
         });
 
     }
 
-    public void sendMessage(String message) {
-       modelFactory.getChatModel().sendMessage(message);
+    void loadMessages() {
+        List<Message> messageList = modelFactory.getChatModel().getMessages();
+        messages = FXCollections.observableArrayList(messageList);
     }
 
-    public ObservableList<String> getMessages() {
+
+    public void sendMessage(String message) {
+        modelFactory.getChatModel().sendMessage(message);
+    }
+
+    public ObservableList<Message> getMessages() {
         return messages;
     }
 }

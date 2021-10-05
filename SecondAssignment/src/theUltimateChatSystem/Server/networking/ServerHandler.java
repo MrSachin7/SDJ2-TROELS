@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class ServerHandler implements Runnable {
 
@@ -51,13 +52,18 @@ public class ServerHandler implements Runnable {
                     outToClient.writeObject(new Request("connectionRequest", result));
                 } else if ("addMessage".equals(request.getType())) {
                     model.addMessage((Message) request.getArg());
-                    pool.broadcastToAll((Message) request.getArg());
-                     model.addListener("MessageAdded",this::messageAdded);
+                    model.addListener("MessageAdded",this::messageAdded);
+                   pool.broadcastToAll((Message) request.getArg());
+                    // model.addListener("MessageAdded",this::messageAdded);
                     // outToClient.writeObject(new Request(null,null));
                     //  outToClient.writeObject(new Request());
                 }
                 else if ("Listener".equals(request.getType())){
                     model.addListener("MessageAdded",this::messageAdded);
+                }
+                else if ("getMessage".equals(request.getType())){
+                    List<Message> list = model.getMessages();
+                    outToClient.writeObject(new Request("getMessage",list));
                 }
             }
 

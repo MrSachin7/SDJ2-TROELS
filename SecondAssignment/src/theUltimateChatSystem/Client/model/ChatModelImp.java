@@ -1,11 +1,13 @@
 package theUltimateChatSystem.Client.model;
 
 import theUltimateChatSystem.Client.networking.Client;
+import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.MessageList;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 public class ChatModelImp implements ChatModel{
     private Client client;
@@ -20,7 +22,8 @@ public class ChatModelImp implements ChatModel{
     }
 
     private void messageAdded(PropertyChangeEvent event) {
-        support.firePropertyChange("MessageAdded",null,event.getNewValue());
+        Message message =(Message) event.getNewValue();
+        support.firePropertyChange("MessageAdded",null,message);
     }
 
     @Override
@@ -36,6 +39,11 @@ public class ChatModelImp implements ChatModel{
     @Override
     public Client getClient() {
         return client;
+    }
+
+    @Override
+    public List<Message> getMessages() {
+        return client.getMessages();
     }
 
     @Override

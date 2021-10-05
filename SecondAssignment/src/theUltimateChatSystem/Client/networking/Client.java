@@ -7,4 +7,5 @@ public interface Client extends Subject {
     boolean isConnectionPossible(String username);
 
     void sendMessage(String message);
+    void startClient();
 }

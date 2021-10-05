@@ -14,6 +14,7 @@ public class ChatModelImp implements ChatModel{
     {
         this.client=client;
         this.support=new PropertyChangeSupport(this);
+        client.startClient();
     }
 
     @Override

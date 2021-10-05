@@ -23,4 +23,8 @@ public class Message implements Serializable {
     public String toString() {
       return user +": "+messageBody;
     }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 }

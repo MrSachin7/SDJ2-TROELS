@@ -1,5 +1,7 @@
 package theUltimateChatSystem.Client.networking;
 
+import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.Request;
 
 import java.beans.PropertyChangeListener;
@@ -11,7 +13,7 @@ import java.net.Socket;
 
 public class ClientSocket implements Client {
     private PropertyChangeSupport support;
-
+    private String userName;
     public ClientSocket() {
         support = new PropertyChangeSupport(this);
     }
@@ -45,7 +47,11 @@ public class ClientSocket implements Client {
     public boolean isConnectionPossible(String username) {
         try {
             Request response = request(username, "connectionRequest");
-            return (boolean) response.getArg();
+            boolean b = (boolean) response.getArg();
+            if (b){
+                this.userName=username;
+            }
+            return b;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -57,8 +63,11 @@ public class ClientSocket implements Client {
     @Override
     public void sendMessage(String message) {
         try {
-            Request response = request(message, "addMessage");
-            support.firePropertyChange("MessageAdded", null, (response.getArg()));
+            Message tempMessage = new Message(message,userName);
+            Request response = request(tempMessage,"addMessage");
+            Message newMessage = (Message) response.getArg();
+            support.firePropertyChange("newList",null,newMessage);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -67,7 +76,7 @@ public class ClientSocket implements Client {
 
     }
 
-    private Request request(String arg, String type) throws IOException, ClassNotFoundException {
+    private Request request(Object arg, String type) throws IOException, ClassNotFoundException {
         Socket socket = new Socket("localhost", 8848);
         ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());

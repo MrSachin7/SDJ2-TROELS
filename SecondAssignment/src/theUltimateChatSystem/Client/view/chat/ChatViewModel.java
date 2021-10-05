@@ -1,5 +1,6 @@
 package theUltimateChatSystem.Client.view.chat;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import theUltimateChatSystem.Client.core.ModelFactory;
@@ -7,28 +8,33 @@ import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.MessageList;
 
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatViewModel {
     private ModelFactory modelFactory;
-    private ObservableList<Message> messages;
+    private ObservableList<String> messages;
 
 
     public ChatViewModel(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
         messages = FXCollections.observableArrayList();
-        modelFactory.getChatModel().getClient().addListener("MessageAdded",this::messageAdded);
+        modelFactory.getChatModel().getClient().addListener("newList",this::messageAdded);
     }
 
     private void messageAdded(PropertyChangeEvent event) {
-        messages.add((Message) event.getNewValue());
+        Platform.runLater(()->{
+            Message newMessage = (Message) event.getNewValue();
+            messages.add(newMessage+"");
+        });
+
     }
 
     public void sendMessage(String message) {
        modelFactory.getChatModel().sendMessage(message);
     }
 
-    public ObservableList<Message> getMessages() {
+    public ObservableList<String> getMessages() {
         return messages;
     }
 }

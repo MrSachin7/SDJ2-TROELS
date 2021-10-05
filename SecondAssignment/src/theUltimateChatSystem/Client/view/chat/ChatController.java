@@ -15,7 +15,7 @@ public class ChatController implements ViewController {
     private ViewHandler viewHandler ;
     private ChatViewModel viewModel;
     @FXML private TextField sendMessage;
-    @FXML private ListView<Message> listView;
+    @FXML private ListView<String > listView;
     @Override
     public void init(ViewHandler vh, ViewModelFactory vmf) {
         this.viewHandler = vh;

@@ -1,6 +1,7 @@
-package theUltimateChatSystem.Server.networking;
+package theUltimateChatSystem.Server;
 
 import theUltimateChatSystem.Server.model.ModelImpl;
+import theUltimateChatSystem.Server.networking.SocketServer;
 
 public class RunServer {
     public static void main(String[] args) {

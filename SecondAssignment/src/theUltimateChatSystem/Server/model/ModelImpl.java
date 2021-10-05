@@ -11,6 +11,7 @@ public class ModelImpl implements Model {
     private List<String> usernames;
     private List<Message> messageList;
     private PropertyChangeSupport support;
+    private String username;
 
     public ModelImpl() {
         this.usernames = new ArrayList<>();
@@ -32,13 +33,20 @@ public class ModelImpl implements Model {
 
     @Override
     public void addMessage(Message message) {
-        messageList.add(message);
-        support.firePropertyChange("MessageAdded",null,message);   // message OR messageList to send ??
+        String messageBody = message.getMessageBody();
+        String user = this.username;
+        messageList.add(new Message(messageBody,user));
+        support.firePropertyChange("MessageAdded",null,messageList);   // message OR messageList to send ??
     }
 
     @Override
     public List<Message> getMessages() {
         return messageList;
+    }
+
+    @Override
+    public synchronized void setUserName(String username) {
+        this.username =username;
     }
 
     @Override

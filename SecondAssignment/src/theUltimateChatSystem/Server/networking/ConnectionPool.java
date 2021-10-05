@@ -6,22 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
-    private List<SocketHandler> connections = new ArrayList<>();
+    private List<ServerHandler> connections = new ArrayList<>();
 
-    public void addConnection(SocketHandler socketHandler) {
-        connections.add(socketHandler);
+    public void addConnection(ServerHandler serverHandler) {
+        connections.add(serverHandler);
     }
 
     public void broadcastToAll(Message message) {
-        for (SocketHandler socketH : connections
+        for (ServerHandler socketH : connections
         ) {
             socketH.sendMessageToClient(message);
-
         }
     }
 
     public void broadCastToSelected(String userName, Message message) {
-        for (SocketHandler socketH : connections
+        for (ServerHandler socketH : connections
         ) {
             if (socketH.getUserName().equals(userName)){
                 socketH.sendMessageToClient(message);

@@ -6,8 +6,6 @@ import theUltimateChatSystem.Server.model.ModelImpl;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SocketServer {
     private Model model;
@@ -27,9 +25,11 @@ public class SocketServer {
                 System.out.println("Waiting for clients.....");
                 Socket socket = welcomeSocket.accept();
                 System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
-                SocketHandler socketHandler = new SocketHandler(socket, model,cp);
-                System.out.println(socketHandler.getUserName()+" is here...");
-                cp.addConnection(socketHandler);
+                ServerHandler serverHandler = new ServerHandler(socket, model,cp);
+              //  System.out.println(serverHandler.getUserName()+" is here...");
+                cp.addConnection(serverHandler);
+               Thread t = new Thread(serverHandler);
+               t.start();
             }
 
         } catch (IOException e) {

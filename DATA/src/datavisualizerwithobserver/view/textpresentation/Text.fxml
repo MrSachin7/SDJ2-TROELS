@@ -39,7 +39,7 @@
       <TextField fx:id="yTextField" GridPane.columnIndex="5" GridPane.rowIndex="5" />
       <TextField fx:id="zTextField" GridPane.columnIndex="5" GridPane.rowIndex="7" />
       <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButton" text="Save" GridPane.columnIndex="5" GridPane.rowIndex="10" />
-      <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+      <Button mnemonicParsing="false" onAction="#onSaveButton" text="Save" GridPane.columnIndex="5" GridPane.rowIndex="10" />
       <Button mnemonicParsing="false" onAction="#onUpdate" text="UpdateFromServer" GridPane.columnIndex="5" GridPane.rowIndex="11" />
    </children>
 </GridPane>

@@ -33,15 +33,15 @@ public class ClientSocket implements Client {
 
     @Override
     public void startClient() {
-        try {
-            Socket socket = new Socket(InetAddress.getLocalHost().getHostName(), 3100);
-            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
-
-            new Thread(() -> listenToServer(outToServer, inFromServer));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Socket socket = new Socket(InetAddress.getLocalHost().getHostName(), 3100);
+//            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
+//            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
+//
+//            new Thread(() -> listenToServer(outToServer, inFromServer));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
@@ -61,7 +61,10 @@ public class ClientSocket implements Client {
         ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
         outToServer.writeObject(new Request(type, arg));
-        return (Request) inFromServer.readObject();
+
+        Request request = (Request) inFromServer.readObject();
+        socket.close();
+        return request;
     }
 
 

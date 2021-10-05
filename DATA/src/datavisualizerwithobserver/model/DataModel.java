@@ -24,6 +24,9 @@ public class DataModel implements Model {
     {
         this.client=client;
         client.startClient();
+        x=33.3;
+        y=33.3;
+        z=33.3;
     }
 
 
@@ -56,7 +59,7 @@ public class DataModel implements Model {
         y = data[1];
         z = data[2];
         changeSupport.firePropertyChange("Data", null, new double[]{x, y, z});
-        calcTimeStamp();
+      //  calcTimeStamp();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class DataModel implements Model {
        return client.update();
     }
 
-    public void recalculateData() {
+  /*  public void recalculateData() {
         int first = random.nextInt(100)+1;
         int second = random.nextInt(100)+1;
         int bottom = Math.min(first, second);
@@ -85,6 +88,6 @@ public class DataModel implements Model {
         changeSupport.firePropertyChange("TimeUpdate", lastUpdate, strDate);
         lastUpdate = strDate;
     }
-
+**/
 
 }

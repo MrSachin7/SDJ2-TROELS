@@ -23,6 +23,7 @@ public class SocketHandler implements Runnable {
         this.socket = socket;
         this.textManager = textManager;
 
+
         try {
             outToClient = new ObjectOutputStream(socket.getOutputStream());
             inFromClient = new ObjectInputStream(socket.getInputStream());

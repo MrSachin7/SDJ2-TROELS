@@ -27,6 +27,7 @@ public class TextController {
         eventLabel.textProperty().bind(vm.labelStringProperty());
     }
 
+    @FXML
     public void onSaveButton() {
         viewModel.saveChanges();
     }

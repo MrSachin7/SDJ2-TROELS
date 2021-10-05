@@ -19,14 +19,14 @@ public class UserNameController implements ViewController {
 
     @Override
     public void init(ViewHandler vh, ViewModelFactory vmf) {
-        this.viewModel = viewModel;
-        this.viewHandler =viewHandler;
+        this.viewModel = vmf.getUserNameViewModel();
+        this.viewHandler =vh;
     }
 
     @FXML
     private void onConnect() {
         if (viewModel.onConnect(username.getText())) {
-          //  viewHandler.openChat();
+            viewHandler.openChat();
         }
 
     }

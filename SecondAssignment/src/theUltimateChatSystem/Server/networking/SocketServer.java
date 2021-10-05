@@ -11,23 +11,25 @@ import java.util.List;
 
 public class SocketServer {
     private Model model;
-    private List<SocketHandler> allSocketHandlers;
+
 
     public SocketServer(Model model) {
         this.model = new ModelImpl();
-        allSocketHandlers = new ArrayList<>();
+
     }
 
     public void startServer() {
         try {
             ServerSocket welcomeSocket = new ServerSocket(8848);
+            System.out.println("Server started....");
             ConnectionPool cp = new ConnectionPool();
             while (true) {
+                System.out.println("Waiting for clients.....");
                 Socket socket = welcomeSocket.accept();
                 System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
-                SocketHandler socketHandler = new SocketHandler(socket, model, allSocketHandlers,cp);
+                SocketHandler socketHandler = new SocketHandler(socket, model,cp);
                 System.out.println(socketHandler.getUserName()+" is here...");
-                allSocketHandlers.add(socketHandler);
+                cp.addConnection(socketHandler);
             }
 
         } catch (IOException e) {

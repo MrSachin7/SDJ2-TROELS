@@ -1,6 +1,7 @@
 package theUltimateChatSystem.Client.model;
 
 import theUltimateChatSystem.Client.networking.Client;
+import theUltimateChatSystem.shared.MessageList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -9,14 +10,25 @@ public class ChatModelImp implements ChatModel{
     private Client client;
     private PropertyChangeSupport support;
 
-    public ChatModelImp()
+    public ChatModelImp(Client client)
     {
+        this.client=client;
         this.support=new PropertyChangeSupport(this);
     }
 
     @Override
     public boolean isConnectionPossible(String username) {
         return client.isConnectionPossible(username);
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        client.sendMessage(message);
+    }
+
+    @Override
+    public Client getClient() {
+        return client;
     }
 
     @Override

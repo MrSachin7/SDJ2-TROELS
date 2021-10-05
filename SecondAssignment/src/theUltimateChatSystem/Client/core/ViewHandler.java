@@ -10,16 +10,16 @@ import java.io.IOException;
 
 public class ViewHandler {
     private Scene loginScene;
+    private Scene chatScene;
     private Stage stage;
     private ViewModelFactory vmf;
 
-    public ViewHandler() {
-
+    public ViewHandler(ViewModelFactory vmf) {
+        this.vmf=vmf;
     }
 
-    public void start(ViewModelFactory vmf)
+    public void start()
     {
-        this.vmf =vmf;
         stage= new Stage();
         openLogin();
     }
@@ -28,7 +28,7 @@ public class ViewHandler {
     public void openLogin() {
         if (loginScene == null) {
             try {
-                Parent root = loadFXML("../theUltimateChatSystem/Client/view/username/username.fxml");
+                Parent root = loadFXML("../view/username/username.fxml");
                 stage.setTitle("Username");
                 loginScene = new Scene(root);
 
@@ -38,6 +38,21 @@ public class ViewHandler {
         }
         stage.setScene(loginScene);
         stage.show();
+    }
+
+    public void openChat(){
+        if (chatScene==null){
+            try {
+                Parent root = loadFXML("../view/chat/Chat.fxml");
+                stage.setTitle("Chat");
+                chatScene = new Scene(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setScene(chatScene);
+            stage.show();
+
+        }
     }
 
     private Parent loadFXML(String path) throws IOException {

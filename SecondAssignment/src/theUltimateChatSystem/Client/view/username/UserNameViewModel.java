@@ -11,6 +11,7 @@ public class UserNameViewModel {
     private ModelFactory modelFactory;
 
     public UserNameViewModel(ModelFactory modelFactory){
+        this.modelFactory=modelFactory;
         status = new SimpleStringProperty();
         serverMessage = new SimpleStringProperty();
 

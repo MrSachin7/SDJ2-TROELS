@@ -4,6 +4,7 @@ import theUltimateChatSystem.Server.model.Model;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.Request;
 
+import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -16,15 +17,14 @@ public class SocketHandler implements Runnable {
     private Model model;
     private ObjectOutputStream outToClient;
     private ObjectInputStream inFromClient;
-    private List<SocketHandler> allSocketHandlers;
     private String userName;
     private ConnectionPool pool;
 
-    public SocketHandler(Socket socket, Model model, List<SocketHandler> allSocketHandlers,ConnectionPool pool) {
+    public SocketHandler(Socket socket, Model model,ConnectionPool pool) {
         this.socket = socket;
         this.pool=pool;
         this.model = model;
-        this.allSocketHandlers = allSocketHandlers;
+
 
         try {
             outToClient = new ObjectOutputStream(socket.getOutputStream());
@@ -48,7 +48,11 @@ public class SocketHandler implements Runnable {
                     model.addUserName(userName);
                 }
                 outToClient.writeObject(result);
-
+            }
+            else if ("addMessage".equals(request.getType())){
+                model.addMessage((Message) request.getArg());
+                pool.broadcastToAll((Message) request.getArg());
+                model.addListener("MessageAdded",this::messageAdded);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,6 +61,16 @@ public class SocketHandler implements Runnable {
         }
 
     }
+
+    private void messageAdded(PropertyChangeEvent event) {
+       Message temp = (Message) event.getNewValue();
+        try {
+            outToClient.writeObject(new Request("MessageAdded",temp));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void sendMessageToClient(Message message){
         try {
             outToClient.writeObject(message);

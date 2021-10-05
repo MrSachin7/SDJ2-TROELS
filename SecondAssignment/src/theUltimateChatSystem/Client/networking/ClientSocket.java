@@ -1,5 +1,6 @@
 package theUltimateChatSystem.Client.networking;
 
+import com.sun.webkit.ThemeClient;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.Request;
@@ -14,33 +15,42 @@ import java.net.Socket;
 public class ClientSocket implements Client {
     private PropertyChangeSupport support;
     private String userName;
+
     public ClientSocket() {
         support = new PropertyChangeSupport(this);
     }
 
     public void startClient() {
         try {
-            Socket socket = new Socket("localhost", 8848);
+            Socket socket = new Socket("localhost", 9988);
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
-            new Thread(() -> listenToServer(outToServer, inFromServer)).start();
+            Thread t = new Thread(()->listenToServer(inFromServer,outToServer));
+            t.setDaemon(true);
+            t.start();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
+    private void listenToServer(ObjectInputStream inFromServer,ObjectOutputStream outToServer) {
         try {
-            outToServer.writeObject(new Request("Listener", null));
-            while (true) {
-                Request request = (Request) inFromServer.readObject();
-                support.firePropertyChange(request.getType(), null, request.getArg());
+            outToServer.writeObject(new Request("Listener",null));
+            while(true){
+                Request response =(Request) inFromServer.readObject();
+                if (response.getType().equals("MessageAdded")){
+                    support.firePropertyChange("MessageAdded",null,response.getArg());
+                }
             }
-        } catch (IOException | ClassNotFoundException e) {
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -66,7 +76,7 @@ public class ClientSocket implements Client {
             Message tempMessage = new Message(message,userName);
             Request response = request(tempMessage,"addMessage");
             Message newMessage = (Message) response.getArg();
-            support.firePropertyChange("newList",null,newMessage);
+            support.firePropertyChange("MessageAdded",null,newMessage);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,7 +87,7 @@ public class ClientSocket implements Client {
     }
 
     private Request request(Object arg, String type) throws IOException, ClassNotFoundException {
-        Socket socket = new Socket("localhost", 8848);
+        Socket socket = new Socket("localhost", 9988);
         ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
         outToServer.writeObject(new Request(type, arg));

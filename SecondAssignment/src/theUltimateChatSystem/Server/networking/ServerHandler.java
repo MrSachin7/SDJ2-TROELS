@@ -52,9 +52,12 @@ public class ServerHandler implements Runnable {
                 } else if ("addMessage".equals(request.getType())) {
                     model.addMessage((Message) request.getArg());
                     pool.broadcastToAll((Message) request.getArg());
-                    // model.addListener("MessageAdded",this::messageAdded);
+                     model.addListener("MessageAdded",this::messageAdded);
                     // outToClient.writeObject(new Request(null,null));
                     //  outToClient.writeObject(new Request());
+                }
+                else if ("Listener".equals(request.getType())){
+                    model.addListener("MessageAdded",this::messageAdded);
                 }
             }
 
@@ -67,7 +70,7 @@ public class ServerHandler implements Runnable {
     }
 
     private void messageAdded(PropertyChangeEvent event) {
-        MessageList temp = (MessageList) event.getNewValue();
+        Message temp = (Message) event.getNewValue();
         try {
             outToClient.writeObject(new Request("MessageAdded", temp));
         } catch (IOException e) {
@@ -77,11 +80,8 @@ public class ServerHandler implements Runnable {
 
     public void sendMessageToClient(Message message) {
 
-        try {
-            outToClient.writeObject(new Request("messageAdded", message));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        model.addMessage(message);
+        // outToClient.writeObject(new Request("messageAdded", message));
     }
 
     public String getUserName() {

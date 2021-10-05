@@ -19,7 +19,7 @@ public class ChatViewModel {
     public ChatViewModel(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
         messages = FXCollections.observableArrayList();
-        modelFactory.getChatModel().getClient().addListener("newList",this::messageAdded);
+        modelFactory.getChatModel().addListener("MessageAdded",this::messageAdded);
     }
 
     private void messageAdded(PropertyChangeEvent event) {

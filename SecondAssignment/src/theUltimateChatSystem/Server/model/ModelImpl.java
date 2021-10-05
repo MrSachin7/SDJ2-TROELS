@@ -33,10 +33,9 @@ public class ModelImpl implements Model {
 
     @Override
     public void addMessage(Message message) {
-        String messageBody = message.getMessageBody();
-        String user = this.username;
-        messageList.add(new Message(messageBody,user));
-        support.firePropertyChange("MessageAdded",null,messageList);   // message OR messageList to send ??
+
+        messageList.add(message);
+        support.firePropertyChange("MessageAdded",null,message);   // message OR messageList to send ??
     }
 
     @Override

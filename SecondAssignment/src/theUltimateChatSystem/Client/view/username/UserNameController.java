@@ -21,6 +21,8 @@ public class UserNameController implements ViewController {
     public void init(ViewHandler vh, ViewModelFactory vmf) {
         this.viewModel = vmf.getUserNameViewModel();
         this.viewHandler =vh;
+        serverMessage.textProperty().bind(viewModel.getServerMessage());
+        statusLabel.textProperty().bind(viewModel.getStatus());
     }
 
     @FXML

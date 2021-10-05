@@ -25,4 +25,12 @@ public class UserNameViewModel {
        return booelanFromServer;
 
     }
+
+    public StringProperty getServerMessage() {
+        return serverMessage;
+    }
+
+    public StringProperty getStatus() {
+        return status;
+    }
 }

@@ -13,4 +13,6 @@ public interface Model extends Subject {
     void addMessage(Message message);
     List<Message> getMessages();
     void setUserName(String userName);
+
+    List<String> getAllUsers();
 }

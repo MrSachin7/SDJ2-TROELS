@@ -2,7 +2,6 @@ package theUltimateChatSystem.Server.networking;
 
 import theUltimateChatSystem.Server.model.Model;
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.Request;
 
 import java.beans.PropertyChangeEvent;
@@ -39,7 +38,7 @@ public class ServerHandler implements Runnable {
     @Override
     public void run() {
         try {
-            while (true){
+            while (true) {
                 Request request = (Request) inFromClient.readObject();
                 if ("connectionRequest".equals(request.getType())) {
                     boolean result = false;
@@ -51,24 +50,29 @@ public class ServerHandler implements Runnable {
                     }
                     outToClient.writeObject(new Request("connectionRequest", result));
                 } else if ("addMessage".equals(request.getType())) {
-                    model.addMessage((Message) request.getArg());
-                    model.addListener("MessageAdded",this::messageAdded);
-                   pool.broadcastToAll((Message) request.getArg());
+                    //  model.addListener("MessageAdded",this::messageAdded);
+                    //  model.addMessage((Message) request.getArg());
+                    pool.broadcastToAll((Message) request.getArg());
                     // model.addListener("MessageAdded",this::messageAdded);
                     // outToClient.writeObject(new Request(null,null));
                     //  outToClient.writeObject(new Request());
-                }
-                else if ("Listener".equals(request.getType())){
-                    model.addListener("MessageAdded",this::messageAdded);
-                }
-                else if ("getMessage".equals(request.getType())){
+                } else if ("Listener".equals(request.getType())) {
+                    model.addListener("MessageAdded", this::messageAdded);
+                    model.addListener("userAdded", this::userAdded);
+                    model.addListener("userRemoved", this::userRemoved);
+                } else if ("getMessage".equals(request.getType())) {
                     List<Message> list = model.getMessages();
-                    outToClient.writeObject(new Request("getMessage",list));
+                    outToClient.writeObject(new Request("getMessage", list));
+                }
+                else if ("getUserList".equals(request.getType())){
+                    List<String> list = model.getAllUsers();
+                    outToClient.writeObject(new Request("getUserList",list));
                 }
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            model.removeUserName(userName);
+            System.out.println("Socket has been disconnected");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -78,6 +82,7 @@ public class ServerHandler implements Runnable {
     private void messageAdded(PropertyChangeEvent event) {
         Message temp = (Message) event.getNewValue();
         try {
+            //  System.out.println(userName);
             outToClient.writeObject(new Request("MessageAdded", temp));
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,11 +91,33 @@ public class ServerHandler implements Runnable {
 
     public void sendMessageToClient(Message message) {
 
-        model.addMessage(message);
-        // outToClient.writeObject(new Request("messageAdded", message));
+        //  model.addMessage(message);
+        try {
+            outToClient.writeObject(new Request("MessageAdded", message));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getUserName() {
         return userName;
+    }
+
+    public void userAdded(PropertyChangeEvent event) {
+        String username = (String) event.getNewValue();
+        try {
+            outToClient.writeObject(new Request("userAdded", username));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void userRemoved(PropertyChangeEvent event) {
+        String userName = (String) event.getNewValue();
+        try {
+            outToClient.writeObject(new Request("userRemoved", userName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

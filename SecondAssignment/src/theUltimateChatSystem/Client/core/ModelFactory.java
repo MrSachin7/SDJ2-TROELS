@@ -13,7 +13,7 @@ public class ModelFactory {
 
     public ChatModel getChatModel() {
         if (chatModel == null) {
-            chatModel = new ChatModelImp(cf.getClient());
+            this.chatModel = new ChatModelImp(cf.getClient());
         }
         return chatModel;
     }

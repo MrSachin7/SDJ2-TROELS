@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface ChatModel extends Subject {
     boolean isConnectionPossible(String username);
-
     void sendMessage(String message);
     Client getClient();
-
     List<Message> getMessages();
+
+    List<String> getUserList();
 }

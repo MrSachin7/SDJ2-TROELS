@@ -16,19 +16,22 @@ public class ChatController implements ViewController {
     private ChatViewModel viewModel;
     @FXML private TextField sendMessage;
     @FXML private ListView<Message> listView;
+    @FXML private ListView<String> userList;
+
     @Override
     public void init(ViewHandler vh, ViewModelFactory vmf) {
         this.viewHandler = vh;
         this.viewModel=vmf.getChatViewModel();
         viewModel.loadMessages();
         listView.setItems(viewModel.getMessages());
+        userList.setItems(viewModel.getUserList());
+        sendMessage.textProperty().bindBidirectional(viewModel.getMessage());
 
     }
 
     @FXML private void onSend(ActionEvent event){
         viewModel.sendMessage(sendMessage.getText());
         sendMessage.clear();
-
     }
 
 

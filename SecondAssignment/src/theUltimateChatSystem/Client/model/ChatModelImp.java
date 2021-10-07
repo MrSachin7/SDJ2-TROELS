@@ -47,6 +47,11 @@ public class ChatModelImp implements ChatModel{
     }
 
     @Override
+    public List<String> getUserList() {
+        return client.getUserList();
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName,listener);
     }

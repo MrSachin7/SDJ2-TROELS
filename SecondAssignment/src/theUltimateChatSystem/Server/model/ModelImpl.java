@@ -23,18 +23,22 @@ public class ModelImpl implements Model {
     public void addUserName(String username) {
         if (isConnectionPossible(username)) {
             usernames.add(username);
+            support.firePropertyChange("userAdded",null,username);
         }
     }
 
     @Override
     public void removeUserName(String userName) {
-        usernames.remove(userName);
+        if (usernames.remove(userName)){
+            support.firePropertyChange("userRemoved",null,userName);
+        }
+
     }
 
     @Override
     public void addMessage(Message message) {
         messageList.add(message);
-        support.firePropertyChange("MessageAdded",null,message);   // message OR messageList to send ??
+       // support.firePropertyChange("MessageAdded",null,message);   // message OR messageList to send ??
     }
 
     @Override
@@ -45,6 +49,11 @@ public class ModelImpl implements Model {
     @Override
     public synchronized void setUserName(String username) {
         this.username =username;
+    }
+
+    @Override
+    public List<String> getAllUsers() {
+        return usernames;
     }
 
     @Override

@@ -1,8 +1,6 @@
 package theUltimateChatSystem.Client.networking;
 
-import com.sun.webkit.ThemeClient;
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.Request;
 
 import java.beans.PropertyChangeListener;
@@ -27,7 +25,7 @@ public class ClientSocket implements Client {
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
-            Thread t = new Thread(()->listenToServer(inFromServer,outToServer));
+            Thread t = new Thread(() -> listenToServer(inFromServer, outToServer));
             t.setDaemon(true);
             t.start();
 
@@ -39,7 +37,7 @@ public class ClientSocket implements Client {
     @Override
     public List<Message> getMessages() {
         try {
-            Request response = request(null,"getMessage");
+            Request response = request(null, "getMessage");
             return (List<Message>) response.getArg();
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,15 +47,33 @@ public class ClientSocket implements Client {
         return null;
     }
 
-    private void listenToServer(ObjectInputStream inFromServer,ObjectOutputStream outToServer) {
+    @Override
+    public List<String> getUserList() {
+
         try {
-            outToServer.writeObject(new Request("Listener",null));
-            while(true){
-                Request response =(Request) inFromServer.readObject();
-                Message message = (Message) response.getArg();
-                if (response.getType().equals("MessageAdded")){
-                    support.firePropertyChange("MessageAdded",null,message);
+            Request response = request(null, "getUserList");
+            return (List<String>) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer) {
+        try {
+            outToServer.writeObject(new Request("Listener", null));
+            while (true) {
+                Request response = (Request) inFromServer.readObject();
+                if (response.getType().equals("MessageAdded")) {
+                    support.firePropertyChange("MessageAdded", null, response.getArg());
+                } else if (response.getType().equals("userRemoved")) {
+                    support.firePropertyChange("userRemoved", null, response.getArg());
+                } else if (response.getArg().equals("userAdded")) {
+                    support.firePropertyChange("userRemoved", null, response.getArg());
                 }
+
             }
 
         } catch (IOException e) {
@@ -73,8 +89,8 @@ public class ClientSocket implements Client {
         try {
             Request response = request(username, "connectionRequest");
             boolean b = (boolean) response.getArg();
-            if (b){
-                this.userName=username;
+            if (b) {
+                this.userName = username;
             }
             return b;
         } catch (IOException e) {
@@ -88,10 +104,10 @@ public class ClientSocket implements Client {
     @Override
     public void sendMessage(String message) {
         try {
-            Message tempMessage = new Message(message,userName);
-            Request response = request(tempMessage,"addMessage");
-            Message newMessage = (Message) response.getArg();
-            support.firePropertyChange("MessageAdded",null,newMessage);
+            Message tempMessage = new Message(message, userName);
+            Request response = request(tempMessage, "addMessage");
+            //  Message newMessage = (Message) response.getArg();
+            // support.firePropertyChange("MessageAdded",null,newMessage);
 
         } catch (IOException e) {
             e.printStackTrace();

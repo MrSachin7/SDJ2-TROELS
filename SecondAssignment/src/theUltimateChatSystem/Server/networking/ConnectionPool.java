@@ -15,6 +15,7 @@ public class ConnectionPool {
     public void broadcastToAll(Message message) {
         for (ServerHandler socketH : connections
         ) {
+
             socketH.sendMessageToClient(message);
         }
     }

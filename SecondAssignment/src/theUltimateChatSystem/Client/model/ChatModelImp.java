@@ -25,6 +25,10 @@ public class ChatModelImp implements ChatModel{
         Message message =(Message) event.getNewValue();
         support.firePropertyChange("MessageAdded",null,message);
     }
+    private void userNameAdded(PropertyChangeEvent event){
+        String username = (String) event.getNewValue();
+        support.firePropertyChange("userNameAdded",null,username);
+    }
 
     @Override
     public boolean isConnectionPossible(String username) {

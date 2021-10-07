@@ -30,6 +30,7 @@ public class SocketHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("A new socketHandler");
     }
 
     @Override

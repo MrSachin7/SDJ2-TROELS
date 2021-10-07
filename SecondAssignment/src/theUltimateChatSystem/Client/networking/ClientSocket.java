@@ -15,13 +15,15 @@ public class ClientSocket implements Client {
     private PropertyChangeSupport support;
     private String userName;
 
+
     public ClientSocket() {
         support = new PropertyChangeSupport(this);
+
     }
 
     public void startClient() {
         try {
-            Socket socket = new Socket("localhost", 9988);
+            Socket socket = new Socket("localhost", 9009);
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
@@ -33,6 +35,7 @@ public class ClientSocket implements Client {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public List<Message> getMessages() {
@@ -70,15 +73,13 @@ public class ClientSocket implements Client {
                     support.firePropertyChange("MessageAdded", null, response.getArg());
                 } else if (response.getType().equals("userRemoved")) {
                     support.firePropertyChange("userRemoved", null, response.getArg());
-                } else if (response.getArg().equals("userAdded")) {
-                    support.firePropertyChange("userRemoved", null, response.getArg());
+                } else if (response.getArg().equals("userNameAdded")) {
+                    support.firePropertyChange("userNameAdded", null, response.getArg());
                 }
 
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -118,7 +119,7 @@ public class ClientSocket implements Client {
     }
 
     private Request request(Object arg, String type) throws IOException, ClassNotFoundException {
-        Socket socket = new Socket("localhost", 9988);
+        Socket socket = new Socket("localhost", 9009);
         ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
         outToServer.writeObject(new Request(type, arg));

@@ -23,8 +23,9 @@ public class ModelImpl implements Model {
     public void addUserName(String username) {
         if (isConnectionPossible(username)) {
             usernames.add(username);
-            support.firePropertyChange("userAdded",null,username);
+           // support.firePropertyChange("userAdded",null,username);
         }
+        System.out.println(usernames);
     }
 
     @Override
@@ -32,6 +33,7 @@ public class ModelImpl implements Model {
         if (usernames.remove(userName)){
             support.firePropertyChange("userRemoved",null,userName);
         }
+        System.out.println(usernames);
 
     }
 

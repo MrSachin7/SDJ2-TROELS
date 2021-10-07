@@ -18,16 +18,17 @@ public class SocketServer {
 
     public void startServer() {
         try {
-            ServerSocket welcomeSocket = new ServerSocket(9988);
+            ServerSocket welcomeSocket = new ServerSocket(9009);
             System.out.println("Server started....");
             ConnectionPool cp = new ConnectionPool();
             while (true) {
                 System.out.println("Waiting for clients.....");
                 Socket socket = welcomeSocket.accept();
-                System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
+              //  System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
                 ServerHandler serverHandler = new ServerHandler(socket, model,cp);
-              //  System.out.println(serverHandler.getUserName()+" is here...");
+             //   System.out.println("A new server handler is created");
                 cp.addConnection(serverHandler);
+                System.out.println(cp.size());
                Thread t = new Thread(serverHandler);
                t.start();
             }

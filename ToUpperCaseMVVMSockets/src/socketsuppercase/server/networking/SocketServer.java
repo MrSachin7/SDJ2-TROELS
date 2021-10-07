@@ -20,6 +20,7 @@ public class SocketServer {
 
             while(true) {
                 Socket socket = welcomeSocket.accept();
+                System.out.println(socket.getInetAddress().getHostAddress()+" identified");
                 new Thread(new SocketHandler(socket, textManager)).start();
             }
         } catch (IOException e) {

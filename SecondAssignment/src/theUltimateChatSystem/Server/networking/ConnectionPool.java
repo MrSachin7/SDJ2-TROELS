@@ -23,10 +23,22 @@ public class ConnectionPool {
     public void broadCastToSelected(String userName, Message message) {
         for (ServerHandler socketH : connections
         ) {
-            if (socketH.getUserName().equals(userName)){
+            if (socketH.getUserName().equals(userName)) {
                 socketH.sendMessageToClient(message);
             }
 
         }
+    }
+
+    public void broadCastUsername(String userName) {
+        for (ServerHandler socketH :connections
+        ) {
+            socketH.sendUsersToClient(userName);
+
+        }
+    }
+
+    public int size() {
+        return connections.size();
     }
 }

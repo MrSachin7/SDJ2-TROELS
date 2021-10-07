@@ -22,8 +22,8 @@ public class ChatViewModel {
     public ChatViewModel(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
         modelFactory.getChatModel().addListener("MessageAdded", this::messageAdded);
-        modelFactory.getChatModel().addListener("userAdded",this::userAdded);
-        modelFactory.getChatModel().addListener("userRemoved",this::userRemoved);
+        modelFactory.getChatModel().addListener("userNameAdded",this::userAdded);
+        modelFactory.getChatModel().getClient().addListener("userRemoved",this::userRemoved);
         loadMessages();
         message= new SimpleStringProperty();
     }

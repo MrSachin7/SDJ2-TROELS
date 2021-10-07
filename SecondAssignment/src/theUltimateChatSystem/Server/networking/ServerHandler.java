@@ -33,6 +33,7 @@ public class ServerHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("A new server handler is created");
     }
 
     @Override
@@ -41,17 +42,20 @@ public class ServerHandler implements Runnable {
             while (true) {
                 Request request = (Request) inFromClient.readObject();
                 if ("connectionRequest".equals(request.getType())) {
-                    boolean result = false;
                     String temp = (String) request.getArg();
                     if (model.isConnectionPossible(temp)) {
                         userName = temp;
-                        result = true;
+                        outToClient.writeObject(new Request("connectionRequest",true));
                         model.addUserName(userName);
                     }
-                    outToClient.writeObject(new Request("connectionRequest", result));
+                    else
+                    {
+                        outToClient.writeObject(new Request("connectionRequest", false));
+                    }
+
                 } else if ("addMessage".equals(request.getType())) {
                     //  model.addListener("MessageAdded",this::messageAdded);
-                    //  model.addMessage((Message) request.getArg());
+                     model.addMessage((Message) request.getArg());
                     pool.broadcastToAll((Message) request.getArg());
                     // model.addListener("MessageAdded",this::messageAdded);
                     // outToClient.writeObject(new Request(null,null));
@@ -105,6 +109,7 @@ public class ServerHandler implements Runnable {
 
     public void userAdded(PropertyChangeEvent event) {
         String username = (String) event.getNewValue();
+        pool.broadCastUsername(userName);
         try {
             outToClient.writeObject(new Request("userAdded", username));
         } catch (IOException e) {
@@ -116,6 +121,14 @@ public class ServerHandler implements Runnable {
         String userName = (String) event.getNewValue();
         try {
             outToClient.writeObject(new Request("userRemoved", userName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendUsersToClient(String userName) {
+        try {
+            outToClient.writeObject(new Request("userNameAdded",userName));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,8 +9,8 @@ import theUltimateChatSystem.Client.view.ViewController;
 import java.io.IOException;
 
 public class ViewHandler {
-    private Scene loginScene;
-    private Scene chatScene;
+    private Scene loginAsGuest;
+    private Scene chatScene,createAccountScene,loginScene;
     private Stage stage;
     private ViewModelFactory vmf;
 
@@ -25,18 +25,18 @@ public class ViewHandler {
     }
 
 
-    public void openLogin() {
-        if (loginScene == null) {
+    public void openLoginAsGuest() {
+        if (loginAsGuest == null) {
             try {
                 Parent root = loadFXML("../view/username/username.fxml");
-                stage.setTitle("Username");
-                loginScene = new Scene(root);
+                stage.setTitle("Login as a guest");
+                loginAsGuest = new Scene(root);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        stage.setScene(loginScene);
+        stage.setScene(loginAsGuest);
         stage.show();
     }
 
@@ -50,6 +50,34 @@ public class ViewHandler {
                 e.printStackTrace();
             }
             stage.setScene(chatScene);
+            stage.show();
+
+        }
+    }
+    public void openCreateAccount(){
+        if (createAccountScene==null){
+            try {
+                Parent root = loadFXML("../view/createAccount/createAccount.fxml");
+                stage.setTitle("Create Account");
+                createAccountScene= new Scene(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setScene(createAccountScene);
+            stage.show();
+        }
+    }
+    public void openLogin(){
+        if (loginScene==null){
+            try {
+                Parent root = loadFXML("../view/login/login.fxml");
+               loginScene = new Scene(root);
+               stage.setTitle("Login");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setScene(loginScene);
             stage.show();
 
         }

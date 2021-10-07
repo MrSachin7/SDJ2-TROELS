@@ -1,5 +1,7 @@
 package theUltimateChatSystem.Server.networking;
 
+import theUltimateChatSystem.Client.model.LoginModel;
+import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.Server.model.Model;
 import theUltimateChatSystem.Server.model.ModelImpl;
 
@@ -9,10 +11,12 @@ import java.net.Socket;
 
 public class SocketServer {
     private Model model;
+    private LoginHandler loginHandler;
 
 
-    public SocketServer(Model model) {
+    public SocketServer(Model model,LoginHandler loginHandler) {
         this.model = model;
+        this.loginHandler=loginHandler;
 
     }
 
@@ -25,7 +29,7 @@ public class SocketServer {
                 System.out.println("Waiting for clients.....");
                 Socket socket = welcomeSocket.accept();
               //  System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
-                ServerHandler serverHandler = new ServerHandler(socket, model,cp);
+                ServerHandler serverHandler = new ServerHandler(socket, model,loginHandler,cp);
              //   System.out.println("A new server handler is created");
                 cp.addConnection(serverHandler);
                 System.out.println(cp.size());

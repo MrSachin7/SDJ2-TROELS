@@ -15,7 +15,7 @@ import java.util.List;
 public class ChatViewModel {
     private ModelFactory modelFactory;
     private ObservableList<Message> messages;
-    private StringProperty message;
+ //   private StringProperty message;
     private ObservableList<String> userList;
 
 
@@ -25,7 +25,8 @@ public class ChatViewModel {
         modelFactory.getChatModel().addListener("userNameAdded",this::userAdded);
         modelFactory.getChatModel().getClient().addListener("userRemoved",this::userRemoved);
         loadMessages();
-        message= new SimpleStringProperty();
+        loadUserList();
+      //  message= new SimpleStringProperty();
     }
 
     private void messageAdded(PropertyChangeEvent event) {
@@ -46,9 +47,9 @@ public class ChatViewModel {
         });
     }
 
-    public StringProperty getMessage() {
-        return message;
-    }
+//    public StringProperty getMessage() {
+//        return message;
+//    }
 
     public void sendMessage(String text) {
         modelFactory.getChatModel().sendMessage(text);

@@ -1,8 +1,10 @@
 package theUltimateChatSystem.Server.networking;
 
+import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.Server.model.Model;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.Request;
+import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
@@ -19,8 +21,9 @@ public class ServerHandler implements Runnable {
     private ObjectInputStream inFromClient;
     private String userName;
     private ConnectionPool pool;
+    private LoginHandler loginHandler;
 
-    public ServerHandler(Socket socket, Model model, ConnectionPool pool) {
+    public ServerHandler(Socket socket, Model model,LoginHandler loginHandler, ConnectionPool pool) {
         this.socket = socket;
         this.pool = pool;
         this.model = model;
@@ -46,8 +49,8 @@ public class ServerHandler implements Runnable {
                     if (model.isConnectionPossible(temp)) {
                         userName = temp;
                         outToClient.writeObject(new Request("connectionRequest",true));
-                        model.addUserName(userName);
-                        pool.broadCastUsername(userName);
+                        model.addUserName(temp);
+                        pool.broadCastUsername(temp);
                     }
                     else
                     {
@@ -72,6 +75,9 @@ public class ServerHandler implements Runnable {
                 else if ("getUserList".equals(request.getType())){
                     List<String> list = model.getAllUsers();
                     outToClient.writeObject(new Request("getUserList",list));
+                }
+                else if ("addUser".equals(request.getType())){
+                    loginHandler.addUser((User)request.getArg());
                 }
             }
 

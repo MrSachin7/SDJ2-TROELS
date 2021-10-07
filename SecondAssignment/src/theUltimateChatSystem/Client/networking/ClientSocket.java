@@ -2,6 +2,7 @@ package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.Request;
+import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -64,6 +65,18 @@ public class ClientSocket implements Client {
         return null;
     }
 
+    @Override
+    public void addUser(String username, String password) {
+        User user = new User(userName,password);
+        try {
+            Request response = request(user,"addUser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer) {
         try {
             outToServer.writeObject(new Request("Listener", null));
@@ -73,9 +86,10 @@ public class ClientSocket implements Client {
                     support.firePropertyChange("MessageAdded", null, response.getArg());
                 } else if (response.getType().equals("userRemoved")) {
                     support.firePropertyChange("userRemoved", null, response.getArg());
-                } else if (response.getArg().equals("userNameAdded")) {
+                } else if (response.getType().equals("userNameAdded")) {
                     support.firePropertyChange("userNameAdded", null, response.getArg());
                 }
+
 
             }
 

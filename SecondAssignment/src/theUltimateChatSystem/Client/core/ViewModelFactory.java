@@ -1,12 +1,16 @@
 package theUltimateChatSystem.Client.core;
 
 import theUltimateChatSystem.Client.view.chat.ChatViewModel;
+import theUltimateChatSystem.Client.view.createAccount.CreateViewModel;
+import theUltimateChatSystem.Client.view.login.LoginViewModel;
 import theUltimateChatSystem.Client.view.username.UserNameViewModel;
 
 public class ViewModelFactory {
     private final ModelFactory mf;
+    public CreateViewModel createViewModel;
     private UserNameViewModel userNameViewModel;
     private ChatViewModel chatViewModel;
+    private LoginViewModel loginViewModel;
 
 
     public ViewModelFactory(ModelFactory mf){
@@ -26,4 +30,19 @@ public class ViewModelFactory {
         }
         return chatViewModel;
     }
+
+    public CreateViewModel getCreateViewModel() {
+        if (createViewModel == null) {
+            createViewModel = new CreateViewModel(mf);
+        }
+        return createViewModel;
+    }
+    public LoginViewModel getLoginViewModel()
+    {
+        if (loginViewModel == null) {
+            loginViewModel = new LoginViewModel(mf);
+        }
+        return loginViewModel;
+    }
+
 }

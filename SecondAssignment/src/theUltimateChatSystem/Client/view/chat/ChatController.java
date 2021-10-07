@@ -26,7 +26,7 @@ public class ChatController implements ViewController {
         viewModel.loadUserList();
         listView.setItems(viewModel.getMessages());
         userList.setItems(viewModel.getUserList());
-        sendMessage.textProperty().bindBidirectional(viewModel.getMessage());
+     //   sendMessage.textProperty().bindBidirectional(viewModel.getMessage());
 
     }
 

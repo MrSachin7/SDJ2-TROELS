@@ -15,4 +15,6 @@ public interface Client extends Subject {
     List<Message> getMessages();
 
     List<String> getUserList();
+
+    void addUser(String username, String password);
 }

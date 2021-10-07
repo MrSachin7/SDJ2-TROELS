@@ -30,13 +30,13 @@ public class ConnectionPool {
         }
     }
 
-    public void broadCastUsername(String userName) {
-        for (ServerHandler socketH :connections
-        ) {
-            socketH.sendUsersToClient(userName);
-
-        }
-    }
+//    public void broadCastUsername(String userName) {
+//        for (ServerHandler socketH :connections
+//        ) {
+//            socketH.sendUsersToClient(userName);
+//
+//        }
+//    }
 
     public int size() {
         return connections.size();

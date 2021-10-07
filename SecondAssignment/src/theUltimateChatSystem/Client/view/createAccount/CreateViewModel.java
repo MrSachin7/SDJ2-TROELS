@@ -34,14 +34,16 @@ public class CreateViewModel {
     }
 
     public boolean onSignup(String username, String password, String confirm) {
-        if (!(password.equals(confirm))) {
+        if (username.equals("") || username == null) {
+            error.set("Username cannot be empty");
+        } else if (!(password.equals(confirm))) {
             error.set("Password and confirm password do not match");
             return false;
         } else if (modelFactory.getLoginModel().isConnectionPossible(username) == false) {
             error.set("Username unavailable, Try another...");
             return false;
         } else {
-            if (modelFactory.getLoginModel().addUser(username, password) == true) {
+            if (modelFactory.getLoginModel().addUser(username, password)) {
                 error.set("Account created , go back to login....");
                 return true;
             }
@@ -49,7 +51,6 @@ public class CreateViewModel {
 
         return false;
     }
-
 
 
 }

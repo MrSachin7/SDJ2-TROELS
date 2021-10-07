@@ -27,7 +27,7 @@ public class ViewHandler {
     public void openLoginAsGuest() {
         if (loginAsGuest == null) {
             try {
-                Parent root = loadFXML("../view/username/username.fxml");
+                Parent root = loadFXML("../view/loginAsGuest/username.fxml");
                 stage.setTitle("Login as a guest");
                 loginAsGuest = new Scene(root);
 
@@ -48,11 +48,12 @@ public class ViewHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            stage.setScene(chatScene);
-            stage.show();
-
         }
+        stage.setScene(chatScene);
+        stage.show();
+
     }
+
 
     public void openCreateAccount() {
         if (createAccountScene == null) {

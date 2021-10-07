@@ -18,43 +18,33 @@ public class ChatModelImp implements ChatModel{
         this.client=client;
         this.support=new PropertyChangeSupport(this);
         client.startClient();
-        client.addListener("MessageAdded",this::messageAdded);
+        client.addListener("addMessage",this::messageAdded);
         client.addListener("userNameAdded",this::userNameAdded);
     }
 
     private void messageAdded(PropertyChangeEvent event) {
         Message message =(Message) event.getNewValue();
-        support.firePropertyChange("MessageAdded",null,message);
+        support.firePropertyChange("addMessage",null,message);
     }
     private void userNameAdded(PropertyChangeEvent event){
         String username = (String) event.getNewValue();
         support.firePropertyChange("userNameAdded",null,username);
     }
 
-    @Override
-    public boolean isConnectionPossible(String username) {
-        return client.isConnectionPossible(username);
-    }
 
     @Override
     public void sendMessage(String message) {
         client.sendMessage(message);
     }
 
-    @Override
-    public Client getClient() {
-        return client;
-    }
+
 
     @Override
     public List<Message> getMessages() {
         return client.getMessages();
     }
 
-    @Override
-    public List<String> getUserList() {
-        return client.getUserList();
-    }
+
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {

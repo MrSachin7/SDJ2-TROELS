@@ -1,20 +1,18 @@
 package theUltimateChatSystem.Server.networking;
 
-import theUltimateChatSystem.Client.model.LoginModel;
 import theUltimateChatSystem.Server.model.LoginHandler;
-import theUltimateChatSystem.Server.model.Model;
-import theUltimateChatSystem.Server.model.ModelImpl;
+import theUltimateChatSystem.Server.model.ChatHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketServer {
-    private Model model;
+    private ChatHandler model;
     private LoginHandler loginHandler;
 
 
-    public SocketServer(Model model,LoginHandler loginHandler) {
+    public SocketServer(ChatHandler model, LoginHandler loginHandler) {
         this.model = model;
         this.loginHandler=loginHandler;
 

@@ -3,7 +3,7 @@ package theUltimateChatSystem.Client.core;
 import theUltimateChatSystem.Client.view.chat.ChatViewModel;
 import theUltimateChatSystem.Client.view.createAccount.CreateViewModel;
 import theUltimateChatSystem.Client.view.login.LoginViewModel;
-import theUltimateChatSystem.Client.view.username.UserNameViewModel;
+import theUltimateChatSystem.Client.view.loginAsGuest.UserNameViewModel;
 
 public class ViewModelFactory {
     private final ModelFactory mf;

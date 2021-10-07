@@ -29,6 +29,7 @@ public class LoginViewModel {
 
     public boolean onLogin(String username,String password) {
         User user = new User(username,password);
+        System.out.println(user);
         if(!modelFactory.getLoginModel().isLoginPossible(user)) {
             error.set("Incorrect username or password");
             return false;

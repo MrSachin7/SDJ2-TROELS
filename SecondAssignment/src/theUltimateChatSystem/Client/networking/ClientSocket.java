@@ -67,7 +67,7 @@ public class ClientSocket implements Client {
 
     @Override
     public boolean addUser(String username, String password) {
-        User user = new User(userName,password);
+        User user = new User(username,password);
         try {
             Request response = request(user,"addUser");
             return (boolean) response.getArg();
@@ -83,7 +83,10 @@ public class ClientSocket implements Client {
     public boolean isLoginPossible(User user) {
         try {
             Request response = request(user,"isLoginPossible");
-            return (boolean) response.getArg();
+           if( (boolean) response.getArg()){
+               this.userName=user.getUserName();
+           }
+           return (boolean) response.getArg();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -97,9 +100,10 @@ public class ClientSocket implements Client {
             outToServer.writeObject(new Request("Listener", null));
             while (true) {
                 Request response = (Request) inFromServer.readObject();
-                if (response.getType().equals("MessageAdded")) {
-                    support.firePropertyChange("MessageAdded", null, response.getArg());
-                } else if (response.getType().equals("userRemoved")) {
+                if (response.getType().equals("addMessage")) {
+                    support.firePropertyChange("addMessage", null, response.getArg());
+                }
+                 if (response.getType().equals("userRemoved")) {
                     support.firePropertyChange("userRemoved", null, response.getArg());
                 } else if (response.getType().equals("userNameAdded")) {
                     support.firePropertyChange("userNameAdded", null, response.getArg());
@@ -118,11 +122,8 @@ public class ClientSocket implements Client {
     public boolean isConnectionPossible(String username) {
         try {
             Request response = request(username, "connectionRequest");
-            boolean b = (boolean) response.getArg();
-            if (b) {
-                this.userName = username;
-            }
-            return b;
+           return (boolean) response.getArg();
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -136,8 +137,8 @@ public class ClientSocket implements Client {
         try {
             Message tempMessage = new Message(message, userName);
             Request response = request(tempMessage, "addMessage");
-            //  Message newMessage = (Message) response.getArg();
-            // support.firePropertyChange("MessageAdded",null,newMessage);
+//              Message newMessage = (Message) response.getArg();
+//             support.firePropertyChange("addMessage",null,newMessage);
 
         } catch (IOException e) {
             e.printStackTrace();

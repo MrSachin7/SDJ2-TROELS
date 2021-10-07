@@ -1,4 +1,4 @@
-package theUltimateChatSystem.Client.view.username;
+package theUltimateChatSystem.Client.view.loginAsGuest;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

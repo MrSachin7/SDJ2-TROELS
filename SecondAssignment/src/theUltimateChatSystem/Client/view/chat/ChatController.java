@@ -23,15 +23,14 @@ public class ChatController implements ViewController {
         this.viewHandler = vh;
         this.viewModel=vmf.getChatViewModel();
         viewModel.loadMessages();
-        viewModel.loadUserList();
-        listView.setItems(viewModel.getMessages());
-        userList.setItems(viewModel.getUserList());
+       listView.setItems(viewModel.getMessages());
+//       userList.setItems(viewModel.getUserList());
      //   sendMessage.textProperty().bindBidirectional(viewModel.getMessage());
 
     }
 
     @FXML private void onSend(ActionEvent event){
-        viewModel.sendMessage(sendMessage.getText());
+      viewModel.sendMessage(sendMessage.getText());
         sendMessage.clear();
     }
 

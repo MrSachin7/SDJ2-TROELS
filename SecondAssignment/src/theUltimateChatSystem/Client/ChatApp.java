@@ -6,7 +6,6 @@ import theUltimateChatSystem.Client.core.ClientFactory;
 import theUltimateChatSystem.Client.core.ModelFactory;
 import theUltimateChatSystem.Client.core.ViewHandler;
 import theUltimateChatSystem.Client.core.ViewModelFactory;
-import theUltimateChatSystem.Server.model.Model;
 
 public class ChatApp extends Application {
 

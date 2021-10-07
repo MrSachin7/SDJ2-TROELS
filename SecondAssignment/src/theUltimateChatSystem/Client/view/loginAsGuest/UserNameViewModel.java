@@ -1,8 +1,9 @@
-package theUltimateChatSystem.Client.view.username;
+package theUltimateChatSystem.Client.view.loginAsGuest;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import theUltimateChatSystem.Client.core.ModelFactory;
+import theUltimateChatSystem.shared.User;
 
 
 public class UserNameViewModel {
@@ -26,7 +27,7 @@ public class UserNameViewModel {
         }
         else
         {
-            boolean booelanFromServer= modelFactory.getChatModel().isConnectionPossible(text); // the get doesn't work ,binding problem I guess
+            boolean booelanFromServer= modelFactory.getLoginModel().isConnectionPossible(text); // the get doesn't work ,binding problem I guess
             if (booelanFromServer==false){
                 serverMessage.set("Username is already occupied");
             }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="323.0" prefWidth="323.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.username.UserNameController">
+<AnchorPane prefHeight="323.0" prefWidth="323.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.loginAsGuest.UserNameController">
    <children>
       <Label layoutX="82.0" layoutY="87.0" prefHeight="33.0" prefWidth="158.0" text="Enter a username">
          <font>

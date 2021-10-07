@@ -27,10 +27,17 @@ public class UserList {
 
     public boolean contains(User user) {
         for (int i = 0; i < allUsers.size(); i++) {
-               if (user.equals(allUsers.get(i))){
-                   return true;
-               }
+            if (user.equals(allUsers.get(i))){
+                return true;
+            }
         }
         return false;
+    }
+    public int size()
+    {
+        return allUsers.size();
+    }
+    public User get(int index){
+        return allUsers.get(index);
     }
 }

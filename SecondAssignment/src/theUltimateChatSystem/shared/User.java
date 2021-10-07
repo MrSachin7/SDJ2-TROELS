@@ -12,12 +12,19 @@ public class User implements Serializable {
         this.userName=userName;
         this.password=password;
     }
+    public User(String userName)
+    {
+        this.userName=userName;
+        this.password=null;
+    }
 
     public String getUserName() {
-        return userName;
+
+       return userName;
     }
 
     public String getPassword() {
+
         return password;
     }
 
@@ -27,5 +34,13 @@ public class User implements Serializable {
         }
         User temp =(User) obj;
         return temp.getUserName().equals(userName) && temp.getPassword().equals(password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -19,6 +19,7 @@ public class ChatModelImp implements ChatModel{
         this.support=new PropertyChangeSupport(this);
         client.startClient();
         client.addListener("MessageAdded",this::messageAdded);
+        client.addListener("userNameAdded",this::userNameAdded);
     }
 
     private void messageAdded(PropertyChangeEvent event) {

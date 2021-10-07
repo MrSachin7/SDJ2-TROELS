@@ -47,6 +47,7 @@ public class ServerHandler implements Runnable {
                         userName = temp;
                         outToClient.writeObject(new Request("connectionRequest",true));
                         model.addUserName(userName);
+                        pool.broadCastUsername(userName);
                     }
                     else
                     {

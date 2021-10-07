@@ -12,7 +12,8 @@ public class UserList {
     public void addUser(User user) {
         allUsers.add(user);
     }
-    public void removeUser(User user){
+
+    public void removeUser(User user) {
         allUsers.remove(user);
     }
 
@@ -22,5 +23,14 @@ public class UserList {
             usernames.add(allUsers.get(i).getUserName());
         }
         return usernames;
+    }
+
+    public boolean contains(User user) {
+        for (int i = 0; i < allUsers.size(); i++) {
+               if (user.equals(allUsers.get(i))){
+                   return true;
+               }
+        }
+        return false;
     }
 }

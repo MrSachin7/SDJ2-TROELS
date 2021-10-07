@@ -14,8 +14,9 @@ public class LoginHandlerImp implements LoginHandler{
         everyUsers= new UserList();
     }
     @Override
-    public void addUser(User user) {
+    public boolean addUser(User user) {
         everyUsers.addUser(user);
+        return true;
     }
 
     @Override
@@ -26,6 +27,11 @@ public class LoginHandlerImp implements LoginHandler{
     @Override
     public boolean isConnectionPossible(String userName) {
         return !(everyUsers.allUserNames().contains(userName));
+    }
+
+    @Override
+    public boolean isLoginPossible(User arg) {
+        return everyUsers.contains(arg);
     }
 
 }

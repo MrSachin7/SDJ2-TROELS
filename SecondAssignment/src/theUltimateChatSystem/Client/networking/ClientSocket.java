@@ -66,15 +66,30 @@ public class ClientSocket implements Client {
     }
 
     @Override
-    public void addUser(String username, String password) {
+    public boolean addUser(String username, String password) {
         User user = new User(userName,password);
         try {
             Request response = request(user,"addUser");
+            return (boolean) response.getArg();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    @Override
+    public boolean isLoginPossible(User user) {
+        try {
+            Request response = request(user,"isLoginPossible");
+            return (boolean) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer) {

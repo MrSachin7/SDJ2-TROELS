@@ -24,9 +24,9 @@ public class CreateAccountController implements ViewController {
     public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
         this.viewHandler = viewHandler;
         this.viewModel = vmf.getCreateViewModel();
-        username.textProperty().bind(viewModel.getUsername());
-        password.textProperty().bind(viewModel.getPassword());
-        confirm.textProperty().bind(viewModel.getConfirm());
+        username.textProperty().bindBidirectional(viewModel.getUsername());
+        password.textProperty().bindBidirectional(viewModel.getPassword());
+        confirm.textProperty().bindBidirectional(viewModel.getConfirm());
         errorLabel.textProperty().bind(viewModel.getError());
     }
 
@@ -39,10 +39,11 @@ public class CreateAccountController implements ViewController {
     private void onLoginAsGuest(ActionEvent event) {
         viewHandler.openLoginAsGuest();
     }
+
     @FXML
-    private void onSignUp()
-    {
-        viewModel.onSignup();
+    private void onSignUp() {
+        viewModel.onSignup(username.getText(), password.getText(), confirm.getText());
+
     }
 
 }

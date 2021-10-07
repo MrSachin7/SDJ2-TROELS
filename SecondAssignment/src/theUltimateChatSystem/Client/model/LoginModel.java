@@ -1,7 +1,11 @@
 package theUltimateChatSystem.Client.model;
 
+import theUltimateChatSystem.shared.User;
+
 public interface LoginModel {
     boolean isConnectionPossible(String username);
 
-    void addUser(String username, String password);
+    boolean addUser(String username, String password);
+
+    boolean isLoginPossible(User user);
 }

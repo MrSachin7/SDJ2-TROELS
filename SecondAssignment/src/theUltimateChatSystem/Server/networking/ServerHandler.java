@@ -27,6 +27,7 @@ public class ServerHandler implements Runnable {
         this.socket = socket;
         this.pool = pool;
         this.model = model;
+        this.loginHandler=loginHandler;
 
 
         try {
@@ -57,14 +58,8 @@ public class ServerHandler implements Runnable {
                         outToClient.writeObject(new Request("connectionRequest", false));
                     }
 
-                } else if ("addMessage".equals(request.getType())) {
-                    //  model.addListener("MessageAdded",this::messageAdded);
-                     model.addMessage((Message) request.getArg());
-                    pool.broadcastToAll((Message) request.getArg());
-                    // model.addListener("MessageAdded",this::messageAdded);
-                    // outToClient.writeObject(new Request(null,null));
-                    //  outToClient.writeObject(new Request());
-                } else if ("Listener".equals(request.getType())) {
+                }
+                 else if ("Listener".equals(request.getType())) {
                     model.addListener("MessageAdded", this::messageAdded);
                     model.addListener("userAdded", this::userAdded);
                     model.addListener("userRemoved", this::userRemoved);
@@ -77,7 +72,12 @@ public class ServerHandler implements Runnable {
                     outToClient.writeObject(new Request("getUserList",list));
                 }
                 else if ("addUser".equals(request.getType())){
-                    loginHandler.addUser((User)request.getArg());
+                   boolean temp= loginHandler.addUser((User)request.getArg());
+                   outToClient.writeObject(new Request("addUser",temp));
+                }
+                else if ("isLoginPossible".equals(request.getType())){
+                    boolean temp = loginHandler.isLoginPossible((User)request.getArg());
+                    outToClient.writeObject(new Request("isLoginPossible",temp));
                 }
             }
 

@@ -20,32 +20,36 @@ public class CreateViewModel {
     public StringProperty getConfirm() {
         return confirm;
     }
+
     public StringProperty getUsername() {
         return username;
     }
+
     public StringProperty getPassword() {
         return password;
     }
+
     public StringProperty getError() {
         return error;
     }
 
-    public void onSignup() {
-        String username = this.username.get();
-        String password = this.password.get();
-        String confirm = this.password.get();
+    public boolean onSignup(String username, String password, String confirm) {
         if (!(password.equals(confirm))) {
             error.set("Password and confirm password do not match");
-        }
-        else if (modelFactory.getLoginModel().isConnectionPossible(username) ==false)
-        {
+            return false;
+        } else if (modelFactory.getLoginModel().isConnectionPossible(username) == false) {
             error.set("Username unavailable, Try another...");
-        }
-        else
-        {
-            modelFactory.getLoginModel().addUser(username,password);
+            return false;
+        } else {
+            if (modelFactory.getLoginModel().addUser(username, password) == true) {
+                error.set("Account created , go back to login....");
+                return true;
+            }
         }
 
-
+        return false;
     }
+
+
+
 }

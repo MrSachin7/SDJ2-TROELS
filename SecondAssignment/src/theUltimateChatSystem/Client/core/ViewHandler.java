@@ -10,17 +10,16 @@ import java.io.IOException;
 
 public class ViewHandler {
     private Scene loginAsGuest;
-    private Scene chatScene,createAccountScene,loginScene;
+    private Scene chatScene, createAccountScene, loginScene;
     private Stage stage;
     private ViewModelFactory vmf;
 
     public ViewHandler(ViewModelFactory vmf) {
-        this.vmf=vmf;
+        this.vmf = vmf;
     }
 
-    public void start()
-    {
-        stage= new Stage();
+    public void start() {
+        stage = new Stage();
         openLogin();
     }
 
@@ -40,8 +39,8 @@ public class ViewHandler {
         stage.show();
     }
 
-    public void openChat(){
-        if (chatScene==null){
+    public void openChat() {
+        if (chatScene == null) {
             try {
                 Parent root = loadFXML("../view/chat/Chat.fxml");
                 stage.setTitle("Chat");
@@ -54,33 +53,36 @@ public class ViewHandler {
 
         }
     }
-    public void openCreateAccount(){
-        if (createAccountScene==null){
+
+    public void openCreateAccount() {
+        if (createAccountScene == null) {
             try {
                 Parent root = loadFXML("../view/createAccount/createAccount.fxml");
                 stage.setTitle("Create Account");
-                createAccountScene= new Scene(root);
+                createAccountScene = new Scene(root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            stage.setScene(createAccountScene);
-            stage.show();
         }
+        stage.setScene(createAccountScene);
+        stage.show();
     }
-    public void openLogin(){
-        if (loginScene==null){
+
+    public void openLogin() {
+        if (loginScene == null) {
             try {
                 Parent root = loadFXML("../view/login/login.fxml");
-               loginScene = new Scene(root);
-               stage.setTitle("Login");
+                loginScene = new Scene(root);
+                stage.setTitle("Login");
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            stage.setScene(loginScene);
-            stage.show();
-
         }
+        stage.setScene(loginScene);
+        stage.show();
+
+
     }
 
     private Parent loadFXML(String path) throws IOException {

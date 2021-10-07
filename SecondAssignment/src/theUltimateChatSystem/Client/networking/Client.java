@@ -1,8 +1,8 @@
 package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.Subject;
+import theUltimateChatSystem.shared.User;
 
 import java.util.List;
 
@@ -16,5 +16,7 @@ public interface Client extends Subject {
 
     List<String> getUserList();
 
-    void addUser(String username, String password);
+    boolean addUser(String username, String password);
+
+    boolean isLoginPossible(User user);
 }

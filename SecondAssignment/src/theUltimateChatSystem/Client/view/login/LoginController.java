@@ -21,8 +21,23 @@ public class LoginController implements ViewController {
     public void init(ViewHandler viewHandler, ViewModelFactory vmf){
         this.viewHandler=viewHandler;
         this.viewModel =vmf.getLoginViewModel();
+        username.textProperty().bindBidirectional(viewModel.getUsername());
+        password.textProperty().bindBidirectional(viewModel.getPassword());
+        errorLabel.textProperty().bind(viewModel.getError());
     }
-    public void onAlreadyAccount(ActionEvent event){
-        viewHandler.openLogin();
+    @FXML
+    public void onCreateAccount(ActionEvent event){
+        viewHandler.openCreateAccount();
     }
+    @FXML
+    private void onLoginAsGuest(ActionEvent event){
+        viewHandler.openLoginAsGuest();
+    }
+    @FXML private void onLogin(ActionEvent event){
+        if (viewModel.onLogin()){
+            viewHandler.openChat();
+        }
+    }
+
+
 }

@@ -1,12 +1,11 @@
 package theUltimateChatSystem.Server.networking;
 
-import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.Server.model.ChatHandler;
+import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.Request;
 import theUltimateChatSystem.shared.User;
 
-import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -27,7 +26,7 @@ public class ServerHandler implements Runnable {
         this.socket = socket;
         this.pool = pool;
         this.chatHandler = chatHandler;
-        this.loginHandler=loginHandler;
+        this.loginHandler = loginHandler;
 
 
         try {
@@ -48,45 +47,48 @@ public class ServerHandler implements Runnable {
                 if ("connectionRequest".equals(request.getType())) {
                     String temp = (String) request.getArg();
                     if (loginHandler.isConnectionPossible(temp)) {
-                        outToClient.writeObject(new Request("connectionRequest",true));
+                        outToClient.writeObject(new Request("connectionRequest", true));
 //                        pool.broadCastUsername(temp);
-                    }
-                    else
-                    {
+                    } else {
                         outToClient.writeObject(new Request("connectionRequest", false));
                     }
 
-                }
-                 else if ("Listener".equals(request.getType())) {
-                  //  chatHandler.addListener("addMessage", this::messageAdded);
+                } else if ("Listener".equals(request.getType())) {
+                    this.user = (User) request.getArg();
+                    //  chatHandler.addListener("addMessage", this::messageAdded);
 //                    model.addListener("userAdded", this::userAdded);
 //                    model.addListener("userRemoved", this::userRemoved);
-                }
-                 else if ("getMessage".equals(request.getType())){
+                } else if ("getMessage".equals(request.getType())) {
                     List<Message> temp = chatHandler.getMessages();
-                    outToClient.writeObject(new Request("getMessage",temp));
-                }
-                 else if ("addMessage".equals(request.getType())){
-                     chatHandler.addMessage((Message) request.getArg());
-                     pool.broadcastToAll((Message) request.getArg());
+                    outToClient.writeObject(new Request("getMessage", temp));
+                } else if ("addMessage".equals(request.getType())) {
+                    chatHandler.addMessage((Message) request.getArg());
+                    pool.broadcastToAll((Message) request.getArg());
                 }
 //
 //
-                else if ("addUser".equals(request.getType())){
-                    this.user = (User) request.getArg();
-                   boolean temp= loginHandler.addUser(user);
-                   outToClient.writeObject(new Request("addUser",temp));
-                }
-                else if ("isLoginPossible".equals(request.getType())){
-                    User user = (User)request.getArg();
+                else if ("addUser".equals(request.getType())) {
+
+                    boolean temp = loginHandler.addUser((User) request.getArg());
+                    outToClient.writeObject(new Request("addUser", temp));
+
+                } else if ("isLoginPossible".equals(request.getType())) {
+                    User user = (User) request.getArg();
                     boolean temp = loginHandler.isLoginPossible(user);
-                    outToClient.writeObject(new Request("isLoginPossible",temp));
+                    outToClient.writeObject(new Request("isLoginPossible", temp));
+                    if (temp) {
+                        pool.broadCastUsername(user.getUserName());
+                    }
+
+                } else if ("getUserList".equals(request.getType())) {
+                    outToClient.writeObject(new Request("getUserList", loginHandler.getAllUsers()));
                 }
             }
 
         } catch (IOException e) {
             //loginHandler.removeUser(this.user);
             System.out.println("Socket has been disconnected");
+            pool.broadcastUserDisconnected(user.getUserName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -135,11 +137,19 @@ public class ServerHandler implements Runnable {
 //        }
 //    }
 
-//    public void sendUsersToClient(String userName) {
-//        try {
-//            outToClient.writeObject(new Request("userNameAdded",userName));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void sendUsersToClient(String userName) {
+        try {
+            outToClient.writeObject(new Request("userAdded", userName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendRemovedUserToClient(String username) {
+        try {
+            outToClient.writeObject(new Request("userRemoved", username));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

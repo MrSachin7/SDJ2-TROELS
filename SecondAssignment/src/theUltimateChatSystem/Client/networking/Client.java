@@ -9,14 +9,13 @@ import java.util.List;
 public interface Client extends Subject {
     boolean isConnectionPossible(String username);
 
-    void sendMessage(String message);
-    void startClient();
-
+    void sendMessage(Message message);
+    void startListeningToServer(User user);
     List<Message> getMessages();
 
     List<String> getUserList();
 
-    boolean addUser(String username, String password);
+    boolean addUser(User user);
 
     boolean isLoginPossible(User user);
 }

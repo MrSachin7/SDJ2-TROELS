@@ -10,6 +10,7 @@ public class ClientFactory {
         if (client == null) {
             client = new ClientSocket();
         }
+
         return client;
     }
 }

@@ -4,6 +4,7 @@ import theUltimateChatSystem.shared.User;
 import theUltimateChatSystem.shared.UserList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginHandlerImp implements LoginHandler{
 
@@ -36,6 +37,11 @@ public class LoginHandlerImp implements LoginHandler{
     @Override
     public boolean isLoginPossible(User user) {
         return everyUsers.contains(user);
+    }
+
+    @Override
+    public List<String> getAllUsers() {
+        return everyUsers.allUserNames();
     }
 
 }

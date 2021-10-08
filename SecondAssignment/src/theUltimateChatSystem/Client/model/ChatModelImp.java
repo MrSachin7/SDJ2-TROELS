@@ -2,7 +2,7 @@ package theUltimateChatSystem.Client.model;
 
 import theUltimateChatSystem.Client.networking.Client;
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
+import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -17,7 +17,6 @@ public class ChatModelImp implements ChatModel{
     {
         this.client=client;
         this.support=new PropertyChangeSupport(this);
-        client.startClient();
         client.addListener("addMessage",this::messageAdded);
         client.addListener("userNameAdded",this::userNameAdded);
     }
@@ -33,7 +32,7 @@ public class ChatModelImp implements ChatModel{
 
 
     @Override
-    public void sendMessage(String message) {
+    public void sendMessage(Message message) {
         client.sendMessage(message);
     }
 
@@ -44,6 +43,10 @@ public class ChatModelImp implements ChatModel{
         return client.getMessages();
     }
 
+    @Override
+    public List<String> getUsernames() {
+        return client.getUserList();
+    }
 
 
     @Override

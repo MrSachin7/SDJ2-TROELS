@@ -17,4 +17,9 @@ public class ChatApp extends Application {
         ViewHandler mv = new ViewHandler(vmf);
         mv.start();
     }
+
+    @Override
+    public void stop() throws Exception {
+
+    }
 }

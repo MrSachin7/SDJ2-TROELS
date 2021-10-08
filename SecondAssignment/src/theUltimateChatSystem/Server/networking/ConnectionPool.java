@@ -20,6 +20,8 @@ public class ConnectionPool {
         }
     }
 
+
+
     public void broadCastToSelected(String userName, Message message) {
         for (ServerHandler socketH : connections
         ) {
@@ -30,13 +32,20 @@ public class ConnectionPool {
         }
     }
 
-//    public void broadCastUsername(String userName) {
-//        for (ServerHandler socketH :connections
-//        ) {
-//            socketH.sendUsersToClient(userName);
-//
-//        }
-//    }
+    public void broadCastUsername(String userName) {
+        for (ServerHandler socketH : connections
+        ) {
+            socketH.sendUsersToClient(userName);
+
+        }
+    }
+    public void broadcastUserDisconnected(String username) {
+        for (ServerHandler socketH : connections
+        ) {
+            socketH.sendRemovedUserToClient(username);
+
+        }
+    }
 
     public int size() {
         return connections.size();

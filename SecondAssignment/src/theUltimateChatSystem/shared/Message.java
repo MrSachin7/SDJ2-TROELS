@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
     private String messageBody;
-    private String user;
+    private String username;
 
-    public Message(String messageBody,String user){
+    public Message(String messageBody,String username){
         this.messageBody=messageBody;
-        this.user=user;
+        this.username=username;
     }
 
     public String getMessageBody() {
@@ -16,15 +16,15 @@ public class Message implements Serializable {
     }
 
     public String getUser() {
-        return user;
+        return username;
     }
 
     @Override
     public String toString() {
-      return user +": "+messageBody;
+      return username +": "+messageBody;
     }
 
     public void setUser(String user) {
-        this.user = user;
+        this.username = user;
     }
 }

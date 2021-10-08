@@ -8,6 +8,8 @@ import theUltimateChatSystem.shared.Subject;
 import java.util.List;
 
 public interface ChatModel extends Subject {
-    void sendMessage(String message);
+    void sendMessage(Message message);
     List<Message> getMessages();
+
+    List<String> getUsernames();
 }

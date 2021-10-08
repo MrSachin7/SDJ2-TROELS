@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ClientSocket implements Client {
     private PropertyChangeSupport support;
-    private String userName;
+    //  private String userName;
 
 
     public ClientSocket() {
@@ -22,13 +22,14 @@ public class ClientSocket implements Client {
 
     }
 
-    public void startClient() {
+    @Override
+    public void startListeningToServer(User user) {
         try {
             Socket socket = new Socket("localhost", 9009);
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
-            Thread t = new Thread(() -> listenToServer(inFromServer, outToServer));
+            Thread t = new Thread(() -> listenToServer(inFromServer, outToServer, user));
             t.setDaemon(true);
             t.start();
 
@@ -66,10 +67,9 @@ public class ClientSocket implements Client {
     }
 
     @Override
-    public boolean addUser(String username, String password) {
-        User user = new User(username,password);
+    public boolean addUser(User user) {
         try {
-            Request response = request(user,"addUser");
+            Request response = request(user, "addUser");
             return (boolean) response.getArg();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,11 +82,12 @@ public class ClientSocket implements Client {
     @Override
     public boolean isLoginPossible(User user) {
         try {
-            Request response = request(user,"isLoginPossible");
-           if( (boolean) response.getArg()){
-               this.userName=user.getUserName();
-           }
-           return (boolean) response.getArg();
+            Request response = request(user, "isLoginPossible");
+            boolean b = (boolean) response.getArg();
+            if (b) {
+                startListeningToServer(user);
+            }
+            return b;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -95,22 +96,22 @@ public class ClientSocket implements Client {
         return false;
     }
 
-    private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer) {
+
+    private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer, User user) {
         try {
-            outToServer.writeObject(new Request("Listener", null));
+            outToServer.writeObject(new Request("Listener", user));
             while (true) {
                 Request response = (Request) inFromServer.readObject();
                 if (response.getType().equals("addMessage")) {
                     support.firePropertyChange("addMessage", null, response.getArg());
-                }
-                 if (response.getType().equals("userRemoved")) {
-                    support.firePropertyChange("userRemoved", null, response.getArg());
-                } else if (response.getType().equals("userNameAdded")) {
-                    support.firePropertyChange("userNameAdded", null, response.getArg());
-                }
+                } else if (response.getType().equals("userAdded")) {
+                    support.firePropertyChange("userAdded", null, response.getArg());
+                } else if (response.getType().equals("userRemoved")) {
+                    support.firePropertyChange("userRemoved",null,response.getArg());
 
-
+                }
             }
+
 
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -122,7 +123,7 @@ public class ClientSocket implements Client {
     public boolean isConnectionPossible(String username) {
         try {
             Request response = request(username, "connectionRequest");
-           return (boolean) response.getArg();
+            return (boolean) response.getArg();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,10 +134,9 @@ public class ClientSocket implements Client {
     }
 
     @Override
-    public void sendMessage(String message) {
+    public void sendMessage(Message message) {
         try {
-            Message tempMessage = new Message(message, userName);
-            Request response = request(tempMessage, "addMessage");
+            Request response = request(message, "addMessage");
 //              Message newMessage = (Message) response.getArg();
 //             support.firePropertyChange("addMessage",null,newMessage);
 

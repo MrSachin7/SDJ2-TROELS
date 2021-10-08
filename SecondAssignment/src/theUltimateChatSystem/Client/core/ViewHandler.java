@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ViewHandler {
     private Scene loginAsGuest;
-    private Scene chatScene, createAccountScene, loginScene;
+    private Scene chatScene, createAccountScene, loginScene,privateChatScene;
     private Stage stage;
     private ViewModelFactory vmf;
 
@@ -82,8 +82,20 @@ public class ViewHandler {
         }
         stage.setScene(loginScene);
         stage.show();
+    }
 
-
+    public void openPrivateChat(){
+        if (privateChatScene==null){
+            try {
+                Parent root = loadFXML("../view/privateChat/PrivateChat.fxml");
+                privateChatScene= new Scene(root);
+                stage.setTitle("Private Chat");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        stage.setScene(privateChatScene);
+        stage.show();
     }
 
     private Parent loadFXML(String path) throws IOException {

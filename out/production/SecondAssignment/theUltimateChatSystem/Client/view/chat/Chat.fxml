@@ -9,19 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="327.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.chat.ChatController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="452.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.chat.ChatController">
   <tabs>
     <Tab text="Global Chat">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="325.0">
                <children>
-                  <ListView fx:id="listView" prefHeight="326.0" prefWidth="325.0" />
+                  <ListView fx:id="listView" prefHeight="321.0" prefWidth="446.0" />
                   <TextField fx:id="sendMessage" layoutY="326.0" prefHeight="39.0" prefWidth="267.0" />
-                  <Button layoutX="267.0" layoutY="331.0" mnemonicParsing="false" onAction="#onSend" text="Send">
+                  <Button layoutX="284.0" layoutY="331.0" mnemonicParsing="false" onAction="#onSend" text="Send">
                      <font>
                         <Font name="Book Antiqua" size="15.0" />
                      </font>
                   </Button>
+                  <Button layoutX="353.0" layoutY="333.0" mnemonicParsing="false" text="LogOut" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -29,10 +30,14 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="440.0">
                <children>
-                  <ListView fx:id="userList" layoutX="14.0" layoutY="43.0" prefHeight="200.0" prefWidth="112.0" />
+                  <ListView fx:id="userList" layoutX="14.0" layoutY="50.0" prefHeight="230.0" prefWidth="112.0" />
                   <Label layoutX="14.0" layoutY="25.0" text="Online Users" />
-                  <Button layoutX="191.0" layoutY="293.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send message" />
-                  <TextField fx:id="selectedItem" layoutX="135.0" layoutY="82.0" />
+                  <Button layoutX="394.0" layoutY="325.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
+                  <TextField fx:id="selectedItem" layoutX="17.0" layoutY="286.0" prefHeight="26.0" prefWidth="128.0" />
+                  <ListView layoutX="163.0" layoutY="49.0" prefHeight="232.0" prefWidth="266.0" />
+                  <Label layoutX="270.0" layoutY="25.0" text="Messages" />
+                  <TextField layoutX="171.0" layoutY="286.0" prefHeight="26.0" prefWidth="257.0" />
+                  <Button layoutX="10.0" layoutY="325.0" mnemonicParsing="false" onAction="#onSelectUser" text="Select User" />
                </children>
             </AnchorPane>
         </content>

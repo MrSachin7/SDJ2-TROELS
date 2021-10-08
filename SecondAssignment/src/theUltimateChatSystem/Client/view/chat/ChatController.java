@@ -42,10 +42,14 @@ public class ChatController implements ViewController {
     }
 
     @FXML
-    private void onSendMessage(ActionEvent event) {
+    private void onSelectUser(ActionEvent event) {
         viewModel.getSelectedItem().set(userList.getSelectionModel().getSelectedItem());
-
-
+    }
+    @FXML
+    private void onLogOut()
+    {
+        viewModel.logOut();
+        viewHandler.openLogin();
     }
 
 

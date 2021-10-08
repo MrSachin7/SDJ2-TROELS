@@ -7,16 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.privateChat.PrivateChat">
+<AnchorPane prefHeight="400.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theUltimateChatSystem.Client.view.privateChat.PrivateChatController">
    <children>
-      <ListView layoutX="6.0" layoutY="40.0" prefHeight="284.0" prefWidth="338.0" />
+      <ListView fx:id="listView" layoutX="6.0" layoutY="40.0" prefHeight="284.0" prefWidth="338.0" />
       <Label layoutX="102.0" layoutY="12.0" prefHeight="28.0" prefWidth="113.0" text="Private Chat">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField layoutX="14.0" layoutY="331.0" prefHeight="26.0" prefWidth="230.0" />
+      <TextField fx:id="sendMessage" layoutX="14.0" layoutY="331.0" prefHeight="26.0" prefWidth="230.0" />
       <Button layoutX="268.0" layoutY="332.0" mnemonicParsing="false" text="Send" />
       <Button layoutX="268.0" layoutY="361.0" mnemonicParsing="false" text="Back" />
    </children>

@@ -27,6 +27,7 @@ public class UserNameController implements ViewController {
 
     @FXML
     private void onConnect() {
+
         if (viewModel.onConnect(username.getText())) {
             viewHandler.openChat();
         }

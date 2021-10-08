@@ -83,7 +83,12 @@ public class ChatViewModel {
 
         return userList;
     }
+  //  public String
 
 
-
+    public void logOut() {
+        Platform.runLater(() -> {
+            userList.remove(modelFactory.getLoginModel().getUser());
+        });
+    }
 }

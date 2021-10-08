@@ -1,6 +1,7 @@
 package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 import theUltimateChatSystem.shared.Subject;
 import theUltimateChatSystem.shared.User;
 
@@ -18,4 +19,8 @@ public interface Client extends Subject {
     boolean addUser(User user);
 
     boolean isLoginPossible(User user);
+
+    void sendPrivateMessage(Object[] objects);
+
+    boolean doesPrivateMessageExists(String username1, String username2);
 }

@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import theUltimateChatSystem.Client.core.ModelFactory;
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;
@@ -17,6 +18,7 @@ public class ChatViewModel {
     private ObservableList<Message> messages;
     //   private StringProperty message;
     private ObservableList<String> userList;
+    private ObservableList<Message> privateMessages;
     private StringProperty selectedItem;
 
 
@@ -24,13 +26,21 @@ public class ChatViewModel {
         this.modelFactory = modelFactory;
         selectedItem = new SimpleStringProperty();
 
+        privateMessages= FXCollections.observableArrayList();
         modelFactory.getChatModel().addListener("addMessage", this::messageAdded);
         modelFactory.getLoginModel().addListener("userAdded", this::userAdded);
         modelFactory.getLoginModel().addListener("userRemoved", this::userRemoved);
+        modelFactory.getChatModel().addListener("addPrivateMessage",this::privateMessageAdded);
         loadMessages();
         loadUsers();
 
         //  message= new SimpleStringProperty();
+    }
+
+    private void privateMessageAdded(PropertyChangeEvent event) {
+        Platform.runLater(()->{
+            privateMessages.add((Message) event.getNewValue());
+        });
     }
 
     private void messageAdded(PropertyChangeEvent event) {
@@ -90,5 +100,14 @@ public class ChatViewModel {
         Platform.runLater(() -> {
             userList.remove(modelFactory.getLoginModel().getUser());
         });
+    }
+
+    public void sendPrivate(String text) {
+        String username1 = modelFactory.getLoginModel().getUser().getUserName();
+        String username2= selectedItem.get();
+        Message message = new Message(text,username1);
+       Object[] sendObject = new Object[]{username1,username2,message};
+        modelFactory.getChatModel().sendPrivateMessage(sendObject);
+
     }
 }

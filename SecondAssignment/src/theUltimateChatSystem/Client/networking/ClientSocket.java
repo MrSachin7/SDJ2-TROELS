@@ -1,6 +1,7 @@
 package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 import theUltimateChatSystem.shared.Request;
 import theUltimateChatSystem.shared.User;
 
@@ -96,6 +97,30 @@ public class ClientSocket implements Client {
         return false;
     }
 
+    @Override
+    public void sendPrivateMessage(Object[] objects) {
+        try {
+            Request response = request(objects,"addPrivateMessage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean doesPrivateMessageExists(String username1, String username2) {
+        try {
+            Request response = request(new String[]{username1,username2},"doesPrivateMessageExists");
+            return (boolean) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+       return false;
+    }
+
 
     private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer, User user) {
         try {
@@ -108,7 +133,9 @@ public class ClientSocket implements Client {
                     support.firePropertyChange("userAdded", null, response.getArg());
                 } else if (response.getType().equals("userRemoved")) {
                     support.firePropertyChange("userRemoved",null,response.getArg());
-
+                }
+                else if (response.getType().equals("addPrivateMessage")){
+                    support.firePropertyChange("addPrivateMessage",null,response.getArg());
                 }
             }
 

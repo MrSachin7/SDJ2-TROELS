@@ -19,14 +19,17 @@ public class ConnectionPool {
             socketH.sendMessageToClient(message);
         }
     }
+    public void removeConnection(ServerHandler serverHandler){
+        connections.remove(serverHandler);
+    }
 
 
 
-    public void broadCastToSelected(String userName, Message message) {
+    public void broadCastToSelected(String userName1,String username2, Message message) {
         for (ServerHandler socketH : connections
         ) {
-            if (socketH.getUserName().equals(userName)) {
-                socketH.sendMessageToClient(message);
+            if (socketH.getUserName().equals(userName1) || socketH.getUserName().equals(username2)) {
+                socketH.sendPrivateMessageToClient(message);
             }
 
         }

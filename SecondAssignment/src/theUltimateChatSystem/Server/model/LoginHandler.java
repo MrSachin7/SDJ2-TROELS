@@ -12,4 +12,5 @@ public interface LoginHandler {
     boolean isLoginPossible(User arg);
 
     List<String> getAllUsers();
+
 }

@@ -21,6 +21,8 @@ public class ChatController implements ViewController {
     private ListView<Message> listView;
     @FXML
     private ListView<String> userList;
+    @FXML
+    private TextField sendPrivate;
 
 
     @Override
@@ -50,6 +52,11 @@ public class ChatController implements ViewController {
     {
         viewModel.logOut();
         viewHandler.openLogin();
+    }
+    @FXML
+    private void onSendPrivateMessage(ActionEvent event){
+        viewModel.sendPrivate(sendPrivate.getText());
+
     }
 
 

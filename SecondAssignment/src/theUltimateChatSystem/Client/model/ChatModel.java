@@ -3,6 +3,7 @@ package theUltimateChatSystem.Client.model;
 import theUltimateChatSystem.Client.networking.Client;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.MessageList;
+import theUltimateChatSystem.shared.PrivateMessage;
 import theUltimateChatSystem.shared.Subject;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface ChatModel extends Subject {
     List<Message> getMessages();
 
     List<String> getUsernames();
+
+    void sendPrivateMessage(Object[] objects);
+    boolean doesPrivateMessageExists(String username1, String username2);
 }

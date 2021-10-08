@@ -3,6 +3,7 @@ package theUltimateChatSystem.Server.networking;
 import theUltimateChatSystem.Server.model.ChatHandler;
 import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 import theUltimateChatSystem.shared.Request;
 import theUltimateChatSystem.shared.User;
 
@@ -36,7 +37,6 @@ public class ServerHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("A new server handler is created");
     }
 
     @Override
@@ -77,18 +77,36 @@ public class ServerHandler implements Runnable {
                     boolean temp = loginHandler.isLoginPossible(user);
                     outToClient.writeObject(new Request("isLoginPossible", temp));
                     if (temp) {
+                        this.user=user;
                         pool.broadCastUsername(user.getUserName());
                     }
 
                 } else if ("getUserList".equals(request.getType())) {
                     outToClient.writeObject(new Request("getUserList", loginHandler.getAllUsers()));
                 }
+                else if ("addPrivateMessage".equals(request.getType())){
+                  //  chatHandler.addPrivateMessage((Object[]) request.getArg());
+
+                    Object[] temp = (Object[]) request.getArg();
+                    String username1 =((String) temp[0]);
+                    String username2= (String) temp[1];
+                    Message message =(Message) temp[2];
+                    pool.broadCastToSelected(username1,username2,message);
+                  //  pool.boradcast()
+                }
+                else if ("addPrivateMessage".equals(request.getType())){
+                    String username1 =((String[]) request.getArg())[0];
+                    String username2= ((String[]) request.getArg())[1];
+                    outToClient.writeObject(new Request("doesPrivateMessageExists",chatHandler.doesPrivateMessageExists(username1,username2)));
+                }
+
             }
 
         } catch (IOException e) {
             //loginHandler.removeUser(this.user);
             System.out.println("Socket has been disconnected");
             pool.broadcastUserDisconnected(user.getUserName());
+            pool.removeConnection(this);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -118,25 +136,6 @@ public class ServerHandler implements Runnable {
         return user.getUserName();
     }
 
-//    public void userAdded(PropertyChangeEvent event) {
-//        String username = (String) event.getNewValue();
-//        pool.broadCastUsername(userName);
-//        try {
-//            outToClient.writeObject(new Request("userAdded", username));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void userRemoved(PropertyChangeEvent event) {
-//        String userName = (String) event.getNewValue();
-//        try {
-//            outToClient.writeObject(new Request("userRemoved", userName));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void sendUsersToClient(String userName) {
         try {
             outToClient.writeObject(new Request("userAdded", userName));
@@ -150,6 +149,16 @@ public class ServerHandler implements Runnable {
             outToClient.writeObject(new Request("userRemoved", username));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendPrivateMessageToClient(Message message) {
+        {
+            try {
+                outToClient.writeObject(new Request("addPrivateMessage",message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

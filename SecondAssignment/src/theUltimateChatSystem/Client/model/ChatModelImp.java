@@ -2,6 +2,7 @@ package theUltimateChatSystem.Client.model;
 
 import theUltimateChatSystem.Client.networking.Client;
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeEvent;
@@ -19,6 +20,11 @@ public class ChatModelImp implements ChatModel{
         this.support=new PropertyChangeSupport(this);
         client.addListener("addMessage",this::messageAdded);
         client.addListener("userNameAdded",this::userNameAdded);
+        client.addListener("addPrivateMessage",this::privateMessageAdded);
+    }
+
+    private void privateMessageAdded(PropertyChangeEvent event) {
+        support.firePropertyChange("addPrivateMessage",null,event.getNewValue());
     }
 
     private void messageAdded(PropertyChangeEvent event) {
@@ -48,6 +54,16 @@ public class ChatModelImp implements ChatModel{
         return client.getUserList();
     }
 
+    @Override
+    public void sendPrivateMessage(Object[] objects) {
+        client.sendPrivateMessage(objects);
+    }
+
+    @Override
+    public boolean doesPrivateMessageExists(String username1, String username2) {
+        return client.doesPrivateMessageExists(username1,username2);
+    }
+
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
@@ -59,4 +75,5 @@ public class ChatModelImp implements ChatModel{
 
         support.removePropertyChangeListener(eventName,listener);
     }
+
 }

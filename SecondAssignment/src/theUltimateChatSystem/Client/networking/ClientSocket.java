@@ -98,9 +98,9 @@ public class ClientSocket implements Client {
     }
 
     @Override
-    public void sendPrivateMessage(Object[] objects) {
+    public void sendPrivateMessage(PrivateMessage privateMessage) {
         try {
-            Request response = request(objects,"addPrivateMessage");
+            Request response = request(privateMessage,"addPrivateMessage");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

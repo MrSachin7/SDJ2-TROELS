@@ -14,6 +14,6 @@ public interface ChatModel extends Subject {
 
     List<String> getUsernames();
 
-    void sendPrivateMessage(Object[] objects);
+    void sendPrivateMessage(PrivateMessage privateMessage);
     boolean doesPrivateMessageExists(String username1, String username2);
 }

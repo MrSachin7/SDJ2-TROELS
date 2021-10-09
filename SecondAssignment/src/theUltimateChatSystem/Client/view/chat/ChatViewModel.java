@@ -19,18 +19,18 @@ public class ChatViewModel {
     //   private StringProperty message;
     private ObservableList<String> userList;
     private ObservableList<Message> privateMessages;
-    private StringProperty selectedItem;
+    private StringProperty selectedItem, userError;
 
 
     public ChatViewModel(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
         selectedItem = new SimpleStringProperty();
-
-        privateMessages= FXCollections.observableArrayList();
+        userError = new SimpleStringProperty();
+        privateMessages = FXCollections.observableArrayList();
         modelFactory.getChatModel().addListener("addMessage", this::messageAdded);
         modelFactory.getLoginModel().addListener("userAdded", this::userAdded);
         modelFactory.getLoginModel().addListener("userRemoved", this::userRemoved);
-        modelFactory.getChatModel().addListener("addPrivateMessage",this::privateMessageAdded);
+        modelFactory.getChatModel().addListener("addPrivateMessage", this::privateMessageAdded);
         loadMessages();
         loadUsers();
 
@@ -38,7 +38,7 @@ public class ChatViewModel {
     }
 
     private void privateMessageAdded(PropertyChangeEvent event) {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             privateMessages.add((Message) event.getNewValue());
         });
     }
@@ -47,6 +47,10 @@ public class ChatViewModel {
         Platform.runLater(() -> {
             messages.add((Message) event.getNewValue());
         });
+    }
+
+    public StringProperty getUserError() {
+        return userError;
     }
 
     //
@@ -93,7 +97,7 @@ public class ChatViewModel {
 
         return userList;
     }
-  //  public String
+    //  public String
 
 
     public void logOut() {
@@ -104,10 +108,19 @@ public class ChatViewModel {
 
     public void sendPrivate(String text) {
         String username1 = modelFactory.getLoginModel().getUser().getUserName();
-        String username2= selectedItem.get();
-        Message message = new Message(text,username1);
-       Object[] sendObject = new Object[]{username1,username2,message};
-        modelFactory.getChatModel().sendPrivateMessage(sendObject);
+        String username2 = selectedItem.get();
+        if (username2.equals("") || username2==null){
+            userError.set("Select a user to send message first");
+        }
+        else{
+            Message message = new Message(text, username1);
+            PrivateMessage sendMessage = new PrivateMessage(username1, username2, message);
+            modelFactory.getChatModel().sendPrivateMessage(sendMessage);
+            userError.set("");
+        }
+    }
 
+    public ObservableList<Message> getPrivateMessages() {
+        return privateMessages;
     }
 }

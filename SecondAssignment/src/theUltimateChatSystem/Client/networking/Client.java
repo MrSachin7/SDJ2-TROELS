@@ -20,7 +20,7 @@ public interface Client extends Subject {
 
     boolean isLoginPossible(User user);
 
-    void sendPrivateMessage(Object[] objects);
+    void sendPrivateMessage(PrivateMessage privateMessage);
 
     boolean doesPrivateMessageExists(String username1, String username2);
 }

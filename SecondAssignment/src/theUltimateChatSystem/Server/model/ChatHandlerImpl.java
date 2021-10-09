@@ -27,42 +27,30 @@ public class ChatHandlerImpl implements ChatHandler {
     }
 
     @Override
-    public void addPrivateMessage(Object[] objects) {
-
-        String username1 = (String) objects[0];
-        String username2 = (String) objects[1];
-        Message message = (Message) objects[2];
-        //PrivateMessage temp = new PrivateMessage(us)
-        if (doesPrivateMessageExists(username1, username2)) {
+    public void addPrivateMessage(PrivateMessage privateMessage) {
+        if (doesPrivateMessageExists(privateMessage)){
             for (int i = 0; i < privateMessageList.size(); i++) {
-
-                if (privateMessageList.get(i).getUsername1().equals(username1) || privateMessageList.get(i).getUsername1().equals(username2)) {
-                    if (privateMessageList.get(i).getUsername2().equals(username1) || privateMessageList.get(i).getUsername2().equals(username2)) {
-                        privateMessageList.get(i).getMessageList().addMessage(message);
-                        System.out.println("messasge added to the exixting ");
-                    }
+                if (privateMessage.equals(privateMessageList.get(i))){
+                    privateMessageList.get(i).addMessage(privateMessage.getSendMessage());
+                    System.out.println("Message added to existing");
                 }
+
             }
         }
         else{
-            PrivateMessage temp = new PrivateMessage(username1,username2);
-            temp.addMessage(message);
-            privateMessageList.add(temp);
+            privateMessage.addMessage(privateMessage.getSendMessage());
+            privateMessageList.add(privateMessage);
             System.out.println("Message added to new");
         }
+
+
     }
 
 
-    @Override
-    public boolean doesPrivateMessageExists(String username1, String username2) {
+    private boolean doesPrivateMessageExists(PrivateMessage privateMessage) {
         for (int i = 0; i < privateMessageList.size(); i++) {
-            String user1 = privateMessageList.get(i).getUsername1();
-            String user2 = privateMessageList.get(i).getUsername2();
-
-            if (user1.equals(username1) || user1.equals(username2)) {
-                if (user2.equals(username1) || user2.equals(username2)) {
-                    return true;
-                }
+            if (privateMessageList.get(i).equals(privateMessage)){
+                return true;
             }
 
         }

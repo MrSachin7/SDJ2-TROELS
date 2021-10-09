@@ -39,6 +39,10 @@ public class ServerHandler implements Runnable {
         }
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public void run() {
         try {
@@ -77,7 +81,7 @@ public class ServerHandler implements Runnable {
                     boolean temp = loginHandler.isLoginPossible(user);
                     outToClient.writeObject(new Request("isLoginPossible", temp));
                     if (temp) {
-                        this.user=user;
+                        setUser(user);
                         pool.broadCastUsername(user.getUserName());
                     }
 
@@ -86,19 +90,17 @@ public class ServerHandler implements Runnable {
                 }
                 else if ("addPrivateMessage".equals(request.getType())){
                   //  chatHandler.addPrivateMessage((Object[]) request.getArg());
-
-                    Object[] temp = (Object[]) request.getArg();
-                    String username1 =((String) temp[0]);
-                    String username2= (String) temp[1];
-                    Message message =(Message) temp[2];
-                    pool.broadCastToSelected(username1,username2,message);
+                    chatHandler.addPrivateMessage((PrivateMessage) request.getArg());
+                  //  outToClient.writeObject(new Request(null,null));
+                    pool.broadCastPrivateMessage((PrivateMessage) request.getArg());
+                    outToClient.writeObject(new Request(null,null));
                   //  pool.boradcast()
                 }
-                else if ("addPrivateMessage".equals(request.getType())){
-                    String username1 =((String[]) request.getArg())[0];
-                    String username2= ((String[]) request.getArg())[1];
-                    outToClient.writeObject(new Request("doesPrivateMessageExists",chatHandler.doesPrivateMessageExists(username1,username2)));
-                }
+//                else if ("addPrivateMessage".equals(request.getType())){
+//                    String username1 =((String[]) request.getArg())[0];
+//                    String username2= ((String[]) request.getArg())[1];
+//                    outToClient.writeObject(new Request("doesPrivateMessageExists",chatHandler.doesPrivateMessageExists(username1,username2)));
+//                }
 
             }
 
@@ -133,7 +135,13 @@ public class ServerHandler implements Runnable {
     }
 
     public String getUserName() {
-        return user.getUserName();
+        if (user==null){
+            return "";
+        }
+        else
+        {
+            return user.getUserName();
+        }
     }
 
     public void sendUsersToClient(String userName) {

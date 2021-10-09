@@ -55,8 +55,8 @@ public class ChatModelImp implements ChatModel{
     }
 
     @Override
-    public void sendPrivateMessage(Object[] objects) {
-        client.sendPrivateMessage(objects);
+    public void sendPrivateMessage(PrivateMessage privateMessage) {
+        client.sendPrivateMessage(privateMessage);
     }
 
     @Override

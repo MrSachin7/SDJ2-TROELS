@@ -2,6 +2,7 @@ package theUltimateChatSystem.Client.view.chat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import theUltimateChatSystem.Client.core.ViewHandler;
@@ -23,6 +24,9 @@ public class ChatController implements ViewController {
     private ListView<String> userList;
     @FXML
     private TextField sendPrivate;
+    @FXML private Label userError;
+    @FXML
+    private ListView<Message> privateMessageList;
 
 
     @Override
@@ -33,12 +37,14 @@ public class ChatController implements ViewController {
         viewModel.loadMessages();
         listView.setItems(viewModel.getMessages());
         userList.setItems(viewModel.getUserList());
+        userError.textProperty().bind(viewModel.getUserError());
+        privateMessageList.setItems(viewModel.getPrivateMessages());
         //   sendMessage.textProperty().bindBidirectional(viewModel.getMessage());
 
     }
 
     @FXML
-    private void onSend(ActionEvent event) {
+    private void onSend() {
         viewModel.sendMessage(sendMessage.getText());
         sendMessage.clear();
     }

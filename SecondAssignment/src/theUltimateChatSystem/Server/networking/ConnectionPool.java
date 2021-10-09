@@ -1,6 +1,7 @@
 package theUltimateChatSystem.Server.networking;
 
 import theUltimateChatSystem.shared.Message;
+import theUltimateChatSystem.shared.PrivateMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +20,18 @@ public class ConnectionPool {
             socketH.sendMessageToClient(message);
         }
     }
-    public void removeConnection(ServerHandler serverHandler){
+
+    public void removeConnection(ServerHandler serverHandler) {
         connections.remove(serverHandler);
     }
 
 
-
-    public void broadCastToSelected(String userName1,String username2, Message message) {
+    public void broadCastPrivateMessage(PrivateMessage privateMessage) {
         for (ServerHandler socketH : connections
         ) {
-            if (socketH.getUserName().equals(userName1) || socketH.getUserName().equals(username2)) {
-                socketH.sendPrivateMessageToClient(message);
+            if (socketH.getUserName().equals(privateMessage.getUsername1()) || socketH.getUserName().equals(privateMessage.getUsername2())) {
+                socketH.sendPrivateMessageToClient(privateMessage.getSendMessage());
             }
-
         }
     }
 
@@ -42,6 +42,7 @@ public class ConnectionPool {
 
         }
     }
+
     public void broadcastUserDisconnected(String username) {
         for (ServerHandler socketH : connections
         ) {

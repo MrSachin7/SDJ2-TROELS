@@ -23,4 +23,6 @@ public interface Client extends Subject {
     void sendPrivateMessage(PrivateMessage privateMessage);
 
     boolean doesPrivateMessageExists(String username1, String username2);
+
+    List<Message> getUsersMessage(PrivateMessage privateMessage);
 }

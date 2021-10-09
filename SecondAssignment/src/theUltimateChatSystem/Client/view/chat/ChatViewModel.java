@@ -65,6 +65,14 @@ public class ChatViewModel {
         List<String> users = modelFactory.getChatModel().getUsernames();
         userList = FXCollections.observableArrayList(users);
     }
+    public void loadUsersMessage() {
+        Platform.runLater(()->{
+            List<Message> usersMessage= modelFactory.getChatModel().getUsersMessage(modelFactory.getLoginModel().getUser().getUserName(),selectedItem.get());
+         //   privateMessages= FXCollections.observableArrayList(usersMessage);
+            privateMessages.setAll(usersMessage);
+        });
+
+    }
 
     public void sendMessage(String text) {
         Message message = new Message(text, modelFactory.getLoginModel().getUser().getUserName());
@@ -109,10 +117,9 @@ public class ChatViewModel {
     public void sendPrivate(String text) {
         String username1 = modelFactory.getLoginModel().getUser().getUserName();
         String username2 = selectedItem.get();
-        if (username2.equals("") || username2==null){
+        if (username2.equals("") || username2 == null) {
             userError.set("Select a user to send message first");
-        }
-        else{
+        } else {
             Message message = new Message(text, username1);
             PrivateMessage sendMessage = new PrivateMessage(username1, username2, message);
             modelFactory.getChatModel().sendPrivateMessage(sendMessage);
@@ -123,4 +130,5 @@ public class ChatViewModel {
     public ObservableList<Message> getPrivateMessages() {
         return privateMessages;
     }
+
 }

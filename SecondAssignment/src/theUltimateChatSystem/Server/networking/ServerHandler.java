@@ -96,6 +96,10 @@ public class ServerHandler implements Runnable {
                     outToClient.writeObject(new Request(null,null));
                   //  pool.boradcast()
                 }
+                else if ("getUsersMessage".equals(request.getType())){
+                    List<Message> privateMessages= chatHandler.getPrivateMessage((PrivateMessage) request.getArg());
+                    outToClient.writeObject(new Request("getUsersMessage",privateMessages));
+                }
 //                else if ("addPrivateMessage".equals(request.getType())){
 //                    String username1 =((String[]) request.getArg())[0];
 //                    String username2= ((String[]) request.getArg())[1];

@@ -12,5 +12,7 @@ public interface ChatHandler extends Subject {
     void addMessage(Message message);
 
     void addPrivateMessage(PrivateMessage privateMessage);
-   // boolean doesPrivateMessageExists(String username1, String username2);
+
+    List<Message> getPrivateMessage(PrivateMessage arg);
+    // boolean doesPrivateMessageExists(String username1, String username2);
 }

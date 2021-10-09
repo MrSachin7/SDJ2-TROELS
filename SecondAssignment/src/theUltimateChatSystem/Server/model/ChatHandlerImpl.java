@@ -46,6 +46,16 @@ public class ChatHandlerImpl implements ChatHandler {
 
     }
 
+    @Override
+    public List<Message> getPrivateMessage(PrivateMessage arg) {
+        for (int i = 0; i < privateMessageList.size(); i++) {
+            if (arg.equals(privateMessageList.get(i))){
+                return privateMessageList.get(i).getMessageList().getMessages();
+            }
+        }
+        return null;
+    }
+
 
     private boolean doesPrivateMessageExists(PrivateMessage privateMessage) {
         for (int i = 0; i < privateMessageList.size(); i++) {

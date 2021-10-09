@@ -64,6 +64,12 @@ public class ChatModelImp implements ChatModel{
         return client.doesPrivateMessageExists(username1,username2);
     }
 
+    @Override
+    public List<Message> getUsersMessage(String userName1, String userName2) {
+        PrivateMessage privateMessage  = new PrivateMessage(userName1,userName2);
+       return client.getUsersMessage(privateMessage);
+    }
+
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {

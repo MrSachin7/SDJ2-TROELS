@@ -121,6 +121,19 @@ public class ClientSocket implements Client {
        return false;
     }
 
+    @Override
+    public List<Message> getUsersMessage(PrivateMessage privateMessage) {
+        try {
+            Request response = request(privateMessage,"getUsersMessage");
+            return (List<Message>) response.getArg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     private void listenToServer(ObjectInputStream inFromServer, ObjectOutputStream outToServer, User user) {
         try {

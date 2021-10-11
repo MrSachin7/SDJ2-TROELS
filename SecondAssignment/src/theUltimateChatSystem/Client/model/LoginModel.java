@@ -1,6 +1,6 @@
 package theUltimateChatSystem.Client.model;
 
-import theUltimateChatSystem.shared.Subject;
+import theUltimateChatSystem.shared.utils.Subject;
 import theUltimateChatSystem.shared.User;
 
 public interface LoginModel extends Subject {

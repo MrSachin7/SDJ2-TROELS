@@ -1,4 +1,4 @@
-package theUltimateChatSystem.shared;
+package theUltimateChatSystem.shared.utils;
 
 import java.beans.PropertyChangeListener;
 

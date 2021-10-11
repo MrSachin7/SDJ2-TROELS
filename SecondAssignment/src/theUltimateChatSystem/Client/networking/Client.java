@@ -2,7 +2,7 @@ package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.Subject;
+import theUltimateChatSystem.shared.utils.Subject;
 import theUltimateChatSystem.shared.User;
 
 import java.util.List;

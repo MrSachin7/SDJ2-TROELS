@@ -4,7 +4,7 @@ import theUltimateChatSystem.Server.model.ChatHandler;
 import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.Request;
+import theUltimateChatSystem.shared.utils.Request;
 import theUltimateChatSystem.shared.User;
 
 import java.io.IOException;
@@ -99,6 +99,7 @@ public class ServerHandler implements Runnable {
                 else if ("getUsersMessage".equals(request.getType())){
                     List<Message> privateMessages= chatHandler.getPrivateMessage((PrivateMessage) request.getArg());
                     outToClient.writeObject(new Request("getUsersMessage",privateMessages));
+
                 }
 //                else if ("addPrivateMessage".equals(request.getType())){
 //                    String username1 =((String[]) request.getArg())[0];

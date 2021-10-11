@@ -1,10 +1,8 @@
 package theUltimateChatSystem.Client.model;
 
-import theUltimateChatSystem.Client.networking.Client;
 import theUltimateChatSystem.shared.Message;
-import theUltimateChatSystem.shared.MessageList;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.Subject;
+import theUltimateChatSystem.shared.utils.Subject;
 
 import java.util.List;
 

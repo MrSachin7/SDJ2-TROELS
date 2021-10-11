@@ -4,7 +4,7 @@ import theUltimateChatSystem.Client.view.chat.ChatViewModel;
 import theUltimateChatSystem.Client.view.createAccount.CreateViewModel;
 import theUltimateChatSystem.Client.view.login.LoginViewModel;
 import theUltimateChatSystem.Client.view.loginAsGuest.UserNameViewModel;
-import theUltimateChatSystem.Client.view.privateChat.PrivateChatViewModel;
+
 
 public class ViewModelFactory {
     private final ModelFactory mf;
@@ -12,7 +12,7 @@ public class ViewModelFactory {
     private UserNameViewModel userNameViewModel;
     private ChatViewModel chatViewModel;
     private LoginViewModel loginViewModel;
-    public PrivateChatViewModel privateChatViewModel;
+
 
 
     public ViewModelFactory(ModelFactory mf){
@@ -47,10 +47,5 @@ public class ViewModelFactory {
         return loginViewModel;
     }
 
-    public PrivateChatViewModel getPrivateChatViewModel() {
-        if (privateChatViewModel == null) {
-            privateChatViewModel = new PrivateChatViewModel();
-        }
-        return privateChatViewModel;
-    }
+
 }

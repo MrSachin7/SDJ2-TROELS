@@ -2,7 +2,7 @@ package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.Request;
+import theUltimateChatSystem.shared.utils.Request;
 import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeListener;

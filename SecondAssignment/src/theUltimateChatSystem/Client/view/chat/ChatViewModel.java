@@ -65,7 +65,7 @@ public class ChatViewModel {
         List<String> users = modelFactory.getChatModel().getUsernames();
         userList = FXCollections.observableArrayList(users);
     }
-    public void loadUsersMessage() {
+     void loadUsersMessage() {
         Platform.runLater(()->{
             List<Message> usersMessage= modelFactory.getChatModel().getUsersMessage(modelFactory.getLoginModel().getUser().getUserName(),selectedItem.get());
          //   privateMessages= FXCollections.observableArrayList(usersMessage);

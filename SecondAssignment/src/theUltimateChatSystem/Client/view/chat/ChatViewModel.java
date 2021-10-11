@@ -66,11 +66,10 @@ public class ChatViewModel {
         userList = FXCollections.observableArrayList(users);
     }
      void loadUsersMessage() {
-        Platform.runLater(()->{
+
             List<Message> usersMessage= modelFactory.getChatModel().getUsersMessage(modelFactory.getLoginModel().getUser().getUserName(),selectedItem.get());
          //   privateMessages= FXCollections.observableArrayList(usersMessage);
             privateMessages.setAll(usersMessage);
-        });
 
     }
 

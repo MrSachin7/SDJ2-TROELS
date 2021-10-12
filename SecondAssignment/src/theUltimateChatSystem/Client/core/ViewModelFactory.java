@@ -14,9 +14,8 @@ public class ViewModelFactory {
     private LoginViewModel loginViewModel;
 
 
-
-    public ViewModelFactory(ModelFactory mf){
-        this.mf=mf;
+    public ViewModelFactory(ModelFactory mf) {
+        this.mf = mf;
     }
 
     public UserNameViewModel getUserNameViewModel() {
@@ -39,8 +38,8 @@ public class ViewModelFactory {
         }
         return createViewModel;
     }
-    public LoginViewModel getLoginViewModel()
-    {
+
+    public LoginViewModel getLoginViewModel() {
         if (loginViewModel == null) {
             loginViewModel = new LoginViewModel(mf);
         }

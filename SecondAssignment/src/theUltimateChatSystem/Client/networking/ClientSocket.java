@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLData;
 import java.util.List;
 
 public class ClientSocket implements Client {
@@ -35,7 +36,7 @@ public class ClientSocket implements Client {
             t.start();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // something like throw new RuntimeException("Cannot connect to server can be done here")
         }
     }
 
@@ -45,9 +46,7 @@ public class ClientSocket implements Client {
         try {
             Request response = request(null, "getMessage");
             return (List<Message>) response.getArg();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
@@ -59,9 +58,7 @@ public class ClientSocket implements Client {
         try {
             Request response = request(null, "getUserList");
             return (List<String>) response.getArg();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
@@ -72,9 +69,7 @@ public class ClientSocket implements Client {
         try {
             Request response = request(user, "addUser");
             return (boolean) response.getArg();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
@@ -89,9 +84,7 @@ public class ClientSocket implements Client {
                 startListeningToServer(user);
             }
             return b;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
@@ -101,9 +94,7 @@ public class ClientSocket implements Client {
     public void sendPrivateMessage(PrivateMessage privateMessage) {
         try {
             Request response = request(privateMessage,"addPrivateMessage");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -113,12 +104,10 @@ public class ClientSocket implements Client {
         try {
             Request response = request(new String[]{username1,username2},"doesPrivateMessageExists");
             return (boolean) response.getArg();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-       return false;
+        return false;
     }
 
     @Override
@@ -126,9 +115,7 @@ public class ClientSocket implements Client {
         try {
             Request response = request(privateMessage,"getUsersMessage");
             return (List<Message>) response.getArg();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
@@ -165,9 +152,7 @@ public class ClientSocket implements Client {
             Request response = request(username, "connectionRequest");
             return (boolean) response.getArg();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
@@ -180,9 +165,7 @@ public class ClientSocket implements Client {
 //              Message newMessage = (Message) response.getArg();
 //             support.firePropertyChange("addMessage",null,newMessage);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

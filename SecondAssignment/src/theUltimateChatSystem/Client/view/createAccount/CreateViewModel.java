@@ -38,18 +38,26 @@ public class CreateViewModel {
             error.set("Username cannot be empty");
         } else if (!(password.equals(confirm))) {
             error.set("Password and confirm password do not match");
+            clearALL();
             return false;
         } else if (modelFactory.getLoginModel().isConnectionPossible(username) == false) {
             error.set("Username unavailable, Try another...");
+            clearALL();
             return false;
         } else {
             if (modelFactory.getLoginModel().addUser(username, password)) {
                 error.set("Account created , go back to login....");
+                clearALL();
                 return true;
             }
         }
 
         return false;
+    }
+    private void clearALL(){
+        username.set(null);
+        password.set(null);
+        confirm.set(null);
     }
 
 

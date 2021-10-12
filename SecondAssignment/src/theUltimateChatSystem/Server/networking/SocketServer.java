@@ -29,7 +29,7 @@ public class SocketServer {
               //  System.out.println(socket.getInetAddress().getHostAddress() + "  identified");
                 ServerHandler serverHandler = new ServerHandler(socket, model,loginHandler,cp);
              //   System.out.println("A new server handler is created");
-                cp.addConnection(serverHandler);
+               // cp.addConnection(serverHandler);
                 System.out.println(cp.size());
                Thread t = new Thread(serverHandler);
                t.start();

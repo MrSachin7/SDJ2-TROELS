@@ -4,8 +4,8 @@ import theUltimateChatSystem.Server.model.ChatHandler;
 import theUltimateChatSystem.Server.model.LoginHandler;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.utils.Request;
 import theUltimateChatSystem.shared.User;
+import theUltimateChatSystem.shared.utils.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -45,10 +45,10 @@ public class ServerHandler implements Runnable {
 
     @Override
     public void run() {
-        try {
+        try {                                                                   // try should be outside the while(true) to not print the stacktrace forever.
             while (true) {
                 Request request = (Request) inFromClient.readObject();
-                if ("connectionRequest".equals(request.getType())) {
+                if ("connectionRequest".equals(request.getType())) {                // switch case would have been better.......
                     String temp = (String) request.getArg();
                     if (loginHandler.isConnectionPossible(temp)) {
                         outToClient.writeObject(new Request("connectionRequest", true));
@@ -56,18 +56,25 @@ public class ServerHandler implements Runnable {
                     } else {
                         outToClient.writeObject(new Request("connectionRequest", false));
                     }
+                    break;
+                    //socket.close();
 
                 } else if ("Listener".equals(request.getType())) {
                     this.user = (User) request.getArg();
+                    // todo conn pool stuff
+                    pool.addConnection(this);
+
                     //  chatHandler.addListener("addMessage", this::messageAdded);
 //                    model.addListener("userAdded", this::userAdded);
 //                    model.addListener("userRemoved", this::userRemoved);
                 } else if ("getMessage".equals(request.getType())) {
                     List<Message> temp = chatHandler.getMessages();
                     outToClient.writeObject(new Request("getMessage", temp));
+                    break;
                 } else if ("addMessage".equals(request.getType())) {
                     chatHandler.addMessage((Message) request.getArg());
                     pool.broadcastToAll((Message) request.getArg());
+                    break;
                 }
 //
 //
@@ -75,30 +82,34 @@ public class ServerHandler implements Runnable {
 
                     boolean temp = loginHandler.addUser((User) request.getArg());
                     outToClient.writeObject(new Request("addUser", temp));
+                    break;
 
                 } else if ("isLoginPossible".equals(request.getType())) {
                     User user = (User) request.getArg();
                     boolean temp = loginHandler.isLoginPossible(user);
                     outToClient.writeObject(new Request("isLoginPossible", temp));
                     if (temp) {
-                        setUser(user);
+                        // setUser(user);
+                        this.user = user;
                         pool.broadCastUsername(user.getUserName());
                     }
+                    break;
 
                 } else if ("getUserList".equals(request.getType())) {
                     outToClient.writeObject(new Request("getUserList", loginHandler.getAllUsers()));
-                }
-                else if ("addPrivateMessage".equals(request.getType())){
-                  //  chatHandler.addPrivateMessage((Object[]) request.getArg());
+                    break;
+                } else if ("addPrivateMessage".equals(request.getType())) {
+                    //  chatHandler.addPrivateMessage((Object[]) request.getArg());
                     chatHandler.addPrivateMessage((PrivateMessage) request.getArg());
-                  //  outToClient.writeObject(new Request(null,null));
+                    //  outToClient.writeObject(new Request(null,null));
                     pool.broadCastPrivateMessage((PrivateMessage) request.getArg());
-                    outToClient.writeObject(new Request(null,null));
-                  //  pool.boradcast()
-                }
-                else if ("getUsersMessage".equals(request.getType())){
-                    List<Message> privateMessages= chatHandler.getPrivateMessage((PrivateMessage) request.getArg());
-                    outToClient.writeObject(new Request("getUsersMessage",privateMessages));
+                    outToClient.writeObject(new Request(null, null));
+                    break;
+                    //  pool.boradcast()
+                } else if ("getUsersMessage".equals(request.getType())) {
+                    List<Message> privateMessages = chatHandler.getPrivateMessage((PrivateMessage) request.getArg());
+                    outToClient.writeObject(new Request("getUsersMessage", privateMessages));
+                    break;
 
                 }
 //                else if ("addPrivateMessage".equals(request.getType())){
@@ -109,11 +120,12 @@ public class ServerHandler implements Runnable {
 
             }
 
+            socket.close();
         } catch (IOException e) {
             //loginHandler.removeUser(this.user);
             System.out.println("Socket has been disconnected");
-            pool.broadcastUserDisconnected(user.getUserName());
             pool.removeConnection(this);
+            pool.broadcastUserDisconnected(getUserName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -140,11 +152,9 @@ public class ServerHandler implements Runnable {
     }
 
     public String getUserName() {
-        if (user==null){
+        if (user == null) {
             return "";
-        }
-        else
-        {
+        } else {
             return user.getUserName();
         }
     }
@@ -168,7 +178,7 @@ public class ServerHandler implements Runnable {
     public void sendPrivateMessageToClient(Message message) {
         {
             try {
-                outToClient.writeObject(new Request("addPrivateMessage",message));
+                outToClient.writeObject(new Request("addPrivateMessage", message));
             } catch (IOException e) {
                 e.printStackTrace();
             }

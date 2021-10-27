@@ -19,10 +19,13 @@
                   <TextField fx:id="sendMessage" layoutY="326.0" prefHeight="39.0" prefWidth="267.0" />
                   <Button layoutX="284.0" layoutY="331.0" mnemonicParsing="false" onAction="#onSend" text="Send">
                      <font>
-                        <Font name="Book Antiqua" size="15.0" />
+                        <Font name="Bodoni MT" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="353.0" layoutY="333.0" mnemonicParsing="false" text="LogOut" />
+                  <Button layoutX="353.0" layoutY="333.0" mnemonicParsing="false" text="LogOut">
+                     <font>
+                        <Font name="Bodoni MT" size="12.0" />
+                     </font></Button>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -32,8 +35,11 @@
                <children>
                   <ListView fx:id="userList" layoutX="14.0" layoutY="50.0" prefHeight="230.0" prefWidth="112.0" />
                   <Label layoutX="14.0" layoutY="25.0" text="Online Users" />
-                  <Button layoutX="394.0" layoutY="325.0" mnemonicParsing="false" onAction="#onSendPrivateMessage" text="Send" />
-                  <TextField fx:id="selectedItem" layoutX="17.0" layoutY="286.0" prefHeight="26.0" prefWidth="128.0" />
+                  <Button layoutX="364.0" layoutY="321.0" mnemonicParsing="false" onAction="#onSendPrivateMessage" prefHeight="10.0" prefWidth="54.0" text="Send">
+                     <font>
+                        <Font name="Bodoni MT" size="16.0" />
+                     </font></Button>
+                  <TextField fx:id="selectedItem" editable="false" layoutX="17.0" layoutY="286.0" prefHeight="26.0" prefWidth="128.0" />
                   <ListView fx:id="privateMessageList" layoutX="163.0" layoutY="49.0" prefHeight="232.0" prefWidth="266.0" />
                   <Label layoutX="270.0" layoutY="25.0" text="Messages" />
                   <TextField fx:id="sendPrivate" layoutX="171.0" layoutY="286.0" prefHeight="26.0" prefWidth="257.0" />

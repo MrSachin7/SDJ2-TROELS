@@ -22,8 +22,7 @@ public class ViewHandler {
         stage = new Stage();
         openLogin();
     }
-
-
+    
     public void openLoginAsGuest() {
         if (loginAsGuest == null) {
             try {
@@ -84,19 +83,19 @@ public class ViewHandler {
         stage.show();
     }
 
-    public void openPrivateChat(){
-        if (privateChatScene==null){
-            try {
-                Parent root = loadFXML("../view/privateChat/PrivateChat.fxml");
-                privateChatScene= new Scene(root);
-                stage.setTitle("Private Chat");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        stage.setScene(privateChatScene);
-        stage.show();
-    }
+//    public void openPrivateChat(){
+//        if (privateChatScene==null){
+//            try {
+//                Parent root = loadFXML("../view/privateChat/PrivateChat.fxml");
+//                privateChatScene= new Scene(root);
+//                stage.setTitle("Private Chat");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        stage.setScene(privateChatScene);
+//        stage.show();
+//    }
 
     private Parent loadFXML(String path) throws IOException {
         FXMLLoader loader = new FXMLLoader();

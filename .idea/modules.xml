@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" filepath="$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ideproects.iml" filepath="$PROJECT_DIR$/.idea/Ideproects.iml" />
       <module fileurl="file://$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" filepath="$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RMICallBack/RMICallBack.iml" filepath="$PROJECT_DIR$/RMICallBack/RMICallBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" filepath="$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TaskList/TaskList.iml" filepath="$PROJECT_DIR$/TaskList/TaskList.iml" />

@@ -16,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/ToUpperCaseMVVMSockets/ToUpperCaseMVVMSockets.iml" filepath="$PROJECT_DIR$/ToUpperCaseMVVMSockets/ToUpperCaseMVVMSockets.iml" />
       <module fileurl="file://$PROJECT_DIR$/Two Views/Two Views.iml" filepath="$PROJECT_DIR$/Two Views/Two Views.iml" />
       <module fileurl="file://$PROJECT_DIR$/MVVM/UpperCaseMVVM.iml" filepath="$PROJECT_DIR$/MVVM/UpperCaseMVVM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UppercaseBroadcast/UppercaseBroadcast.iml" filepath="$PROJECT_DIR$/UppercaseBroadcast/UppercaseBroadcast.iml" />
     </modules>
   </component>
 </project>

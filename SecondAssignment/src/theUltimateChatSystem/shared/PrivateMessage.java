@@ -6,7 +6,7 @@ public class PrivateMessage implements Serializable {
     private String username1;
     private String username2;
     private MessageList messageList;
-    private  Message sendMessage;
+    private Message sendMessage;
 
     public PrivateMessage(String username1, String username2) {
         this.username1 = username1;
@@ -14,7 +14,7 @@ public class PrivateMessage implements Serializable {
         messageList = new MessageList();
         this.sendMessage=null;
     }
-    public PrivateMessage(String username1,String username2,Message sendMessage){
+    public PrivateMessage(String username1, String username2, Message sendMessage){
         this.username2=username2;
         this.username1=username1;
         this.sendMessage=sendMessage;

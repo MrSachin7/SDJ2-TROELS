@@ -6,4 +6,5 @@ import java.rmi.RemoteException;
 public interface Server extends Remote {
     UpperCaseServer getUpperCaseServer() throws RemoteException;
     LowerCaseServer getLowerCaseServer() throws RemoteException;
+
 }

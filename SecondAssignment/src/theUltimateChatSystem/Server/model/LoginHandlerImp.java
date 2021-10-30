@@ -3,10 +3,9 @@ package theUltimateChatSystem.Server.model;
 import theUltimateChatSystem.shared.User;
 import theUltimateChatSystem.shared.UserList;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LoginHandlerImp implements LoginHandler{
+public class LoginHandlerImp implements LoginHandler {
 
     private UserList everyUsers;
 

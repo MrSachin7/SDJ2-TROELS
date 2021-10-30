@@ -2,8 +2,8 @@ package theUltimateChatSystem.Client.networking;
 
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.utils.Request;
 import theUltimateChatSystem.shared.User;
+import theUltimateChatSystem.shared.utils.Request;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.SQLData;
 import java.util.List;
 
 public class ClientSocket implements Client {

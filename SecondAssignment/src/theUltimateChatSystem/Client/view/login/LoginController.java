@@ -33,10 +33,7 @@ public class LoginController implements ViewController {
         viewHandler.openCreateAccount();
     }
 
-    @FXML
-    private void onLoginAsGuest(ActionEvent event) {
-        viewHandler.openLoginAsGuest();
-    }
+
 
     @FXML
     private void onLogin(ActionEvent event) {

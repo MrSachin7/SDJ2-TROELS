@@ -1,8 +1,6 @@
 package theUltimateChatSystem.shared;
 
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.SplittableRandom;
 
 public class User implements Serializable {
     private String userName;

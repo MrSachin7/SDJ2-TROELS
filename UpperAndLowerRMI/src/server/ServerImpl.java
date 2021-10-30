@@ -26,4 +26,6 @@ public class ServerImpl implements Server {
     public LowerCaseServer getLowerCaseServer() throws RemoteException {
         return new LowerCaseServerImpl();
     }
+
+
 }

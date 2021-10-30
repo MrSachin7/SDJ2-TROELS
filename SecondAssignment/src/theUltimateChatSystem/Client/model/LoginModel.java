@@ -1,7 +1,7 @@
 package theUltimateChatSystem.Client.model;
 
-import theUltimateChatSystem.shared.utils.Subject;
 import theUltimateChatSystem.shared.User;
+import theUltimateChatSystem.shared.utils.Subject;
 
 public interface LoginModel extends Subject {
     boolean isConnectionPossible(String username);

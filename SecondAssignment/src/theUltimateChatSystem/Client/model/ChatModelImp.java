@@ -3,14 +3,13 @@ package theUltimateChatSystem.Client.model;
 import theUltimateChatSystem.Client.networking.Client;
 import theUltimateChatSystem.shared.Message;
 import theUltimateChatSystem.shared.PrivateMessage;
-import theUltimateChatSystem.shared.User;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
-public class ChatModelImp implements ChatModel{
+public class ChatModelImp implements ChatModel {
     private Client client;
     private PropertyChangeSupport support;
 

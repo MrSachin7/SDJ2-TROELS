@@ -1,10 +1,8 @@
 package theUltimateChatSystem.Server;
 
-import theUltimateChatSystem.Server.model.LoginHandlerImp;
 import theUltimateChatSystem.Server.model.ChatHandlerImpl;
+import theUltimateChatSystem.Server.model.LoginHandlerImp;
 import theUltimateChatSystem.Server.networking.SocketServer;
-
-import java.util.HashMap;
 
 public class RunServer {
     public static void main(String[] args) {

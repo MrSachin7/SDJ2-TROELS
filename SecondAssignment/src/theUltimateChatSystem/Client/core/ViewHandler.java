@@ -9,8 +9,7 @@ import theUltimateChatSystem.Client.view.ViewController;
 import java.io.IOException;
 
 public class ViewHandler {
-    private Scene loginAsGuest;
-    private Scene chatScene, createAccountScene, loginScene,privateChatScene;
+    private Scene chatScene, createAccountScene, loginScene;
     private Stage stage;
     private ViewModelFactory vmf;
 
@@ -22,21 +21,7 @@ public class ViewHandler {
         stage = new Stage();
         openLogin();
     }
-    
-    public void openLoginAsGuest() {
-        if (loginAsGuest == null) {
-            try {
-                Parent root = loadFXML("../view/loginAsGuest/username.fxml");
-                stage.setTitle("Login as a guest");
-                loginAsGuest = new Scene(root);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        stage.setScene(loginAsGuest);
-        stage.show();
-    }
 
     public void openChat() {
         if (chatScene == null) {

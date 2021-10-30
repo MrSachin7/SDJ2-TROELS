@@ -2,7 +2,7 @@ package rmiuppercase.server;
 
 import rmiuppercase.server.model.TextManagerImpl;
 import rmiuppercase.shared.networking.RMIServer;
-import rmiuppercase.shared.networking.RMIServerImpl;
+import rmiuppercase.server.networking.RMIServerImpl;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;

@@ -35,10 +35,7 @@ public class CreateAccountController implements ViewController {
         viewHandler.openLogin();
     }
 
-    @FXML
-    private void onLoginAsGuest(ActionEvent event) {
-        viewHandler.openLoginAsGuest();
-    }
+
 
     @FXML
     private void onSignUp() {

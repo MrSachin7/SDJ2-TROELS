@@ -1,6 +1,6 @@
 package theUltimateChatSystemWithRMI.Client.model;
 
-import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.Client;
+import theUltimateChatSystemWithRMI.Client.networking.Client;
 import theUltimateChatSystemWithRMI.shared.Message;
 import theUltimateChatSystemWithRMI.shared.PrivateMessage;
 
@@ -58,10 +58,7 @@ public class ChatModelImp implements ChatModel{
         client.sendPrivateMessage(privateMessage);
     }
 
-    @Override
-    public boolean doesPrivateMessageExists(String username1, String username2) {
-        return client.doesPrivateMessageExists(username1,username2);
-    }
+
 
     @Override
     public List<Message> getUsersMessage(String userName1, String userName2) {

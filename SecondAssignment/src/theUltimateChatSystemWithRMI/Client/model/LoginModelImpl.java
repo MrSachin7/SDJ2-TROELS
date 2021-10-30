@@ -1,6 +1,6 @@
 package theUltimateChatSystemWithRMI.Client.model;
 
-import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.Client;
+import theUltimateChatSystemWithRMI.Client.networking.Client;
 import theUltimateChatSystemWithRMI.shared.User;
 
 import java.beans.PropertyChangeEvent;

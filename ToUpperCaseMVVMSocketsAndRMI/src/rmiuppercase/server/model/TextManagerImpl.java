@@ -22,6 +22,7 @@ public class TextManagerImpl implements TextManager {
         String result = str.toUpperCase();
         LogEntry logEntry = new LogEntry(str, result);
         logEntries.add(logEntry);
+        System.out.println("Log added");
         support.firePropertyChange("NewLogEntry", null, logEntry);
         return result;
     }

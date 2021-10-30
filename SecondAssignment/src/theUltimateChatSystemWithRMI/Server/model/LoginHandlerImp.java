@@ -2,23 +2,22 @@ package theUltimateChatSystemWithRMI.Server.model;
 
 import theUltimateChatSystemWithRMI.shared.User;
 import theUltimateChatSystemWithRMI.shared.UserList;
-import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.LoginHandler;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-public class LoginHandlerImp implements LoginHandler {
+public class LoginHandlerImp implements LoginHandler, Serializable {
 
     private UserList everyUsers;
 
     public LoginHandlerImp() throws RemoteException {
-        UnicastRemoteObject.exportObject(this,0);
         everyUsers= new UserList();
     }
     @Override
     public boolean addUser(User user) {
         everyUsers.addUser(user);
+        System.out.println("USer added :"+ user.getUserName());
 //        for (int i = 0; i < everyUsers.size(); i++) {
 //            System.out.println(everyUsers.get(i));
 //        }

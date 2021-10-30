@@ -13,7 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TaskList/TaskList.iml" filepath="$PROJECT_DIR$/TaskList/TaskList.iml" />
       <module fileurl="file://$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" filepath="$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ThirdAssignment/ThirdAssignment.iml" filepath="$PROJECT_DIR$/ThirdAssignment/ThirdAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/ToUpperCaseMVVMSocketsAndRMI/ToUpperCaseMVVMSocketsAndRMI.iml" filepath="$PROJECT_DIR$/ToUpperCaseMVVMSocketsAndRMI/ToUpperCaseMVVMSocketsAndRMI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Two Views/Two Views.iml" filepath="$PROJECT_DIR$/Two Views/Two Views.iml" />
       <module fileurl="file://$PROJECT_DIR$/UpperAndLowerRMI/UpperAndLowerRMI.iml" filepath="$PROJECT_DIR$/UpperAndLowerRMI/UpperAndLowerRMI.iml" />

@@ -2,23 +2,22 @@ package theUltimateChatSystemWithRMI.Server.model;
 
 import theUltimateChatSystemWithRMI.shared.Message;
 import theUltimateChatSystemWithRMI.shared.PrivateMessage;
-import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.ChatHandler;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatHandlerImpl implements ChatHandler {
+public class ChatHandlerImpl implements ChatHandler, Serializable {
     private List<Message> messageList;
     private List<PrivateMessage> privateMessageList;
     private PropertyChangeSupport support;
 
 
     public ChatHandlerImpl() throws RemoteException {
-        UnicastRemoteObject.exportObject(this,0);
+
         privateMessageList = new ArrayList<>();
         messageList = new ArrayList<>();
         support = new PropertyChangeSupport(this);

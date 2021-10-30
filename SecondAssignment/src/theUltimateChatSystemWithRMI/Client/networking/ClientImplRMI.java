@@ -25,6 +25,7 @@ public class ClientImplRMI implements Client, ClientCallBack {
             Registry registry = LocateRegistry.getRegistry(1099);
             server = (Server) registry.lookup("Server");
             support = new PropertyChangeSupport(this);
+            server.registerClient(this);
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -142,4 +143,11 @@ public class ClientImplRMI implements Client, ClientCallBack {
     public void removeListener(String eventName, PropertyChangeListener listener) {
         support.removePropertyChangeListener(eventName, listener);
     }
+
+
+    public void updateGlobalChat(Message message) throws RemoteException {
+        support.firePropertyChange("addMessage", null,message);
+    }
+
+
 }

@@ -4,11 +4,12 @@ import theUltimateChatSystemWithRMI.shared.Message;
 import theUltimateChatSystemWithRMI.shared.PrivateMessage;
 import theUltimateChatSystemWithRMI.shared.utils.Subject;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public interface ChatHandler extends Subject {
+public interface ChatHandler extends Subject, Serializable {
     List<Message> getMessages() ;
 
     void addMessage(Message message);

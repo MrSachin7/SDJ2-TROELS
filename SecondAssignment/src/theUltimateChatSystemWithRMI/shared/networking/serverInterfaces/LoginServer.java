@@ -1,12 +1,14 @@
 package theUltimateChatSystemWithRMI.shared.networking.serverInterfaces;
 
 import theUltimateChatSystemWithRMI.shared.User;
+import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public interface LoginServer extends Remote {
+public interface LoginServer extends Remote, Serializable {
     boolean addUser(User user) throws RemoteException;
 
     void removeUser(User user)throws RemoteException ;
@@ -16,4 +18,6 @@ public interface LoginServer extends Remote {
     boolean isLoginPossible(User arg) throws RemoteException ;
 
     List<String> getAllUsers() throws RemoteException;
+
+    void setAllClients(List<ClientCallBack> allClients) throws RemoteException;
 }

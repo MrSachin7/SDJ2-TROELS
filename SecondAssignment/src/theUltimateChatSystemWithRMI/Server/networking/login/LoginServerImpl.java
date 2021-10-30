@@ -2,13 +2,17 @@ package theUltimateChatSystemWithRMI.Server.networking.login;
 
 import theUltimateChatSystemWithRMI.Server.model.LoginHandler;
 import theUltimateChatSystemWithRMI.shared.User;
+import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.LoginServer;
 
+import java.lang.invoke.CallSite;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class LoginServerImpl implements LoginServer {
+    private List<ClientCallBack> allClients;
+
     private LoginHandler loginHandler;
 
     public LoginServerImpl(LoginHandler loginHandler) throws RemoteException {
@@ -38,5 +42,10 @@ public class LoginServerImpl implements LoginServer {
     @Override
     public List<String> getAllUsers() {
         return loginHandler.getAllUsers();
+    }
+
+    @Override
+    public void setAllClients(List<ClientCallBack> allClients) {
+        this.allClients=allClients;
     }
 }

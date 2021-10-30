@@ -26,6 +26,8 @@ public class ChatHandlerImpl implements ChatHandler, Serializable {
     @Override
     public void addMessage(Message message) {
         messageList.add(message);
+        System.out.println(message+ " is added");
+        System.out.println("New messageList :"+messageList);
         //  support.firePropertyChange("addMessage",null,message);   // message OR messageList to send ??
     }
 

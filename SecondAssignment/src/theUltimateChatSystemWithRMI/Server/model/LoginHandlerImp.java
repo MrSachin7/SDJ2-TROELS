@@ -12,12 +12,13 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
     private UserList everyUsers;
 
     public LoginHandlerImp() throws RemoteException {
-        everyUsers= new UserList();
+        everyUsers = new UserList();
     }
+
     @Override
     public boolean addUser(User user) {
         everyUsers.addUser(user);
-        System.out.println("USer added :"+ user.getUserName());
+        System.out.println("USer added :" + user.getUserName());
 //        for (int i = 0; i < everyUsers.size(); i++) {
 //            System.out.println(everyUsers.get(i));
 //        }
@@ -37,6 +38,8 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
 
     @Override
     public boolean isLoginPossible(User user) {
+        System.out.println("Is login possible method is called");
+        System.out.println(everyUsers.contains(user) + " is returned");
         return everyUsers.contains(user);
     }
 

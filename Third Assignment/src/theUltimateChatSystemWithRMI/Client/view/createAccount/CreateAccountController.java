@@ -3,6 +3,7 @@ package theUltimateChatSystemWithRMI.Client.view.createAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import theUltimateChatSystemWithRMI.Client.core.ViewHandler;
 import theUltimateChatSystemWithRMI.Client.core.ViewModelFactory;
@@ -12,9 +13,9 @@ public class CreateAccountController implements ViewController {
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
-    private TextField confirm;
+    private PasswordField confirm;
     @FXML
     private Label errorLabel;
 

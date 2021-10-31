@@ -3,6 +3,7 @@ package theUltimateChatSystemWithRMI.Client.view.login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import theUltimateChatSystemWithRMI.Client.core.ViewHandler;
 import theUltimateChatSystemWithRMI.Client.core.ViewModelFactory;
@@ -13,7 +14,7 @@ public class LoginController implements ViewController {
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private Label errorLabel;
 

@@ -1,3 +1,5 @@
+package StudentOrdering;
+
 public class Student {
     private String studentNumber;
     private String name;

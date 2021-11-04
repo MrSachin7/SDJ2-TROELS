@@ -1,3 +1,5 @@
+package StudentOrdering;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class RunExample {
         System.out.println("Alphabetical Order \n");
         alphabeticalOrder.generateSchedule(studentList);
         System.out.println("........\n\n");
-        System.out.println("Student Number Order \n");
+        System.out.println("StudentOrdering.Student Number Order \n");
         studentNumberOrder.generateSchedule(studentList);
 
 

@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/RMICallBack/RMICallBack.iml" filepath="$PROJECT_DIR$/RMICallBack/RMICallBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" filepath="$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" filepath="$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TaskList/TaskList.iml" filepath="$PROJECT_DIR$/TaskList/TaskList.iml" />
       <module fileurl="file://$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" filepath="$PROJECT_DIR$/TemperaturePresenter/TemperaturePresenter.iml" />
       <module fileurl="file://$PROJECT_DIR$/Third Assignment/Third Assignment.iml" filepath="$PROJECT_DIR$/Third Assignment/Third Assignment.iml" />

@@ -39,16 +39,24 @@ public class ChatServerImpl implements ChatServer {
     }
 
     @Override
-    public void addPrivateMessage(PrivateMessage privateMessage) throws RemoteException {
-        chatHandler.addPrivateMessage(privateMessage);
-        for (ClientCallBack clients:allClients
-             ) {
-            if (clients.getUsername().equals(privateMessage.getUsername1()) ||clients.getUsername().equals(privateMessage.getUsername2()) ){
-                clients.updatePrivateChat(privateMessage.getSendMessage());
+    public void addPrivateMessage(PrivateMessage privateMessage)  {
+        try {
+            chatHandler.addPrivateMessage(privateMessage);
+            for (ClientCallBack clients:allClients
+                 ) {
+                if (clients.getUsername().equals(privateMessage.getUsername1()) ||clients.getUsername().equals(privateMessage.getUsername2()) ){
+                    clients.updatePrivateChat(privateMessage.getSendMessage());
+                }
             }
+        } catch (RemoteException e) {
+           // updateUserDisconnected(clients);
+
         }
 
     }
+
+
+
 
     @Override
     public List<Message> getPrivateMessage(PrivateMessage arg) throws RemoteException {

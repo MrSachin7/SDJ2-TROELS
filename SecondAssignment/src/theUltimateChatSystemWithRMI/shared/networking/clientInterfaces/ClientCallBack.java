@@ -14,4 +14,6 @@ public interface ClientCallBack extends Remote {
     void updatePrivateChat(Message sendMessage)  throws RemoteException;
 
     void updateUserAdded(String username)  throws RemoteException;
+
+    void updateUserRemoved(String username) throws RemoteException;
 }

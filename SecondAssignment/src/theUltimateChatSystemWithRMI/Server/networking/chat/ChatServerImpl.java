@@ -18,9 +18,9 @@ public class ChatServerImpl implements ChatServer {
     private ChatHandler chatHandler;
 
     public ChatServerImpl(ChatHandler chatHandler) throws RemoteException {
-        UnicastRemoteObject.exportObject(this,0);
+        UnicastRemoteObject.exportObject(this, 0);
         this.chatHandler = chatHandler;
-        allClients= new ArrayList<>();
+        allClients = new ArrayList<>();
     }
 
     @Override
@@ -32,19 +32,28 @@ public class ChatServerImpl implements ChatServer {
     public void addMessage(Message message) throws RemoteException {
         chatHandler.addMessage(message);
         for (ClientCallBack all : allClients
-        ) {all.updateGlobalChat(message);
+        ) {
+            all.updateGlobalChat(message);
 
         }
 
     }
 
     @Override
-    public void addPrivateMessage(PrivateMessage privateMessage) throws RemoteException {
+    public void addPrivateMessage(PrivateMessage privateMessage) {
         chatHandler.addPrivateMessage(privateMessage);
-        for (ClientCallBack clients:allClients
-             ) {
-            if (clients.getUsername().equals(privateMessage.getUsername1()) ||clients.getUsername().equals(privateMessage.getUsername2()) ){
-                clients.updatePrivateChat(privateMessage.getSendMessage());
+        for (ClientCallBack clients : allClients
+        ) {
+            try {
+                if (clients.getUsername().equals(privateMessage.getUsername1()) || clients.getUsername().equals(privateMessage.getUsername2())) {
+                    clients.updatePrivateChat(privateMessage.getSendMessage());
+                }
+            } catch (RemoteException e) {
+                try {
+                    clients.updateUserRemoved(clients.getUsername());
+                } catch (RemoteException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
 

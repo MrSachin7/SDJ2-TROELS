@@ -168,5 +168,10 @@ public  class ClientImplRMI implements Client, ClientCallBack {
         support.firePropertyChange("userAdded",null,username);
     }
 
+    @Override
+    public void updateUserRemoved(String username) {
+        support.firePropertyChange("userRemoved",null,username);
+    }
+
 
 }

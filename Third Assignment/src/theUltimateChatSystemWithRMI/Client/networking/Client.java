@@ -12,9 +12,9 @@ public interface Client extends Subject {
 
     void sendMessage(Message message) ;
 
-    void startListeningToServer(User user) ;
-
     List<Message> getMessages() ;
+
+   // String getUsername();
 
     List<String> getUserList()  ;
 
@@ -25,4 +25,5 @@ public interface Client extends Subject {
     void sendPrivateMessage(PrivateMessage privateMessage)  ;
 
     List<Message> getUsersMessage(PrivateMessage privateMessage);
+    void disconnected();
 }

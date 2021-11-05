@@ -18,7 +18,7 @@ import java.util.List;
 public  class ClientImplRMI implements Client, ClientCallBack {
     private Server server;
     private PropertyChangeSupport support;
-    private String username;
+    private User user;
 
     public ClientImplRMI() {
         try {
@@ -61,11 +61,7 @@ public  class ClientImplRMI implements Client, ClientCallBack {
 
     }
 
-    @Override
-    public void startListeningToServer(User user) {
-        //   chatHandler.a
 
-    }
 
     @Override
     public List<Message> getMessages() {
@@ -106,7 +102,7 @@ public  class ClientImplRMI implements Client, ClientCallBack {
     public boolean isLoginPossible(User user) {
         try {
             if (server.getLoginServer().isLoginPossible(user)){
-                this.username=user.getUserName();
+                this.user=user;
                 return true;
             }
         } catch (RemoteException e) {
@@ -138,6 +134,16 @@ public  class ClientImplRMI implements Client, ClientCallBack {
     }
 
     @Override
+    public void disconnected() {
+        try {
+            server.isDisconnected(this);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
         support.addPropertyChangeListener(eventName, listener);
 
@@ -155,7 +161,7 @@ public  class ClientImplRMI implements Client, ClientCallBack {
 
     @Override
     public String getUsername() {
-       return username;
+       return user.getUserName();
     }
 
     @Override
@@ -166,6 +172,17 @@ public  class ClientImplRMI implements Client, ClientCallBack {
     @Override
     public void updateUserAdded(String username) {
         support.firePropertyChange("userAdded",null,username);
+    }
+
+
+    @Override
+    public void hasBeenDisconnected(String username) {
+        support.firePropertyChange("userRemoved",null,username);
+    }
+
+    @Override
+    public User getUser() throws RemoteException {
+        return this.user;
     }
 
 

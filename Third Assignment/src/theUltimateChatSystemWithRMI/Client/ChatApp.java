@@ -9,17 +9,23 @@ import theUltimateChatSystemWithRMI.Client.core.ViewModelFactory;
 
 public class ChatApp extends Application {
 
+    private ClientFactory cf;
+    private ModelFactory mf;
+    private ViewModelFactory vmf;
+    private ViewHandler mv;
+
     @Override
     public void start(Stage stage) throws Exception {
-        ClientFactory cf = new ClientFactory();
-        ModelFactory mf = new ModelFactory(cf);
-        ViewModelFactory vmf= new ViewModelFactory(mf);
-        ViewHandler mv = new ViewHandler(vmf);
+         cf = new ClientFactory();
+         mf = new ModelFactory(cf);
+         vmf= new ViewModelFactory(mf);
+         mv = new ViewHandler(vmf);
         mv.start();
     }
 
     @Override
     public void stop() throws Exception {
-
+        System.out.println("stop");
+        cf.getClient().disconnected();
     }
 }

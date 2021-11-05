@@ -1,6 +1,8 @@
 package theUltimateChatSystemWithRMI.shared.networking.serverInterfaces;
 
 
+import theUltimateChatSystemWithRMI.Client.networking.Client;
+import theUltimateChatSystemWithRMI.Client.networking.ClientImplRMI;
 import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 
 import java.rmi.AlreadyBoundException;
@@ -12,4 +14,6 @@ public interface Server extends Remote {
     ChatServer getChatServer() throws  RemoteException;
     void registerClient(ClientCallBack client) throws RemoteException;
     void startServer() throws RemoteException, AlreadyBoundException;
+
+    void isDisconnected(ClientCallBack clientImplRMI) throws RemoteException;
 }

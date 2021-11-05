@@ -24,11 +24,6 @@ public class LoginServerImpl implements LoginServer {
     }
 
     @Override
-    public void removeUser(User user) {
-            loginHandler.removeUser(user);
-    }
-
-    @Override
     public boolean isConnectionPossible(String userName) {
         return loginHandler.isConnectionPossible(userName);
     }

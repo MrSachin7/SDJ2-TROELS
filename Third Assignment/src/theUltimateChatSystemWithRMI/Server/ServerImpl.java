@@ -1,5 +1,7 @@
 package theUltimateChatSystemWithRMI.Server;
 
+import theUltimateChatSystemWithRMI.Client.networking.Client;
+import theUltimateChatSystemWithRMI.Client.networking.ClientImplRMI;
 import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.ChatServer;
 import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.LoginServer;
@@ -24,13 +26,19 @@ public class ServerImpl implements Server {
         UnicastRemoteObject.exportObject(this, 0);
         allClients = new ArrayList<>();
 
-
     }
 
     public void startServer() throws AlreadyBoundException, RemoteException {
         Registry registry = LocateRegistry.createRegistry(1099);
         registry.bind("Server", this);
         System.out.println("Server started...");
+    }
+
+    @Override
+    public void isDisconnected(ClientCallBack clientImplRMI) throws RemoteException {
+        allClients.remove(clientImplRMI);
+        sendClientTOChatServer(this.allClients);
+        chatServer.isDisconnected(clientImplRMI);
     }
 
     @Override

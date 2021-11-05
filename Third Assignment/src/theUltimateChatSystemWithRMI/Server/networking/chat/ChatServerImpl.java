@@ -1,6 +1,7 @@
 package theUltimateChatSystemWithRMI.Server.networking.chat;
 
 import theUltimateChatSystemWithRMI.Server.model.ChatHandler;
+import theUltimateChatSystemWithRMI.Server.model.LoginHandler;
 import theUltimateChatSystemWithRMI.shared.Message;
 import theUltimateChatSystemWithRMI.shared.PrivateMessage;
 import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
@@ -16,11 +17,13 @@ public class ChatServerImpl implements ChatServer {
 
     private List<ClientCallBack> allClients;
     private ChatHandler chatHandler;
+    private LoginHandler loginHandler;
 
-    public ChatServerImpl(ChatHandler chatHandler) throws RemoteException {
-        UnicastRemoteObject.exportObject(this,0);
+    public ChatServerImpl(ChatHandler chatHandler,LoginHandler loginHandler) throws RemoteException {
+        UnicastRemoteObject.exportObject(this, 0);
         this.chatHandler = chatHandler;
-        allClients= new ArrayList<>();
+        this.loginHandler=loginHandler;
+        allClients = new ArrayList<>();
     }
 
     @Override
@@ -32,30 +35,29 @@ public class ChatServerImpl implements ChatServer {
     public void addMessage(Message message) throws RemoteException {
         chatHandler.addMessage(message);
         for (ClientCallBack all : allClients
-        ) {all.updateGlobalChat(message);
+        ) {
+            all.updateGlobalChat(message);
 
         }
 
     }
 
     @Override
-    public void addPrivateMessage(PrivateMessage privateMessage)  {
-        try {
-            chatHandler.addPrivateMessage(privateMessage);
-            for (ClientCallBack clients:allClients
-                 ) {
-                if (clients.getUsername().equals(privateMessage.getUsername1()) ||clients.getUsername().equals(privateMessage.getUsername2()) ){
+    public void addPrivateMessage(PrivateMessage privateMessage) {
+        chatHandler.addPrivateMessage(privateMessage);
+        for (ClientCallBack clients : allClients
+        ) {
+            try {
+                if (clients.getUsername().equals(privateMessage.getUsername1()) || clients.getUsername().equals(privateMessage.getUsername2())) {
                     clients.updatePrivateChat(privateMessage.getSendMessage());
                 }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+                // allClients.remove(clients);
+
             }
-        } catch (RemoteException e) {
-           // updateUserDisconnected(clients);
-
         }
-
     }
-
-
 
 
     @Override
@@ -66,5 +68,15 @@ public class ChatServerImpl implements ChatServer {
     @Override
     public void setAllClients(List<ClientCallBack> allClients) {
         this.allClients = allClients;
+    }
+
+    @Override
+    public void isDisconnected(ClientCallBack clientImplRMI) throws RemoteException {
+        for (ClientCallBack client : allClients
+        ) {
+            loginHandler.removeActiveUser(clientImplRMI.getUser());
+            client.hasBeenDisconnected(clientImplRMI.getUsername());
+        }
+        // send to alive clients
     }
 }

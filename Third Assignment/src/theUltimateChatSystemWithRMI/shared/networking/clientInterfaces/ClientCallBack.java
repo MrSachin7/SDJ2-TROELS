@@ -3,6 +3,7 @@ package theUltimateChatSystemWithRMI.shared.networking.clientInterfaces;
 
 
 import theUltimateChatSystemWithRMI.shared.Message;
+import theUltimateChatSystemWithRMI.shared.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -14,4 +15,7 @@ public interface ClientCallBack extends Remote {
     void updatePrivateChat(Message sendMessage)  throws RemoteException;
 
     void updateUserAdded(String username)  throws RemoteException;
+    void hasBeenDisconnected(String username) throws RemoteException;
+
+    User getUser() throws RemoteException;
 }

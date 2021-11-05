@@ -1,7 +1,9 @@
 package theUltimateChatSystemWithRMI.Server.model;
 
+import theUltimateChatSystemWithRMI.Client.networking.Client;
 import theUltimateChatSystemWithRMI.shared.User;
 import theUltimateChatSystemWithRMI.shared.UserList;
+import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -10,9 +12,13 @@ import java.util.List;
 public class LoginHandlerImp implements LoginHandler, Serializable {
 
     private UserList everyUsers;
+    private UserList activeUsers;
 
-    public LoginHandlerImp() throws RemoteException {
+    public LoginHandlerImp()  {
         everyUsers = new UserList();
+        activeUsers= new UserList();
+        everyUsers.addUser(new User("Sachin","aa"));
+        everyUsers.addUser(new User("Troels","aa"));
     }
 
     @Override
@@ -28,7 +34,7 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
 
     @Override
     public void removeUser(User user) {
-        everyUsers.removeUser(user);
+        activeUsers.removeUser(user);
     }
 
     @Override
@@ -40,12 +46,26 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
     public boolean isLoginPossible(User user) {
         System.out.println("Is login possible method is called");
         System.out.println(everyUsers.contains(user) + " is returned");
-        return everyUsers.contains(user);
+        if (everyUsers.contains(user)){
+            addActiveUser(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public List<String> getAllUsers() {
-        return everyUsers.allUserNames();
+        return activeUsers.allUserNames();
+    }
+
+    @Override
+    public void addActiveUser(User user) {
+        activeUsers.addUser(user);
+    }
+
+    @Override
+    public void removeActiveUser(User user) {
+        everyUsers.removeUser(user);
     }
 
 }

@@ -1,5 +1,7 @@
 package theUltimateChatSystemWithRMI.shared.networking.serverInterfaces;
 
+import theUltimateChatSystemWithRMI.Client.networking.Client;
+import theUltimateChatSystemWithRMI.Client.networking.ClientImplRMI;
 import theUltimateChatSystemWithRMI.shared.Message;
 import theUltimateChatSystemWithRMI.shared.PrivateMessage;
 import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
@@ -19,4 +21,6 @@ public interface ChatServer extends Remote,Serializable {
     List<Message> getPrivateMessage(PrivateMessage arg) throws RemoteException;
 
     void setAllClients(List<ClientCallBack> allClients) throws RemoteException;
+
+    void isDisconnected(ClientCallBack clientImplRMI) throws RemoteException;
 }

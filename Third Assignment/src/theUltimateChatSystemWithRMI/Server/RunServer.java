@@ -2,6 +2,7 @@ package theUltimateChatSystemWithRMI.Server;
 
 
 import theUltimateChatSystemWithRMI.Server.model.ChatHandlerImpl;
+import theUltimateChatSystemWithRMI.Server.model.LoginHandler;
 import theUltimateChatSystemWithRMI.Server.model.LoginHandlerImp;
 import theUltimateChatSystemWithRMI.Server.networking.chat.ChatServerImpl;
 import theUltimateChatSystemWithRMI.Server.networking.login.LoginServerImpl;
@@ -15,8 +16,10 @@ import java.rmi.RemoteException;
 
 public class RunServer {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
-        LoginServer loginServer = new LoginServerImpl(new LoginHandlerImp());
-        ChatServer chatServer = new ChatServerImpl(new ChatHandlerImpl());
+
+        LoginHandler loginHandler = new LoginHandlerImp();
+        LoginServer loginServer = new LoginServerImpl(loginHandler);
+        ChatServer chatServer = new ChatServerImpl(new ChatHandlerImpl(),loginHandler);
         Server server = new ServerImpl(loginServer,chatServer);
        server.startServer();
 

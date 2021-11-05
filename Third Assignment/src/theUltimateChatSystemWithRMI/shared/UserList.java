@@ -18,6 +18,10 @@ public class UserList implements Serializable {
         allUsers.remove(user);
     }
 
+    public void removeUser(String username) {
+        allUsers.removeIf(user -> user.getUserName().equals(username));
+    }
+
     public ArrayList<String> allUserNames() {
         ArrayList<String> usernames = new ArrayList<>();
         for (int i = 0; i < allUsers.size(); i++) {
@@ -28,17 +32,18 @@ public class UserList implements Serializable {
 
     public boolean contains(User user) {
         for (int i = 0; i < allUsers.size(); i++) {
-            if (user.equals(allUsers.get(i))){
+            if (user.equals(allUsers.get(i))) {
                 return true;
             }
         }
         return false;
     }
-    public int size()
-    {
+
+    public int size() {
         return allUsers.size();
     }
-    public User get(int index){
+
+    public User get(int index) {
         return allUsers.get(index);
     }
 }

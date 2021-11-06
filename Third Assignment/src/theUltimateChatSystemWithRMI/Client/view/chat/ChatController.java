@@ -35,6 +35,7 @@ public class ChatController implements ViewController {
         this.viewModel = vmf.getChatViewModel();
         selectedItem.textProperty().bind(viewModel.getSelectedItem());
         viewModel.loadMessages();
+        viewModel.loadUsers();
         listView.setItems(viewModel.getMessages());
         userList.setItems(viewModel.getUserList());
         userError.textProperty().bind(viewModel.getUserError());

@@ -74,8 +74,9 @@ public class ChatServerImpl implements ChatServer {
     public void isDisconnected(ClientCallBack clientImplRMI) throws RemoteException {
         for (ClientCallBack client : allClients
         ) {
-            loginHandler.removeActiveUser(clientImplRMI.getUser());
             client.hasBeenDisconnected(clientImplRMI.getUsername());
+            loginHandler.removeActiveUser(clientImplRMI.getUser());
+
         }
         // send to alive clients
     }

@@ -32,10 +32,6 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
         return true;
     }
 
-    @Override
-    public void removeUser(User user) {
-        activeUsers.removeUser(user);
-    }
 
     @Override
     public boolean isConnectionPossible(String userName) {
@@ -65,7 +61,7 @@ public class LoginHandlerImp implements LoginHandler, Serializable {
 
     @Override
     public void removeActiveUser(User user) {
-        everyUsers.removeUser(user);
+        activeUsers.removeUser(user);
     }
 
 }

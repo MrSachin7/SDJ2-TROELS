@@ -53,7 +53,6 @@ public class ViewHandler {
 
     }
 
-
     public void openCreateAccount() {
         if (createAccountScene == null) {
             try {

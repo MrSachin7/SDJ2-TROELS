@@ -15,27 +15,46 @@ public class SeaBearGuard implements VisitSeaBear {
 
     @Override
     public void view(String personType) {
-        visitSeaBear.view(personType);
+        if (personType==null){
+
+        }
+        else
+        {visitSeaBear.view(personType);
+
+        }
+
     }
 
     @Override
     public void feed(String personType) {
-        if (personType.equals("ZooKeeper")) {
-            visitSeaBear.view(personType);
-        } else {
-            System.out.println("Only zookeepers are allowed to feed the bear");
+        if (personType==null){
+
         }
+        else{
+            if (personType.equals("ZooKeeper")) {
+                visitSeaBear.view(personType);
+            } else {
+                System.out.println("Only zookeepers are allowed to feed the bear");
+            }
+        }
+
 
     }
 
     @Override
     public void pet(String personType) {
-        if (personType.equals("Children")) {
-            visitSeaBear.pet(personType);
+        if(personType==null){
+            System.out.println("Enter number from 1-3 you stupid moron");
         }
-        else
-        {
-            System.out.println("Only children are allowed to pet the bear");
+        else{
+            if (personType.equals("Children")) {
+                visitSeaBear.pet(personType);
+            }
+            else
+            {
+                System.out.println("Only children are allowed to pet the bear");
+            }
         }
+
     }
 }

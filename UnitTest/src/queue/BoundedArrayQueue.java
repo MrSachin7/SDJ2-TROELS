@@ -1,6 +1,8 @@
 package queueadapter;
 
-public class BoundedArrayQueue implements StringQueue {
+import queue.QueueADT;
+
+public class BoundedArrayQueue implements QueueADT {
 
 	private String[] q;
 	private int front, count;
@@ -10,9 +12,9 @@ public class BoundedArrayQueue implements StringQueue {
 
 		this.cap = cap;
 	}
-	
+
 	@Override
-	public void enqueue(String element) throws IllegalArgumentException, IllegalStateException{
+	public void enqueue(T element) throws IllegalArgumentException, IllegalStateException{
 		if(q == null) {
 			q = (String[])(new Object[cap]);
 		}
@@ -83,7 +85,7 @@ public class BoundedArrayQueue implements StringQueue {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		for(int i = 0; i < count; i++) {
-			int idx = (front + i) % cap; 
+			int idx = (front + i) % cap;
 			sb.append(q[idx]);
 			if(i < count -1) {
 				sb.append(", ");

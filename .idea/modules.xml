@@ -15,7 +15,9 @@
       <module fileurl="file://$PROJECT_DIR$/Proxy/Proxy.iml" filepath="$PROJECT_DIR$/Proxy/Proxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/RMICallBack/RMICallBack.iml" filepath="$PROJECT_DIR$/RMICallBack/RMICallBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/RPGGame/RPGGame.iml" filepath="$PROJECT_DIR$/RPGGame/RPGGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ReaderWriter/ReaderWriter.iml" filepath="$PROJECT_DIR$/ReaderWriter/ReaderWriter.iml" />
       <module fileurl="file://$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" filepath="$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SingleTonPractise/SingleTonPractise.iml" filepath="$PROJECT_DIR$/SingleTonPractise/SingleTonPractise.iml" />
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" filepath="$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TEmp/TEmp.iml" filepath="$PROJECT_DIR$/TEmp/TEmp.iml" />

@@ -5,6 +5,7 @@ public class Character {
     private String weapon;
     private int health = 30;
 
+
     public Character(String name) {
         this.name = name;
     }

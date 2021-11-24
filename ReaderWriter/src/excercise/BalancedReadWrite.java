@@ -33,8 +33,8 @@ public class BalancedReadWrite {
         while (activeReaders > 0 || activeWriters > 0 || waitingWriters<waitingReaders) {
             try {
                 if (activeReaders > 0) {
-                    System.out.println("Couldnt acquire write , because of active readers");
-                } else if (activeWriters > 0) System.out.println("Couldnt acquire write , because of active writer");
+                    System.out.println("Couldn't acquire write , because of active readers");
+                } else if (activeWriters > 0) System.out.println("Couldn't acquire write , because of active writer");
 
                 wait();
             } catch (InterruptedException e) {
@@ -54,7 +54,7 @@ public class BalancedReadWrite {
         }
     }
 
-    public void releaseWrite() {
+    public synchronized void releaseWrite() {
         activeWriters--;
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t write released");
         notifyAll();

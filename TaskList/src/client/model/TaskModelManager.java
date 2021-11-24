@@ -16,9 +16,6 @@ public class TaskModelManager implements TaskModel {
         support = new PropertyChangeSupport(this);
     }
 
-
-
-
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);

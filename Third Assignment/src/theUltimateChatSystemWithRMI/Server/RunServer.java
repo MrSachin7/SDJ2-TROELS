@@ -19,9 +19,9 @@ public class RunServer {
 
         LoginHandler loginHandler = new LoginHandlerImp();
         LoginServer loginServer = new LoginServerImpl(loginHandler);
-        ChatServer chatServer = new ChatServerImpl(new ChatHandlerImpl(),loginHandler);
-        Server server = new ServerImpl(loginServer,chatServer);
-       server.startServer();
+        ChatServer chatServer = new ChatServerImpl(new ChatHandlerImpl(), loginHandler);
+        Server server = new ServerImpl(loginServer, chatServer);
+        server.startServer();
 
     }
 }

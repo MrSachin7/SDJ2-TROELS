@@ -1,51 +1,45 @@
 package queue;
 
-import queue.QueueADT;
+public class SimpleBoundedArrayQueueA<T> implements QueueADT<T> {
 
-public class BoundedArrayQueue implements QueueADT {
-
-	private String[] q;
-	private int front, count;
+	private T[] q;
+	private int  count;
 	private int cap;
 
-	public BoundedArrayQueue(int cap) {
-
+	public SimpleBoundedArrayQueueA(int cap) {
 		this.cap = cap;
+		q = (T[])(new Object[10]);
 	}
-
+	
 	@Override
-	public void enqueue(Object element) throws IllegalArgumentException, IllegalStateException{
-		if(q == null) {
-			q = (String[])(new Object[cap]);
-		}
-
+	public void enqueue(T element) throws IllegalArgumentException, IllegalStateException{
 		if(element == null) {
 			throw new IllegalArgumentException("Null is not allowed");
 		} else if(count == cap) {
 			throw new IllegalStateException("Queue is full");
 		}
 
-		q[(front + count) % cap] = element;
+		q[count] = element;
 		count++;
 	}
 
-
 	@Override
-	public String dequeue() throws IllegalStateException {
+	public T dequeue() throws IllegalStateException {
 		if(count == 0) {
 			throw new IllegalStateException("Queue is empty");
 		}
-		String tmp = q[front];
-		q[front] = null;
-		front = (++front) % cap;
-		count--;
+		T tmp = q[0];
+		for (int i = 1; i < count; i++) {
+			q[i-1] = q[i];
+		}
+
 		return tmp;
 	}
 
 	@Override
-	public String first() {
+	public T first() {
 		if(count == 0) throw new IllegalStateException("Queue is empty");
-		return q[front];
+		return q[0];
 	}
 
 	@Override
@@ -58,29 +52,24 @@ public class BoundedArrayQueue implements QueueADT {
 		return count == 0;
 	}
 
-
-
-
-
 	@Override
-	public int indexOf(Object element) {
+	public int indexOf(T element) {
 		if(element == null) {
 			return -1;
-		}
-		for(int i = 0; i < count; i++) {
-			int idx = (front + i) % cap;
-			if(element.equals(q[idx])) {
-				return i;
+		} else {
+			for (int i = 0; i < count; i++) {
+				if (element.equals(q[i])) {
+					return i;
+				}
 			}
 		}
-
 		return -1;
 	}
 
 	@Override
-	public boolean contains(Object element) {
+	public boolean contains(T element) {
 		if(element == null) return false;
-		for (String t : q) {
+		for (T t : q) {
 			if(element.equals(t)) return true;
 		}
 		return false;
@@ -90,13 +79,11 @@ public class BoundedArrayQueue implements QueueADT {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		for(int i = 0; i < count; i++) {
-			int idx = (front + i) % cap;
-			sb.append(q[idx]);
+			sb.append(q[i]);
 			if(i < count -1) {
 				sb.append(", ");
 			}
 		}
 		return sb.toString() + "}";
 	}
-
 }

@@ -3,12 +3,10 @@ package seaBear;
 import java.util.Scanner;
 
 public class SeaBearGuard implements VisitSeaBear {
-    private String personType;
     private VisitSeaBear visitSeaBear;
 
     public SeaBearGuard() {
         this.visitSeaBear = new SeaBear();
-
     }
 
 
@@ -19,7 +17,8 @@ public class SeaBearGuard implements VisitSeaBear {
 
         }
         else
-        {visitSeaBear.view(personType);
+        {
+            visitSeaBear.view(personType);
 
         }
 
@@ -44,7 +43,7 @@ public class SeaBearGuard implements VisitSeaBear {
     @Override
     public void pet(String personType) {
         if(personType==null){
-            System.out.println("Enter number from 1-3 you stupid moron");
+            //System.out.println("Enter number from 1-3 you stupid moron");
         }
         else{
             if (personType.equals("Children")) {

@@ -16,29 +16,27 @@ public class Deposit {
         logger = Log.getInstance();
     }
 
-    public void add(Valuable valuable) {
+    public synchronized void add(Valuable valuable) {
         if (valuable instanceof WasteCan) {
             logger.log("Waste can detected , thrown away");
         } else {
             list.add(valuable);
             logger.log(valuable.getName() + " deposited");
         }
+        notifyAll();
     }
 
-    public Valuable get() throws Exception {
-        if (list.isEmpty()){
-        throw new Exception("Nothing on the list");
+    public synchronized Valuable get() throws Exception  {
+        while(list.isEmpty()){
+            logger.log("Nothing on the deposit");
+            wait();
         }
         Valuable valuable = list.get(0);
+        notifyAll();
         //logger.log(valuable.getName()+" removed from the deposit");
         return valuable;
     }
 
-    public Valuable remove(){
-        Valuable valuable = list.remove(0);
-        logger.log(valuable.getName()+" removed from the deposit");
-        return valuable;
-    }
     public int size(){
         return list.size();
     }

@@ -16,9 +16,7 @@ public class GuardsMan implements TreasureRoomDoor {
 
     @Override
     public void add(Valuable valuable) {
-
         treasureRoomDoor.add(valuable);
-
     }
 
     @Override

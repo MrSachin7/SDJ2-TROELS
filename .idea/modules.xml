@@ -10,7 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" filepath="$PROJECT_DIR$/FirstAssignment/FirstAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/FourthAssignment/FourthAssignment.iml" filepath="$PROJECT_DIR$/FourthAssignment/FourthAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Ideproects.iml" filepath="$PROJECT_DIR$/.idea/Ideproects.iml" />
-      <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC.iml" filepath="$PROJECT_DIR$/JDBC/JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JUnitTesting/JUnitTesting.iml" filepath="$PROJECT_DIR$/JUnitTesting/JUnitTesting.iml" />
       <module fileurl="file://$PROJECT_DIR$/Khaled/Khaled.iml" filepath="$PROJECT_DIR$/Khaled/Khaled.iml" />
       <module fileurl="file://$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" filepath="$PROJECT_DIR$/LambdaExpressions/LambdaExpressions.iml" />
       <module fileurl="file://$PROJECT_DIR$/Proxy/Proxy.iml" filepath="$PROJECT_DIR$/Proxy/Proxy.iml" />
@@ -19,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/ReaderWriter/ReaderWriter.iml" filepath="$PROJECT_DIR$/ReaderWriter/ReaderWriter.iml" />
       <module fileurl="file://$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" filepath="$PROJECT_DIR$/SecondAssignment/SecondAssignment.iml" />
       <module fileurl="file://$PROJECT_DIR$/SingleTonPractise/SingleTonPractise.iml" filepath="$PROJECT_DIR$/SingleTonPractise/SingleTonPractise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SocketsToUpperCase/SocketsToUpperCase.iml" filepath="$PROJECT_DIR$/SocketsToUpperCase/SocketsToUpperCase.iml" />
       <module fileurl="file://$PROJECT_DIR$/StatePattern/StatePattern.iml" filepath="$PROJECT_DIR$/StatePattern/StatePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" filepath="$PROJECT_DIR$/StrategyPattern/StrategyPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/TEmp/TEmp.iml" filepath="$PROJECT_DIR$/TEmp/TEmp.iml" />

@@ -10,7 +10,6 @@ import javafx.scene.chart.XYChart;
 public class LineChartController {
     @FXML
     LineChart<String, Number> lineChart;
-
     private XYChart.Series<String, Number> series1, series2, series3;
     private ViewHandler viewHandler;
 

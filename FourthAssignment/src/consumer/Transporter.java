@@ -38,15 +38,18 @@ public class Transporter implements Runnable {
                 }
             }
             try {
+                Log.getInstance().log("Taking the values to the safe..will take 5 seconds");
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-                Log.getInstance().log("Taking the values to the safe..will take 5 seconds");
+
             }
             treasureRoom.acquireWrite();
             for (Valuable i : transportBag
             ) {
                 treasureRoom.add(i);
+
             }
+            Log.getInstance().log("Transporter has put the items to the kings safe");
             treasureRoom.releaseWrite();
             // imitating that with the print to the console
             transportBag.clear();

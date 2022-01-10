@@ -1,0 +1,3 @@
+Silver depositedDiamond depositedSilver deposited			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0						-----NOT ENOUGH RESOURCES--POOR KING

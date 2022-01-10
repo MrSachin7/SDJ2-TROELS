@@ -1,0 +1,35 @@
+Silver depositedGold depositedSilver deposited						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Gold depositedMax size reachedMax size reachedMax size reachedMax size reached						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Max size reachedMax size reachedMax size reachedGold depositedSilver depositedSilver deposited						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Silver depositedWaste can detected , thrown awayGold deposited						----PARTY IS HERE---THE KING IS HAPPY--- --			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 2	Golds value: 110Silver depositedWaste can detected , thrown awayGold deposited						----PARTY IS HERE---THE KING IS HAPPY--- --Gold depositedSilver depositedWaste can detected , thrown away			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 5	Golds value: 275Gold depositedGold depositedGold deposited						----PARTY IS HERE---THE KING IS HAPPY--- --			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 5	Golds value: 275Silver depositedMax size reachedMax size reachedMax size reachedMax size reached						----PARTY IS HERE---THE KING IS HAPPY--- --			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 4	Golds value: 220Max size reachedMax size reachedMax size reachedMax size reachedGold depositedGold depositedGold deposited						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Gold depositedWaste can detected , thrown awayGold deposited						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 2	Golds value: 110Waste can detected , thrown awayDiamond depositedGold depositedGold depositedDiamond depositedSilver depositedTaking the values to the safe..will take 5 seconds						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Gold depositedSilver depositedSilver depositedNothing on the deposit						----PARTY IS HERE---THE KING IS HAPPY--- --			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Waste can detected , thrown awaySilver depositedNothing on the depositGold depositedNothing on the deposit						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Waste can detected , thrown awayNothing on the depositSilver depositedNothing on the depositGold depositedTaking the values to the safe..will take 5 seconds						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Transporter has put the items to the kings safeTransporter has put the items to the kings safeTransporter has put the items to the kings safeTransporter has put the items to the kings safeSilver depositedGold depositedGold depositedNothing on the deposit						----PARTY IS HERE---THE KING IS HAPPY--- --Silver depositedDiamond depositedSilver depositedTaking the values to the safe..will take 5 seconds			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 1	Silvers value: 20
+			Number of golds: 1	Golds value: 55Gold depositedSilver depositedWaste can detected , thrown awayNothing on the deposit						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Gold depositedWaste can detected , thrown awayGold depositedTaking the values to the safe..will take 5 seconds						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Transporter has put the items to the kings safeSilver depositedSilver depositedGold depositedTaking the values to the safe..will take 5 secondsTransporter has put the items to the kings safe						----PARTY IS HERE---THE KING IS HAPPY--- --Gold depositedSilver depositedGold deposited			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 2	Silvers value: 40
+			Number of golds: 2	Golds value: 110Nothing on the deposit

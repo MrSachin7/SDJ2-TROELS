@@ -9,14 +9,25 @@ import java.util.List;
 
 public class Deposit {
     private List<Valuable> list;
+    private double cap;
     private Log logger;
 
     public Deposit() {
         list = new ArrayList<>();
+        cap = 500;
         logger = Log.getInstance();
     }
 
     public synchronized void add(Valuable valuable) {
+        while (totalItemsSize() >= cap) {
+            try {
+                logger.log("Max size reached");
+                wait();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         if (valuable instanceof WasteCan) {
             logger.log("Waste can detected , thrown away");
         } else {
@@ -26,19 +37,24 @@ public class Deposit {
         notifyAll();
     }
 
-    public synchronized Valuable get() throws Exception  {
-        while(list.isEmpty()){
+    public synchronized Valuable get() throws Exception {
+        while (list.isEmpty()) {
             logger.log("Nothing on the deposit");
             wait();
         }
-        Valuable valuable = list.get(0);
+        Valuable valuable = list.remove(0);
         notifyAll();
         //logger.log(valuable.getName()+" removed from the deposit");
         return valuable;
     }
 
-    public int size(){
-        return list.size();
+    public double totalItemsSize() {
+        double count = 0;
+        for (Valuable v : list
+        ) {
+            count += v.getValue();
+        }
+        return count;
     }
 
 }

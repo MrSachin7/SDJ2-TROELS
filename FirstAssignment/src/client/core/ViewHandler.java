@@ -29,7 +29,7 @@ public class ViewHandler {
     public void openTemperaturePresenterView() {
         FXMLLoader loader = new FXMLLoader();
         if (temperaturePresenterScene == null) {
-            Parent root = getRootByPath("../client.core.view/temperaturePresenter/TemperaturePresenterView.fxml", loader);
+            Parent root = getRootByPath("../view/temperaturePresenter/TemperaturePresenterView.fxml", loader);
             TemperaturePresenterController controller = loader.getController();
             controller.init(viewModelFactory.getTemperaturePresenterViewModel(), this);
             temperaturePresenterScene = new Scene(root);
@@ -44,7 +44,7 @@ public class ViewHandler {
         FXMLLoader loader = new FXMLLoader();
 
         if (controlHeaterScene == null) {
-            Parent root = getRootByPath("../client.core.view/radiatorController/radiatorView.fxml", loader);
+            Parent root = getRootByPath("../view/radiatorController/radiatorView.fxml", loader);
             RadiatorViewController controller = loader.getController();
             controller.init(this, viewModelFactory.getRadiatorViewModel());
             controlHeaterScene = new Scene(root);
@@ -59,7 +59,7 @@ public class ViewHandler {
 
         if (lineChartScene==null)
         {
-            Parent root = getRootByPath("../client.core.view/lineChart/LineChart.fxml",loader);
+            Parent root = getRootByPath("../view/lineChart/LineChart.fxml",loader);
             LineChartController controller =loader.getController();
             controller.init(viewModelFactory.getLineChartViewModel(), this);
             lineChartScene = new Scene(root);

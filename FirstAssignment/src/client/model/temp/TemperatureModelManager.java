@@ -24,7 +24,6 @@ public class TemperatureModelManager implements TemperatureModel {
     @Override
     public void addOutdoorTemperature(String id, double value) {
         Temperature temperature = new Temperature(id,value);
-
         System.out.println("Outdoor temperature added");
         support.firePropertyChange("Outdoor Temperature added",null,temperature);
     }

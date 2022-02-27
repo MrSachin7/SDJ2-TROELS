@@ -32,4 +32,12 @@ Silver depositedGold depositedSilver deposited						-----NOT ENOUGH RESOURCES--P
 			Number of silvers: 0	Silvers value: 0
 			Number of golds: 0	Golds value: 0Transporter has put the items to the kings safeSilver depositedSilver depositedGold depositedTaking the values to the safe..will take 5 secondsTransporter has put the items to the kings safe						----PARTY IS HERE---THE KING IS HAPPY--- --Gold depositedSilver depositedGold deposited			Number of diamonds: 0	Diamonds Value: 0
 			Number of silvers: 2	Silvers value: 40
-			Number of golds: 2	Golds value: 110Nothing on the deposit
+			Number of golds: 2	Golds value: 110Nothing on the depositWaste can detected , thrown awayWaste can detected , thrown awayWaste can detected , thrown awayNothing on the deposit						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Silver depositedNothing on the depositGold depositedSilver depositedNothing on the deposit						-----NOT ENOUGH RESOURCES--POOR KING			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0Silver depositedSilver depositedTaking the values to the safe..will take 5 secondsGold depositedTransporter has put the items to the kings safeWaste can detected , thrown away2022-02-27T21:04:34.247362Silver deposited2022-02-27T21:04:34.252347900Nothing on the deposit2022-02-27T21:04:34.253180800Waste can detected , thrown away2022-02-27T21:04:34.253180800Nothing on the deposit2022-02-27T21:04:34.253180800						-----NOT ENOUGH RESOURCES--POOR KING2022-02-27T21:04:35.236668100			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 02022-02-27T21:04:36.254916100Nothing on the deposit		2022-02-27T21:04:56.799902600Silver deposited		2022-02-27T21:04:56.819850600Silver deposited		2022-02-27T21:04:56.820847300Silver deposited		2022-02-27T21:04:56.821326900Nothing on the deposit		2022-02-27T21:04:56.821326900						-----NOT ENOUGH RESOURCES--POOR KING		2022-02-27T21:04:57.776619900			Number of diamonds: 0	Diamonds Value: 0
+			Number of silvers: 0	Silvers value: 0
+			Number of golds: 0	Golds value: 0		2022-02-27T21:04:58.804741400

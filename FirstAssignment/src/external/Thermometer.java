@@ -75,7 +75,7 @@ public class Thermometer implements Runnable {
                     System.out.println("OutDoor temperature :" + lastMeasuredOutdoorTemperature + " ID : " + id);
                 }
 
-                Thread.sleep(1000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

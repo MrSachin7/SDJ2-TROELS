@@ -1,6 +1,7 @@
 package logger;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,6 +19,8 @@ public class Log {
     public void log(String text) {
         try {
             Writer out = new BufferedWriter(new FileWriter(logFIle,true));
+            LocalDateTime dateTime = LocalDateTime.now();
+            text+="\t\t"+dateTime;
             out.append(text);
             out.flush();
             out.close();

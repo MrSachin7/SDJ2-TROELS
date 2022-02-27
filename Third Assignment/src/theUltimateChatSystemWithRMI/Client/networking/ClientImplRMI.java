@@ -5,6 +5,7 @@ import theUltimateChatSystemWithRMI.shared.PrivateMessage;
 import theUltimateChatSystemWithRMI.shared.User;
 import theUltimateChatSystemWithRMI.shared.networking.clientInterfaces.ClientCallBack;
 import theUltimateChatSystemWithRMI.shared.networking.serverInterfaces.Server;
+import theUltimateChatSystemWithRMI.shared.utils.Subject;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

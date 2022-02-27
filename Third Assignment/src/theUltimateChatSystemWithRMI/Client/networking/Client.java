@@ -7,7 +7,7 @@ import theUltimateChatSystemWithRMI.shared.utils.Subject;
 
 import java.util.List;
 
-public interface Client extends Subject {
+public interface Client extends Subject  {
     boolean isConnectionPossible(String username) ;
 
     void sendMessage(Message message) ;
